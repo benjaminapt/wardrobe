@@ -28,3 +28,14 @@ vercel pull --yes --environment preview
 vercel build --yes
 vercel deploy --prebuilt --target preview
 ```
+
+## Session Handoff (2026-07-31)
+
+- **Current branch:** `main`, synchronized with `origin/main` through `91f11a3` before this handoff update.
+- **Hosted app:** The protected preview above is the only remaining Vercel deployment; the accidental public production deployment was removed.
+- **Vercel gotcha:** For a new project, `vercel deploy --prebuilt` created the first deployment as production. Always pass `--target preview`, then verify anonymous access returns `302` to `vercel.com/sso-api` before sharing the URL.
+- **Validation baseline:** Both Node test files pass, local and static Vite builds pass, the static artifact contains 64 items and 70 derived assets, and the hosted library returns 64 items through authenticated `vercel curl`.
+- **Antigravity tracked changes:** `index.html`, `src/import-flow.css`, and `src/styles.css` contain an uncommitted dark-theme redesign (114 additions, 68 deletions). It is included in the current Vercel artifact but has not been reviewed or committed.
+- **Other untracked work:** `.Rhistory`, `.superpowers/`, `combine.py`, `combined_garments.png`, `compose_clothes.py`, `composite_images.py`, `concat.py`, `generate_prompts.js`, `generate_prompts.mjs`, `process_final_outfit.mjs`, `process_outfits.mjs`, and `prompts.json` predate this handoff. Do not commit or delete them as a group without identifying their owner and purpose.
+- **Next session priority:** Review the three Antigravity UI files visually and technically, decide whether to commit or revise them, then inventory the untracked utilities. After that, resume modeled-image generation for the remaining 58 items if desired.
+- **Privacy boundary:** Keep `data/`, `public/wardrobe/`, and `.vercel/` ignored. Never connect a remote Git build that expects the private static snapshot; refresh via local `vercel build --yes` and `vercel deploy --prebuilt --target preview`.
