@@ -8,3 +8,4 @@ dist/
 data/
 public/wardrobe/
 .worktrees/
+.vercel
