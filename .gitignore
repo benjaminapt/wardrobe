@@ -6,4 +6,5 @@ dist/
 !.env.example
 *.log
 data/
+public/wardrobe/
 .worktrees/
