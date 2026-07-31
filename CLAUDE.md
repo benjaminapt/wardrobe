@@ -39,3 +39,10 @@ vercel deploy --prebuilt --target preview
 - **Other untracked work:** `.Rhistory`, `.superpowers/`, `combine.py`, `combined_garments.png`, `compose_clothes.py`, `composite_images.py`, `concat.py`, `generate_prompts.js`, `generate_prompts.mjs`, `process_final_outfit.mjs`, `process_outfits.mjs`, and `prompts.json` predate this handoff. Do not commit or delete them as a group without identifying their owner and purpose.
 - **Next session priority:** Review the three Antigravity UI files visually and technically, decide whether to commit or revise them, then inventory the untracked utilities. After that, resume modeled-image generation for the remaining 58 items if desired.
 - **Privacy boundary:** Keep `data/`, `public/wardrobe/`, and `.vercel/` ignored. Never connect a remote Git build that expects the private static snapshot; refresh via local `vercel build --yes` and `vercel deploy --prebuilt --target preview`.
+
+## Dark-theme review and publish (2026-07-31)
+
+- **Reviewed scope:** Antigravity's dark-theme redesign in `index.html`, `src/styles.css`, and `src/import-flow.css`.
+- **Corrections:** The selected import card now uses the theme accent instead of a nearly white background, and import success/error states use accessible dark-theme colors. Trailing whitespace was removed.
+- **Validation:** Static-export tests (4), wardrobe-source tests (4), and both Vite builds pass. The static artifact still contains 64 items and 70 derived assets.
+- **Excluded local artifacts:** `.Rhistory`, `.superpowers/`, image-composition scripts, generated prompt files, and `combined_garments.png` remain untracked. They depend on private library data and absolute local paths; they are not app release files.
