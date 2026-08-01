@@ -60,3 +60,9 @@ vercel deploy --prebuilt --target preview
 - **New accepted pieces:** `Grey Chunky-Knit High-Neck`, `Blue Textured Suit Trousers`, and `Black Kappa Logo Tee`. Each has a source-faithful transparent cutout and a verified modeled photo.
 - **Catalog state:** 67 accepted items. The protected static snapshot was regenerated with 67 items, 76 wardrobe assets, and 10 outfits.
 - **Evidence policy:** Keep candidate garments on hold if the gallery does not distinguish their construction from a duplicate or cannot support a faithful reconstruction. Older gallery photos are visual evidence, not automatic proof that the item is still owned.
+
+## Curated lookbook expansion (2026-08-01)
+
+- **Collection:** Expanded from 10 to 30 active modeled looks. The added 20 are curated across tailoring, smart-casual, cool-weather, street, and warm-weather use, with no duplicate garment combinations.
+- **Quality gate:** Every new image was generated against the model reference and exact local cutouts, then visually checked for identity, full-body framing, recognizable selected garments, and material/logo fidelity. A first charcoal-knit render was rejected and regenerated to preserve the oversized chunky knit texture.
+- **Published snapshot:** Protected preview `https://wardrobe-private-d09u14ini-benjaminaptc-4943s-projects.vercel.app` has 67 items, 76 wardrobe assets, 30 active outfits, and 30 modeled outfit images. Authenticated Vercel checks returned `200` for the library, the outfit manifest, and a representative new look image.
