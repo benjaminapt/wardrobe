@@ -46,3 +46,10 @@ vercel deploy --prebuilt --target preview
 - **Corrections:** The selected import card now uses the theme accent instead of a nearly white background, and import success/error states use accessible dark-theme colors. Trailing whitespace was removed.
 - **Validation:** Static-export tests (4), wardrobe-source tests (4), and both Vite builds pass. The static artifact still contains 64 items and 70 derived assets.
 - **Excluded local artifacts:** `.Rhistory`, `.superpowers/`, image-composition scripts, generated prompt files, and `combined_garments.png` remain untracked. They depend on private library data and absolute local paths; they are not app release files.
+
+## Outfits and manual theme control (2026-07-31)
+
+- **Lookbook:** The app now reads the 10 active records in `data/outfits.json` locally and renders them in an Outfits view. The static exporter copies their modeled images into the protected snapshot as `/wardrobe/outfits/` paths; all outfit source images remain ignored by Git.
+- **Theme:** The header has a day/night control. A manual choice persists in `open-wardrobe-theme-v1`; only a first-time visit follows the operating-system preference.
+- **Validation:** Theme (4), outfit source (3), Vite plugin order (1), wardrobe source (4), and static exporter (6) tests cover the new boundaries. Local API verification returns 10 active outfits and a representative modeled PNG with `200 image/png`.
+- **Release procedure:** Merge the approved branch into `main`, then create a fresh protected preview with `vercel build --yes` and `vercel deploy --prebuilt --target preview`.
