@@ -81,3 +81,11 @@ vercel deploy --prebuilt --target preview
 - **New look:** `Red Pinstripe Matchday`, pairing the jersey with existing black cargo trousers and black-and-white skate sneakers.
 - **Catalog state:** 70 accepted items, 82 wardrobe assets, 33 active outfits, and 33 modeled outfit images.
 - **Published snapshot:** Protected preview `https://wardrobe-private-pvruo1b11-benjaminaptc-4943s-projects.vercel.app`. Authenticated checks verified exactly 70 garments and 33 outfits, including `red-pinstripe-matchday`.
+
+## Curated gallery wave (2026-08-01)
+
+- **New accepted pieces:** `Black Orange-Pocket Parka`, `Black Fuchsia Colo-Colo Jersey`, and `Grey Zip Hoodie`. Each came from a read-only gallery audit, then an evidence-bound transparent cutout and modeled reference. Text, sponsors, and labels not established by the photos were omitted.
+- **New looks:** `Black Orange Parka Cargo`, `Black Fuchsia Colo Matchday`, and `Grey Zip Hoodie Light Cargo`. Each uses the new item with existing wardrobe references and passed a full head-to-shoe visual QA.
+- **Catalog state:** 73 accepted items, 88 wardrobe assets, 36 active outfits, and 36 modeled outfit images.
+- **Published snapshot:** Protected preview `https://wardrobe-private-dqudsrkfk-benjaminaptc-4943s-projects.vercel.app`. Authenticated checks verified 73 garments, 36 outfits, and `black-orange-parka-cargo.png` with `200 image/png`.
+- **Held candidates:** the light beige graphic tank, navy graphic tee, taupe crewneck, and olive/beige jacket remain held because they would require guessing text, a duplicate decision, or unseen construction.
