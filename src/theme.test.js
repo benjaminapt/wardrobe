@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { THEME_STORAGE_KEY, persistTheme, resolveTheme, toggleTheme } from "./theme.js";
+import { THEME_STORAGE_KEY, persistTheme, resolveTheme, themeColor, toggleTheme } from "./theme.js";
 
 function storage(initial = {}) {
   const values = new Map(Object.entries(initial));
@@ -24,4 +24,9 @@ test("toggles and persists explicit themes", () => {
   assert.equal(toggleTheme("dark"), "light");
   persistTheme({ storage: target, theme: "light" });
   assert.equal(resolveTheme({ storage: target, prefersDark: true }), "light");
+});
+
+test("returns browser chrome colors that match the resolved theme", () => {
+  assert.equal(themeColor("dark"), "#0a0a0c");
+  assert.equal(themeColor("light"), "#f4f0e8");
 });

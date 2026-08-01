@@ -276,6 +276,24 @@
 @keyframes import-spin { to { transform: rotate(360deg); } }
 .import-spinner { animation: import-spin 900ms linear infinite; }
 
+.app-shell[data-theme="light"] .import-drop-overlay { background: rgba(244, 240, 231, 0.9); }
+.app-shell[data-theme="light"] .import-drop-target { border-color: rgba(36, 35, 31, 0.42); background: rgba(251, 248, 241, 0.62); }
+.app-shell[data-theme="light"] .import-drop-target.is-over { background: rgba(255, 253, 247, 0.9); }
+.app-shell[data-theme="light"] .import-setup-warning code { background: rgba(36, 35, 31, 0.07); }
+.app-shell[data-theme="light"] .import-tray { color: var(--import-paper); background: var(--import-ink); border-color: rgba(255, 255, 255, 0.1); box-shadow: 0 8px 28px rgba(25, 23, 18, 0.2); }
+.app-shell[data-theme="light"] .import-popover-backdrop { background: rgba(35, 33, 28, 0.25); }
+.app-shell[data-theme="light"] .import-popover { background: var(--import-paper); border-color: var(--import-line); }
+.app-shell[data-theme="light"] .import-progress__track { background: rgba(36, 35, 31, 0.1); }
+.app-shell[data-theme="light"] .import-card { background: rgba(255, 255, 255, 0.38); }
+.app-shell[data-theme="light"] .import-cleanup-comparison figure { background-color: var(--import-ivory); }
+.app-shell[data-theme="light"] .import-cleanup-comparison figcaption { background: rgba(244, 240, 232, .92); }
+.app-shell[data-theme="light"] .import-button { background: transparent; }
+.app-shell[data-theme="light"] .import-status.is-complete,
+.app-shell[data-theme="light"] .import-card__detail--status[data-tone="complete"] { color: #49604b; }
+.app-shell[data-theme="light"] .import-status.is-error,
+.app-shell[data-theme="light"] .import-card__detail--status[data-tone="error"],
+.app-shell[data-theme="light"] .import-field-error { color: #8a3f35; }
+
 @media (max-width: 640px) {
   .app-shell.has-selection .import-tray { display: none; }
   .import-tray { left: 12px; bottom: max(12px, env(safe-area-inset-bottom)); max-width: calc(100vw - 24px); }

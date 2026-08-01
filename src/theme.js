@@ -13,3 +13,7 @@ export function toggleTheme(theme) {
 export function persistTheme({ storage, theme }) {
   storage?.setItem(THEME_STORAGE_KEY, theme);
 }
+
+export function themeColor(theme) {
+  return theme === "light" ? "#f4f0e8" : "#0a0a0c";
+}
