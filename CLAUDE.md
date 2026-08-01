@@ -53,3 +53,10 @@ vercel deploy --prebuilt --target preview
 - **Theme:** The header has a day/night control. A manual choice persists in `open-wardrobe-theme-v1`; only a first-time visit follows the operating-system preference.
 - **Validation:** Theme (4), outfit source (3), Vite plugin order (1), wardrobe source (4), and static exporter (6) tests cover the new boundaries. Local API verification returns 10 active outfits and a representative modeled PNG with `200 image/png`.
 - **Release procedure:** Merge the approved branch into `main`, then create a fresh protected preview with `vercel build --yes` and `vercel deploy --prebuilt --target preview`.
+
+## Gallery audit import (2026-08-01)
+
+- **Scope correction:** The prior 39-image batch was only an initial selected export. The Photos person album contains 2,952 photos and 34 videos; ongoing discovery uses read-only access to local Photos derivatives and metadata, without controlling Photos.app.
+- **New accepted pieces:** `Grey Chunky-Knit High-Neck`, `Blue Textured Suit Trousers`, and `Black Kappa Logo Tee`. Each has a source-faithful transparent cutout and a verified modeled photo.
+- **Catalog state:** 67 accepted items. The protected static snapshot was regenerated with 67 items, 76 wardrobe assets, and 10 outfits.
+- **Evidence policy:** Keep candidate garments on hold if the gallery does not distinguish their construction from a duplicate or cannot support a faithful reconstruction. Older gallery photos are visual evidence, not automatic proof that the item is still owned.
