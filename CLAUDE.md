@@ -66,3 +66,11 @@ vercel deploy --prebuilt --target preview
 - **Collection:** Expanded from 10 to 30 active modeled looks. The added 20 are curated across tailoring, smart-casual, cool-weather, street, and warm-weather use, with no duplicate garment combinations.
 - **Quality gate:** Every new image was generated against the model reference and exact local cutouts, then visually checked for identity, full-body framing, recognizable selected garments, and material/logo fidelity. A first charcoal-knit render was rejected and regenerated to preserve the oversized chunky knit texture.
 - **Published snapshot:** Protected preview `https://wardrobe-private-d09u14ini-benjaminaptc-4943s-projects.vercel.app` has 67 items, 76 wardrobe assets, 30 active outfits, and 30 modeled outfit images. Authenticated Vercel checks returned `200` for the library, the outfit manifest, and a representative new look image.
+
+## Continued gallery import (2026-08-01)
+
+- **New accepted pieces:** `White Levi's Batwing Tee` and `Beige Sleeveless Muscle Tank`, based on clearly visible 2025 gallery sources. The tank's tiny unreadable wordmark was deliberately omitted instead of invented.
+- **New looks:** `Levi's Black Cargo` and `Beige Tank Olive Swim`; both were generated from the selected garment cutouts and visually checked before publishing.
+- **Catalog state:** 69 accepted items, 80 wardrobe assets, 32 active outfits, and 32 modeled outfit images.
+- **Published snapshot:** Protected preview `https://wardrobe-private-3d5k3q1cg-benjaminaptc-4943s-projects.vercel.app`. Authenticated Vercel checks returned `200` for the library JSON, outfit JSON, and `levis-black-cargo.png`.
+- **Open curation:** Audits identified a well-visible red/white Adidas football jersey and several hoodies as possible further pieces, but none were added until their cutout/model fidelity can be checked against the sources.
