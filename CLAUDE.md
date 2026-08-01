@@ -74,3 +74,10 @@ vercel deploy --prebuilt --target preview
 - **Catalog state:** 69 accepted items, 80 wardrobe assets, 32 active outfits, and 32 modeled outfit images.
 - **Published snapshot:** Protected preview `https://wardrobe-private-3d5k3q1cg-benjaminaptc-4943s-projects.vercel.app`. Authenticated Vercel checks returned `200` for the library JSON, outfit JSON, and `levis-black-cargo.png`.
 - **Open curation:** Audits identified a well-visible red/white Adidas football jersey and several hoodies as possible further pieces, but none were added until their cutout/model fidelity can be checked against the sources.
+
+## Red football jersey release (2026-08-01)
+
+- **New accepted piece:** `Red and White Adidas Football Jersey`, reconstructed only from the visible red pinstripes, white shoulder panels, three sleeve stripes, V-neck, chest crest, and gold star. No source-unreadable sponsor or lettering was invented.
+- **New look:** `Red Pinstripe Matchday`, pairing the jersey with existing black cargo trousers and black-and-white skate sneakers.
+- **Catalog state:** 70 accepted items, 82 wardrobe assets, 33 active outfits, and 33 modeled outfit images.
+- **Published snapshot:** Protected preview `https://wardrobe-private-pvruo1b11-benjaminaptc-4943s-projects.vercel.app`. Authenticated checks verified exactly 70 garments and 33 outfits, including `red-pinstripe-matchday`.
