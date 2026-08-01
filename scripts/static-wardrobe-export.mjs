@@ -4,6 +4,8 @@ import { fileURLToPath } from "node:url";
 
 const LIBRARY_PREFIX = "/api/import/library/";
 const STATIC_PREFIX = "/wardrobe/assets/";
+const OUTFIT_PREFIX = "/api/import/outfits/";
+const STATIC_OUTFIT_PREFIX = "/wardrobe/outfits/";
 const REQUIRED_FIELDS = ["image", "thumbnail"];
 
 function assetName(value) {
@@ -17,6 +19,17 @@ function assetName(value) {
   return name;
 }
 
+function outfitImageName(value) {
+  if (typeof value !== "string" || !value.startsWith(OUTFIT_PREFIX)) {
+    throw new Error(`Invalid outfit image URL: ${String(value)}`);
+  }
+  const name = value.slice(OUTFIT_PREFIX.length);
+  if (!name || name !== path.basename(name) || name.includes("\\")) {
+    throw new Error(`Invalid outfit image URL: ${value}`);
+  }
+  return name;
+}
+
 async function exists(file) {
   try {
     await access(file);
@@ -26,7 +39,7 @@ async function exists(file) {
   }
 }
 
-export async function exportStaticWardrobe({ libraryPath, assetRoot, outputDir }) {
+export async function exportStaticWardrobe({ libraryPath, assetRoot, outputDir, outfitsPath, outfitImageRoot }) {
   const library = JSON.parse(await readFile(libraryPath, "utf8"));
   if (!Array.isArray(library)) throw new Error("Wardrobe library must be an array");
 
@@ -69,9 +82,48 @@ export async function exportStaticWardrobe({ libraryPath, assetRoot, outputDir }
     }
 
     await writeFile(path.join(temporaryDir, "library.json"), `${JSON.stringify(exported, null, 2)}\n`);
+    let outfitCount;
+    let outfitAssetCount;
+    if (outfitsPath && outfitImageRoot) {
+      const manifest = JSON.parse(await readFile(outfitsPath, "utf8"));
+      if (!Array.isArray(manifest.outfits)) throw new Error("Outfit manifest must contain an outfits array");
+      const temporaryOutfits = path.join(temporaryDir, "outfits");
+      const copiedOutfits = new Set();
+      const outfits = [];
+
+      for (const outfit of manifest.outfits.filter((candidate) => candidate?.status === "active")) {
+        const next = { ...outfit };
+        if (outfit.image) {
+          const name = outfitImageName(outfit.image);
+          const source = path.join(outfitImageRoot, name);
+          if (await exists(source)) {
+            await mkdir(temporaryOutfits, { recursive: true });
+            if (!copiedOutfits.has(name)) {
+              await copyFile(source, path.join(temporaryOutfits, name));
+              copiedOutfits.add(name);
+            }
+            next.image = `${STATIC_OUTFIT_PREFIX}${name}`;
+          } else {
+            next.image = null;
+          }
+        } else {
+          next.image = null;
+        }
+        outfits.push(next);
+      }
+
+      await writeFile(path.join(temporaryDir, "outfits.json"), `${JSON.stringify(outfits, null, 2)}\n`);
+      outfitCount = outfits.length;
+      outfitAssetCount = copiedOutfits.size;
+    }
     await rm(outputDir, { recursive: true, force: true });
     await rename(temporaryDir, outputDir);
-    return { itemCount: exported.length, assetCount: copied.size, outputDir };
+    return {
+      itemCount: exported.length,
+      assetCount: copied.size,
+      ...(outfitCount === undefined ? {} : { outfitCount, outfitAssetCount }),
+      outputDir,
+    };
   } catch (error) {
     await rm(temporaryDir, { recursive: true, force: true });
     throw error;
@@ -85,6 +137,8 @@ if (isMain) {
     libraryPath: path.join(projectRoot, "data", "library.json"),
     assetRoot: path.join(projectRoot, "data", "imported"),
     outputDir: path.join(projectRoot, "public", "wardrobe"),
+    outfitsPath: path.join(projectRoot, "data", "outfits.json"),
+    outfitImageRoot: path.join(projectRoot, "data", "outfit-images"),
   });
-  process.stdout.write(`Exported ${result.itemCount} items and ${result.assetCount} assets to ${result.outputDir}\n`);
+  process.stdout.write(`Exported ${result.itemCount} items, ${result.assetCount} garment assets, ${result.outfitCount || 0} outfits, and ${result.outfitAssetCount || 0} outfit assets to ${result.outputDir}\n`);
 }

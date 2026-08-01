@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Check, Plus, Trash, X } from "@phosphor-icons/react";
+import { Check, Moon, Plus, Sun, Trash, X } from "@phosphor-icons/react";
 import { WardrobeImportFlow } from "./import-flow.jsx";
 import { OptimizedImage } from "./OptimizedImage.jsx";
+import { loadOutfits } from "./outfit-source.js";
+import { persistTheme, resolveTheme, themeColor, toggleTheme } from "./theme.js";
 import { loadWardrobe } from "./wardrobe-source.js";
 
 const STORAGE_KEY = "open-wardrobe-edits-v1";
@@ -174,6 +176,38 @@ function GalleryItem({ item, selected, onOpen }) {
         breakpoints={[120, 180, 240, 320, 480]}
       />
     </button>
+  );
+}
+
+function OutfitCard({ outfit }) {
+  const occasions = Array.isArray(outfit.occasion) ? outfit.occasion : [];
+  const garmentCount = Array.isArray(outfit.garmentIds) ? outfit.garmentIds.length : 0;
+
+  return (
+    <article className="outfit-card">
+      {outfit.image ? (
+        <OptimizedImage
+          className="outfit-card__image"
+          src={outfit.image}
+          alt={outfit.name ? outfit.name + " outfit" : "Generated outfit"}
+          sizes="(max-width: 520px) calc(100vw - 24px), (max-width: 860px) calc(50vw - 32px), 360px"
+          breakpoints={[240, 360, 480, 640, 800]}
+        />
+      ) : (
+        <div className="outfit-card__empty" role="img" aria-label={"Modeled image unavailable for " + (outfit.name || "this outfit")}>
+          Modeled image unavailable
+        </div>
+      )}
+      <div className="outfit-card__body">
+        <h2>{outfit.name || "Untitled outfit"}</h2>
+        <p>{garmentCount} {garmentCount === 1 ? "piece" : "pieces"}</p>
+        {!!occasions.length && (
+          <div className="outfit-card__occasions" aria-label="Occasions">
+            {occasions.map((occasion) => <span key={occasion}>{occasion}</span>)}
+          </div>
+        )}
+      </div>
+    </article>
   );
 }
 
@@ -536,10 +570,18 @@ function ItemViewer({ item, onClose, onSave, onDelete }) {
 
 export function App() {
   const [items, setItems] = useState([]);
+  const [outfits, setOutfits] = useState([]);
   const [activeType, setActiveType] = useState("all");
+  const [view, setView] = useState("wardrobe");
   const [selectedId, setSelectedId] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [outfitsLoading, setOutfitsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [outfitsError, setOutfitsError] = useState("");
+  const [theme, setTheme] = useState(() => resolveTheme({
+    storage: typeof window === "undefined" ? null : window.localStorage,
+    prefersDark: typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches,
+  }));
 
   useEffect(() => {
     loadWardrobe({ staticMode: STATIC_MODE })
@@ -552,6 +594,18 @@ export function App() {
       .catch((requestError) => setError(requestError.message))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    loadOutfits({ staticMode: STATIC_MODE })
+      .then(setOutfits)
+      .catch((requestError) => setOutfitsError(requestError.message))
+      .finally(() => setOutfitsLoading(false));
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.style.colorScheme = theme;
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", themeColor(theme));
+  }, [theme]);
 
   const selectedItem = items.find((item) => item.id === selectedId) || null;
 
@@ -567,8 +621,20 @@ export function App() {
   }, [activeType, items]);
 
   const chooseType = (typeId) => {
+    setView("wardrobe");
     setActiveType(typeId);
     setSelectedId(null);
+  };
+
+  const chooseOutfits = () => {
+    setView("outfits");
+    setSelectedId(null);
+  };
+
+  const changeTheme = () => {
+    const nextTheme = toggleTheme(theme);
+    persistTheme({ storage: window.localStorage, theme: nextTheme });
+    setTheme(nextTheme);
   };
 
   const saveItem = (updatedItem) => {
@@ -602,20 +668,31 @@ export function App() {
   }, []);
 
   return (
-    <div className={`app-shell${selectedItem ? " has-selection" : ""}`}>
+    <div className={`app-shell${selectedItem ? " has-selection" : ""}`} data-theme={theme}>
       <main className="gallery-pane">
         <header className="gallery-header">
           <div className="gallery-meta-row">
-            <p className="piece-count">{items.length} {items.length === 1 ? "piece" : "pieces"}</p>
+            <p className="piece-count">
+              {view === "outfits"
+                ? `${outfits.length} ${outfits.length === 1 ? "outfit" : "outfits"}`
+                : `${items.length} ${items.length === 1 ? "piece" : "pieces"}`}
+            </p>
+            <button className="theme-toggle" type="button" onClick={changeTheme} aria-label={`Switch to ${theme === "dark" ? "day" : "night"} mode`}>
+              {theme === "dark" ? <Sun size={16} weight="regular" aria-hidden="true" /> : <Moon size={16} weight="regular" aria-hidden="true" />}
+              <span>{theme === "dark" ? "Day" : "Night"}</span>
+            </button>
           </div>
-          <nav className="category-nav" aria-label="Filter wardrobe by item type">
+          <nav className="category-nav" aria-label="Browse wardrobe and outfits">
+            <button type="button" className={view === "outfits" ? "active" : ""} onClick={chooseOutfits} aria-pressed={view === "outfits"}>
+              Outfits
+            </button>
             {TYPES.map((type) => (
               <button
                 key={type.id}
                 type="button"
-                className={activeType === type.id ? "active" : ""}
+                className={view === "wardrobe" && activeType === type.id ? "active" : ""}
                 onClick={() => chooseType(type.id)}
-                aria-pressed={activeType === type.id}
+                aria-pressed={view === "wardrobe" && activeType === type.id}
               >
                 {type.label}
               </button>
@@ -623,21 +700,37 @@ export function App() {
           </nav>
         </header>
 
-        {error && <p className="status error">{error}</p>}
-        {!error && loading && <p className="status">Loading wardrobe</p>}
-        {!error && !loading && !items.length && <p className="status empty">Drop, paste, or add a photo to import your first piece.</p>}
+        {view === "wardrobe" && (
+          <>
+            {error && <p className="status error">{error}</p>}
+            {!error && loading && <p className="status">Loading wardrobe</p>}
+            {!error && !loading && !items.length && <p className="status empty">Drop, paste, or add a photo to import your first piece.</p>}
+            {!!items.length && (
+              <section className="gallery-grid" aria-label={`${TYPE_MAP[activeType]?.label || "All"} wardrobe items`}>
+                {visibleItems.map((item) => (
+                  <GalleryItem
+                    key={item.id}
+                    item={item}
+                    selected={selectedId === item.id}
+                    onOpen={setSelectedId}
+                  />
+                ))}
+              </section>
+            )}
+          </>
+        )}
 
-        {!!items.length && (
-          <section className="gallery-grid" aria-label={`${TYPE_MAP[activeType]?.label || "All"} wardrobe items`}>
-            {visibleItems.map((item) => (
-              <GalleryItem
-                key={item.id}
-                item={item}
-                selected={selectedId === item.id}
-                onOpen={setSelectedId}
-              />
-            ))}
-          </section>
+        {view === "outfits" && (
+          <>
+            {outfitsError && <p className="status error">{outfitsError}</p>}
+            {!outfitsError && outfitsLoading && <p className="status">Loading outfits</p>}
+            {!outfitsError && !outfitsLoading && !outfits.length && <p className="status empty">No active outfits yet.</p>}
+            {!!outfits.length && (
+              <section className="outfit-grid" aria-label="Outfits">
+                {outfits.map((outfit) => <OutfitCard key={outfit.id} outfit={outfit} />)}
+              </section>
+            )}
+          </>
         )}
       </main>
 

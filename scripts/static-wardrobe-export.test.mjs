@@ -80,3 +80,55 @@ test("rejects asset URLs outside the local wardrobe library", async () => {
     /Invalid wardrobe asset URL/,
   );
 });
+
+test("exports active outfits and rewrites their modeled image URLs", async () => {
+  const paths = await fixture([{
+    id: "item",
+    image: "/api/import/library/item.png",
+    thumbnail: "/api/import/library/item.png",
+  }]);
+  const outfitsPath = path.join(paths.root, "outfits.json");
+  const outfitImageRoot = path.join(paths.root, "outfits");
+  await writeFile(path.join(paths.assetRoot, "item.png"), "item");
+  await mkdir(outfitImageRoot);
+  await writeFile(outfitsPath, JSON.stringify({
+    outfits: [
+      { id: "look", status: "active", image: "/api/import/outfits/look.png" },
+      { id: "draft", status: "planned", image: "/api/import/outfits/draft.png" },
+    ],
+  }));
+  await writeFile(path.join(outfitImageRoot, "look.png"), "look");
+
+  await exportStaticWardrobe({ ...paths, outfitsPath, outfitImageRoot });
+
+  assert.deepEqual(JSON.parse(await readFile(path.join(paths.outputDir, "outfits.json"), "utf8")), [
+    { id: "look", status: "active", image: "/wardrobe/outfits/look.png" },
+  ]);
+  assert.equal(await readFile(path.join(paths.outputDir, "outfits", "look.png"), "utf8"), "look");
+});
+
+test("preserves an active outfit with a missing image and rejects escaped outfit paths", async () => {
+  const paths = await fixture([{
+    id: "item",
+    image: "/api/import/library/item.png",
+    thumbnail: "/api/import/library/item.png",
+  }]);
+  const outfitsPath = path.join(paths.root, "outfits.json");
+  const outfitImageRoot = path.join(paths.root, "outfits");
+  await writeFile(path.join(paths.assetRoot, "item.png"), "item");
+  await mkdir(outfitImageRoot);
+  await writeFile(outfitsPath, JSON.stringify({
+    outfits: [{ id: "missing", status: "active", image: "/api/import/outfits/missing.png" }],
+  }));
+
+  await exportStaticWardrobe({ ...paths, outfitsPath, outfitImageRoot });
+  assert.equal(JSON.parse(await readFile(path.join(paths.outputDir, "outfits.json"), "utf8"))[0].image, null);
+
+  await writeFile(outfitsPath, JSON.stringify({
+    outfits: [{ id: "unsafe", status: "active", image: "/api/import/outfits/../private.png" }],
+  }));
+  await assert.rejects(
+    () => exportStaticWardrobe({ ...paths, outfitsPath, outfitImageRoot }),
+    /Invalid outfit image URL/,
+  );
+});
