@@ -89,3 +89,12 @@ vercel deploy --prebuilt --target preview
 - **Catalog state:** 73 accepted items, 88 wardrobe assets, 36 active outfits, and 36 modeled outfit images.
 - **Published snapshot:** Protected preview `https://wardrobe-private-dqudsrkfk-benjaminaptc-4943s-projects.vercel.app`. Authenticated checks verified 73 garments, 36 outfits, and `black-orange-parka-cargo.png` with `200 image/png`.
 - **Held candidates:** the light beige graphic tank, navy graphic tee, taupe crewneck, and olive/beige jacket remain held because they would require guessing text, a duplicate decision, or unseen construction.
+
+## Gallery depth wave (2026-08-02)
+
+- **Audit scope:** Read-only parallel reviews covered 415 prioritized person-photo derivatives across 2022, early 2023, and 2024, contrasted against the 73-item catalog at the time. Photos.app and original assets were never modified.
+- **New accepted pieces:** `Light Grey Windowpane Blazer`, `Black Pullover Kangaroo Hoodie`, `White Vasco Kappa Track Jacket`, `Rust Pocket Tee`, and `Czech Adidas Lace Jersey`. Each has an RGBA cutout plus an identity-preserving modeled reference. Unreadable sponsor text, labels, and faint graphics were omitted.
+- **New looks:** `Windowpane Navy Tailoring`, `Black Hoodie Light Cargo`, `Vasco Track Black Cargo`, `Rust Pocket Light Cargo`, and `Czech Retro Black Cargo`. Each passed full head-to-shoes review with all selected pieces visible and recognizable.
+- **Catalog state:** 78 accepted items, 98 wardrobe assets, 41 active outfits, and 41 modeled outfit images.
+- **Published snapshot:** Protected preview `https://wardrobe-private-gx30ifztw-benjaminaptc-4943s-projects.vercel.app`. Authenticated checks verified 78 garments, 41 outfits, and `windowpane-navy-tailoring.png` with `200 image/png`.
+- **Further holds:** Outerwear or sport pieces with unseen hems, pockets, logos, or graphics remain excluded until a source supports a faithful reconstruction.
