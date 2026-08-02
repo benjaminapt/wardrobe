@@ -98,3 +98,11 @@ vercel deploy --prebuilt --target preview
 - **Catalog state:** 78 accepted items, 98 wardrobe assets, 41 active outfits, and 41 modeled outfit images.
 - **Published snapshot:** Protected preview `https://wardrobe-private-gx30ifztw-benjaminaptc-4943s-projects.vercel.app`. Authenticated checks verified 78 garments, 41 outfits, and `windowpane-navy-tailoring.png` with `200 image/png`.
 - **Further holds:** Outerwear or sport pieces with unseen hems, pockets, logos, or graphics remain excluded until a source supports a faithful reconstruction.
+
+## Late gallery essentials wave (2026-08-02)
+
+- **Audit scope:** Read-only parallel review covered 468 prioritized person-photo derivatives from late 2023 and 2025. The review contrasted candidates with the existing 78-item catalog; Photos.app and every source asset remained untouched.
+- **New accepted pieces:** \`Black Elephant Crest Tank\`, \`Black Deep-Armhole Tank\`, \`Black Open-Collar Polo\`, \`White Dark-Rib Tank\`, and \`Washed Blue Nike Tee\`. Each has a clean RGBA cutout and identity-preserving modeled reference.
+- **Evidence guard:** The white tank's unreadable chest mark was removed entirely after central QA. Crest-internal lettering, hidden polo fasteners, and any other unsupported text or construction are deliberately omitted.
+- **Catalog state:** 83 accepted items, 108 wardrobe assets, 41 active outfits, and 41 modeled outfit images.
+- **Outfit curation:** No additional arbitrary outfit count was generated in this wave. The existing lookbook remains at 41 curated looks; future look generation will use a user-specified count, not exhaustive combinations.
