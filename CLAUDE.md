@@ -114,3 +114,11 @@ vercel deploy --prebuilt --target preview
 - **Parallelism:** The handoff requires maximum safe use of subagents, with disjoint audit/generation scopes and a single coordinator responsible for final QA, data writes, merge, and deployment.
 - **Current handoff preview:** https://wardrobe-private-9grtfaipj-benjaminaptc-4943s-projects.vercel.app, verified with 83 catalog items and 41 outfits.
 - **Published snapshot:** Protected preview \`https://wardrobe-private-dyocgrrsp-benjaminaptc-4943s-projects.vercel.app\`. Authenticated checks verified all 83 garments, 41 outfits, and the new white tank asset as an RGBA PNG.
+
+## Further Gallery Depth (2026-08-02 wave 2)
+
+- **Audit scope:** Read-only parallel review covered 72 photos from 2026.
+- **New accepted pieces:** `Black Sleeveless Tank Top` and `Grey-Blue Athletic Shorts`. Each has a transparent cutout and modeled reference.
+- **New looks:** `Athletic Black & Grey`, `Street Ready Tank & Denim`, `Relaxed Off-White & Grey`, and `Earthy Taupe & Blue-Grey`. Each passed visual QA for identity and garment representation.
+- **Catalog state:** 85 accepted items, 45 active outfits, and 45 modeled outfit images.
+- **Published snapshot:** Protected preview `https://wardrobe-private-4mo5kks33-benjaminaptc-4943s-projects.vercel.app`.
