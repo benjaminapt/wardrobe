@@ -106,3 +106,4 @@ vercel deploy --prebuilt --target preview
 - **Evidence guard:** The white tank's unreadable chest mark was removed entirely after central QA. Crest-internal lettering, hidden polo fasteners, and any other unsupported text or construction are deliberately omitted.
 - **Catalog state:** 83 accepted items, 108 wardrobe assets, 41 active outfits, and 41 modeled outfit images.
 - **Outfit curation:** No additional arbitrary outfit count was generated in this wave. The existing lookbook remains at 41 curated looks; future look generation will use a user-specified count, not exhaustive combinations.
+- **Published snapshot:** Protected preview \`https://wardrobe-private-dyocgrrsp-benjaminaptc-4943s-projects.vercel.app\`. Authenticated checks verified all 83 garments, 41 outfits, and the new white tank asset as an RGBA PNG.
