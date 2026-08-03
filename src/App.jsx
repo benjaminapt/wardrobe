@@ -5,6 +5,7 @@ import { OptimizedImage } from "./OptimizedImage.jsx";
 import { loadOutfits } from "./outfit-source.js";
 import { persistTheme, resolveTheme, themeColor, toggleTheme } from "./theme.js";
 import { loadWardrobe } from "./wardrobe-source.js";
+import { Builder } from "./Builder.jsx";
 
 const STORAGE_KEY = "open-wardrobe-edits-v1";
 const DELETED_STORAGE_KEY = "open-wardrobe-deleted-v1";
@@ -179,12 +180,12 @@ function GalleryItem({ item, selected, onOpen }) {
   );
 }
 
-function OutfitCard({ outfit }) {
+function OutfitCard({ outfit, onClick }) {
   const occasions = Array.isArray(outfit.occasion) ? outfit.occasion : [];
   const garmentCount = Array.isArray(outfit.garmentIds) ? outfit.garmentIds.length : 0;
 
   return (
-    <article className="outfit-card">
+    <article className="outfit-card" onClick={() => onClick && onClick(outfit.id)} style={{ cursor: onClick ? 'pointer' : 'default' }}>
       {outfit.image ? (
         <OptimizedImage
           className="outfit-card__image"
@@ -208,6 +209,53 @@ function OutfitCard({ outfit }) {
         )}
       </div>
     </article>
+  );
+}
+
+function OutfitViewer({ outfit, items, onClose }) {
+  const outfitItems = items.filter(item => outfit.garmentIds.includes(item.id));
+  
+  return (
+    <div className="viewer-overlay" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
+      <div className="viewer-entry">
+        <aside className="viewer has-modeled-image" role="dialog" aria-modal="true" aria-label="Selected outfit">
+          <button className="viewer-icon-close" type="button" onClick={onClose} aria-label="Close viewer">
+            <X size={24} weight="light" aria-hidden="true" />
+          </button>
+          <div className="modeled-hero">
+            {outfit.image ? (
+              <OptimizedImage
+                className="modeled-hero-photo"
+                src={outfit.image}
+                alt={outfit.name}
+                sizes="(max-width: 860px) 100vw, 520px"
+                breakpoints={[320, 480, 640, 800, 1040, 1280]}
+                quality={82}
+                priority
+              />
+            ) : (
+              <div className="outfit-card__empty" style={{height: 400}}>No image</div>
+            )}
+            <div className="viewer-heading modeled-heading">
+              <div>
+                <h2>{outfit.name || "Untitled outfit"}</h2>
+              </div>
+            </div>
+          </div>
+          <div className="viewer-details" style={{ padding: '2rem' }}>
+            <h3>Pieces in this outfit</h3>
+            <div className="gallery-grid" style={{ marginTop: '1rem', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))' }}>
+              {outfitItems.map(item => (
+                <div key={item.id} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <GalleryItem item={item} onOpen={() => {}} />
+                  <span style={{ fontSize: '0.8rem', textAlign: 'center', color: 'var(--text-muted)' }}>{item.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
   );
 }
 
@@ -578,6 +626,7 @@ export function App() {
   const [outfitsLoading, setOutfitsLoading] = useState(true);
   const [error, setError] = useState("");
   const [outfitsError, setOutfitsError] = useState("");
+  const [selectedOutfitId, setSelectedOutfitId] = useState(null);
   const [theme, setTheme] = useState(() => resolveTheme({
     storage: typeof window === "undefined" ? null : window.localStorage,
     prefersDark: typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches,
@@ -608,6 +657,7 @@ export function App() {
   }, [theme]);
 
   const selectedItem = items.find((item) => item.id === selectedId) || null;
+  const selectedOutfit = outfits.find((o) => o.id === selectedOutfitId) || null;
 
   const visibleItems = useMemo(() => {
     const filtered = activeType === "all" ? items : items.filter((item) => item.part === activeType);
@@ -628,6 +678,11 @@ export function App() {
 
   const chooseOutfits = () => {
     setView("outfits");
+    setSelectedId(null);
+  };
+
+  const chooseBuilder = () => {
+    setView("builder");
     setSelectedId(null);
   };
 
@@ -683,6 +738,9 @@ export function App() {
             </button>
           </div>
           <nav className="category-nav" aria-label="Browse wardrobe and outfits">
+            <button type="button" className={view === "builder" ? "active" : ""} onClick={chooseBuilder} aria-pressed={view === "builder"}>
+              Builder
+            </button>
             <button type="button" className={view === "outfits" ? "active" : ""} onClick={chooseOutfits} aria-pressed={view === "outfits"}>
               Outfits
             </button>
@@ -727,14 +785,19 @@ export function App() {
             {!outfitsError && !outfitsLoading && !outfits.length && <p className="status empty">No active outfits yet.</p>}
             {!!outfits.length && (
               <section className="outfit-grid" aria-label="Outfits">
-                {outfits.map((outfit) => <OutfitCard key={outfit.id} outfit={outfit} />)}
+                {outfits.map((outfit) => <OutfitCard key={outfit.id} outfit={outfit} onClick={setSelectedOutfitId} />)}
               </section>
             )}
           </>
         )}
+
+        {view === "builder" && (
+          <Builder items={items} />
+        )}
       </main>
 
       {selectedItem && <ItemViewer item={selectedItem} onClose={() => setSelectedId(null)} onSave={saveItem} onDelete={deleteItem} />}
+      {selectedOutfit && <OutfitViewer outfit={selectedOutfit} items={items} onClose={() => setSelectedOutfitId(null)} />}
       {!STATIC_MODE && <WardrobeImportFlow onGarmentApproved={addImportedItem} onModeledApproved={attachImportedModeledImage} />}
     </div>
   );
