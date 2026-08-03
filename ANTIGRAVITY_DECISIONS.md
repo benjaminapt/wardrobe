@@ -20,7 +20,8 @@ Este documento registra las decisiones arquitectónicas y de diseño realizadas 
 
 ## [2026-08-02] - Previsualización Interactiva ("Paper Doll") en Builder
 **Problema:** El usuario solicitó poder ver cómo lucen las prendas sobre su cuerpo mientras selecciona, pero generar una imagen modelada por IA para cada combinación en tiempo real es inviable por los tiempos de espera y límites de cuota (API). Además, la vista previa anterior sólo se veía al volver a la pantalla de inicio, rompiendo el flujo.
-**Decisión:** Se rediseñó el Builder para dividirlo en 3 columnas. El panel central es ahora un "maniquí virtual" siempre visible que utiliza la foto de referencia del usuario (`model-reference.png`) como fondo. Las prendas seleccionadas se superponen con posición absoluta sobre su cuerpo, creando un efecto instantáneo de "muñeca de papel" interactiva que permite ver proporciones y colores sin bloqueos de red. Para lograrlo en Vercel, se modificó el script de exportación para publicar dicha foto en el bundle estático protegido.
+**Decisión (Iteración 1):** Se implementó un "Paper Doll" superponiendo prendas en CSS sobre el avatar (`model-reference.png`). Fracasó porque los recortes tenían proporciones distintas, luciendo "horrible" y desalineado.
+**Decisión (Iteración Final - Interactive Fitting Room):** En lugar de usar el avatar base, el panel utiliza el `modeledImage` de la prenda principal seleccionada (Chaqueta o Top) como fondo dinámico, aprovechando que la IA ya renderizó esa prenda perfectamente sobre el cuerpo del usuario. Las prendas secundarias (ej: pantalones, zapatos) se superponen sobre este fondo, pero ahora son **interactivas**: el usuario puede arrastrarlas libremente y usar la rueda del mouse para escalar su tamaño y lograr el calce perfecto, resolviendo el problema de proporciones sin consumir cuota de IA adicional.
 
 -- 
 *Firmado por: Antigravity (agy)*
