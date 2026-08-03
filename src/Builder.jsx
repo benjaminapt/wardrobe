@@ -16,6 +16,7 @@ function DraggableItem({ item, positionProps, zIndex }) {
   const [start, setStart] = useState({ x: 0, y: 0 });
 
   const handleDown = (clientX, clientY, e) => {
+    if (e.cancelable) e.preventDefault();
     setIsDragging(true);
     setStart({ x: clientX - pos.x, y: clientY - pos.y });
     e.stopPropagation();
@@ -29,7 +30,7 @@ function DraggableItem({ item, positionProps, zIndex }) {
   const handleUp = () => setIsDragging(false);
 
   const onWheel = (e) => {
-    e.preventDefault();
+    if (e.cancelable) e.preventDefault();
     setScale(s => Math.max(0.3, Math.min(3, s - e.deltaY * 0.002)));
   };
 
@@ -71,7 +72,7 @@ function DraggableItem({ item, positionProps, zIndex }) {
       onTouchStart={(e) => handleDown(e.touches[0].clientX, e.touches[0].clientY, e)}
       onWheel={onWheel}
     >
-       <img src={item.thumbnail || item.image} alt={item.name} style={{ width: '100%', objectFit: 'contain', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.4))', pointerEvents: 'none' }} />
+       <img src={item.thumbnail || item.image} alt={item.name} draggable="false" style={{ width: '100%', objectFit: 'contain', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.4))', pointerEvents: 'none', userSelect: 'none' }} />
        <div style={{position: 'absolute', bottom: '-20px', left: '50%', transform: 'translateX(-50%)', background: 'rgba(0,0,0,0.6)', color: 'white', padding: '2px 6px', borderRadius: '4px', fontSize: '10px', whiteSpace: 'nowrap', opacity: isDragging ? 1 : 0, transition: 'opacity 0.2s', pointerEvents: 'none'}}>Drag to move • Scroll to resize</div>
     </div>
   );
@@ -143,7 +144,8 @@ export function Builder({ items, onSaveOutfit }) {
 
   // Determine the background image (prioritize modeled images of selected tops/jackets)
   const baseItem = selections.wholebody_up || selections.upperbody || selections.lowerbody;
-  const backgroundUrl = baseItem?.modeledImage || '/model-reference.png';
+  const backgroundIsModeled = !!baseItem?.modeledImage;
+  const backgroundUrl = backgroundIsModeled ? baseItem.modeledImage : '/model-reference.png';
 
   const positioning = {
     wholebody_up: { top: '15%', left: '50%', width: '240px', zIndex: 3 },
@@ -208,7 +210,7 @@ export function Builder({ items, onSaveOutfit }) {
           >
             {['shoes', 'lowerbody', 'upperbody', 'wholebody_up'].map(cat => {
                const item = selections[cat];
-               if (item && item !== baseItem) {
+               if (item && (!backgroundIsModeled || item !== baseItem)) {
                  return (
                    <DraggableItem 
                      key={item.id} 
