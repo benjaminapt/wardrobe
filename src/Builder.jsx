@@ -9,7 +9,7 @@ const CATEGORIES = [
   { id: "shoes", label: "Shoes" }
 ];
 
-export function Builder({ items }) {
+export function Builder({ items, onSaveOutfit }) {
   const [selections, setSelections] = useState({});
   const [activeSlot, setActiveSlot] = useState(null);
 
@@ -19,14 +19,41 @@ export function Builder({ items }) {
   };
 
   const calculateCompatibility = (item1, item2) => {
-    // Simple mock logic for suggestions based on tags or colors
     if (!item1 || !item2) return 0;
     let score = 0;
-    if (item1.color && item2.color && item1.color !== item2.color) score += 1;
+    
+    // Color logic
+    if (item1.color && item2.color) {
+      if (item1.color === item2.color) score += 1; // Monochromatic
+      else score += 2; // Contrast is generally good
+    }
+
+    // Tag matching logic
     if (item1.tags && item2.tags) {
       const tags1 = item1.tags.map(t => t.toLowerCase());
       const tags2 = item2.tags.map(t => t.toLowerCase());
-      if (tags1.some(t => tags2.includes(t))) score += 2;
+      
+      const styles = ['athletic', 'casual', 'formal', 'streetwear', 'summer', 'winter'];
+      let styleMatch = false;
+      let styleClash = false;
+      
+      for (const style of styles) {
+        if (tags1.includes(style) && tags2.includes(style)) {
+          score += 3;
+          styleMatch = true;
+        } else if ((tags1.includes(style) && !tags2.includes(style) && tags2.some(t => styles.includes(t))) || 
+                   (tags2.includes(style) && !tags1.includes(style) && tags1.some(t => styles.includes(t)))) {
+          styleClash = true;
+        }
+      }
+      
+      if (styleClash && !styleMatch) score -= 2; // Penalty for clashing styles
+
+      // Neutrals and versatile fabrics
+      if (tags1.includes('denim') || tags2.includes('denim')) score += 1;
+      
+      // General tag overlap
+      if (tags1.some(t => tags2.includes(t) && !styles.includes(t))) score += 1;
     }
     return score;
   };
@@ -130,7 +157,24 @@ export function Builder({ items }) {
                   </div>
 
                   <p>{Object.values(selections).filter(Boolean).length} items selected</p>
-                  <button className="primary-button" style={{marginTop: '1rem'}}>
+                  <button 
+                    className="primary-button" 
+                    style={{marginTop: '1rem'}}
+                    onClick={() => {
+                      const outfitItems = Object.values(selections).filter(Boolean);
+                      if (outfitItems.length > 0 && onSaveOutfit) {
+                        onSaveOutfit({
+                          id: 'custom-outfit-' + Date.now(),
+                          name: 'Custom Outfit',
+                          garmentIds: outfitItems.map(i => i.id),
+                          image: null,
+                          occasion: []
+                        });
+                        setSelections({});
+                        alert("Outfit saved!");
+                      }
+                    }}
+                  >
                     Save Outfit
                   </button>
                 </div>

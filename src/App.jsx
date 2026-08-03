@@ -9,6 +9,7 @@ import { Builder } from "./Builder.jsx";
 
 const STORAGE_KEY = "open-wardrobe-edits-v1";
 const DELETED_STORAGE_KEY = "open-wardrobe-deleted-v1";
+const CUSTOM_OUTFITS_KEY = "open-wardrobe-custom-outfits-v1";
 const STATIC_MODE = import.meta.env.VITE_STATIC_WARDROBE === "1";
 
 const TYPES = [
@@ -646,10 +647,24 @@ export function App() {
 
   useEffect(() => {
     loadOutfits({ staticMode: STATIC_MODE })
-      .then(setOutfits)
+      .then((loaded) => {
+        let customOutfits = [];
+        try {
+          customOutfits = JSON.parse(localStorage.getItem(CUSTOM_OUTFITS_KEY) || "[]");
+        } catch (e) {}
+        setOutfits([...loaded, ...customOutfits]);
+      })
       .catch((requestError) => setOutfitsError(requestError.message))
       .finally(() => setOutfitsLoading(false));
   }, []);
+
+  const handleSaveOutfit = (outfit) => {
+    setOutfits(prev => [...prev, outfit]);
+    try {
+      const customOutfits = JSON.parse(localStorage.getItem(CUSTOM_OUTFITS_KEY) || "[]");
+      localStorage.setItem(CUSTOM_OUTFITS_KEY, JSON.stringify([...customOutfits, outfit]));
+    } catch (e) {}
+  };
 
   useEffect(() => {
     document.documentElement.style.colorScheme = theme;
@@ -792,7 +807,7 @@ export function App() {
         )}
 
         {view === "builder" && (
-          <Builder items={items} />
+          <Builder items={items} onSaveOutfit={handleSaveOutfit} />
         )}
       </main>
 

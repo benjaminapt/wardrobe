@@ -10,7 +10,13 @@ Este documento registra las decisiones arquitectónicas y de diseño realizadas 
 ## [2026-08-02] - Descomposición de Outfits
 **Problema:** Se necesitaba poder inspeccionar de qué prendas individuales estaba compuesto un look específico.
 **Decisión:** Se agregó un modal interactivo (`OutfitViewer`) al hacer clic en las `OutfitCard`. Este modal carga tanto la imagen modelada principal del outfit, como una cuadrícula iterando todos los `garmentIds` referenciados, mostrando las prendas individuales que lo componen.
-**Implementación:** Componentes agregados en `src/App.jsx`.
+## [2026-08-02] - Lógica Avanzada de Sugerencias en el Builder
+**Problema:** Las sugerencias de combinación del Builder eran muy básicas (sólo color distinto y tags solapados).
+**Decisión:** Se implementó una lógica de afinidad mejorada en `calculateCompatibility` (Builder.jsx) que evalúa combinaciones de colores (monocromático vs contraste), detecta estilos que chocan (ej. athletic vs formal), fomenta cruces versátiles (denim con todo) e incrementa el score si los tags de temporada coinciden.
+
+## [2026-08-02] - Guardado Local de Outfits Personalizados
+**Problema:** El botón "Save Outfit" del Builder no tenía una acción real asignada, por lo que las combinaciones se perdían.
+**Decisión:** Al no haber un endpoint backend habilitado aún para guardar outfits permanentemente en `data/outfits.json`, se habilitó la persistencia local vía `localStorage`. Ahora los outfits armados por el usuario se guardan, se muestran en la pestaña "Outfits" y pueden descomponerse en el visor (OutfitViewer) al igual que los generados oficialmente, permitiendo probar y guardar combinaciones sin perderlas al refrescar.
 
 -- 
 *Firmado por: Antigravity (agy)*
