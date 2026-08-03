@@ -111,23 +111,47 @@ export function Builder({ items, onSaveOutfit }) {
 
         <div className="builder-preview-panel" style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
           <h4>Preview</h4>
-          <div className="builder-preview" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', margin: '1.5rem 0', minHeight: '300px', justifyContent: 'center' }}>
-            {['wholebody_up', 'upperbody', 'lowerbody', 'shoes'].map(cat => {
+          <div 
+            className="builder-preview" 
+            style={{ 
+              position: 'relative', 
+              width: '280px', 
+              height: '420px', 
+              margin: '1.5rem 0', 
+              backgroundImage: 'url(/wardrobe/model-reference.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+            }}
+          >
+            {['shoes', 'lowerbody', 'upperbody', 'wholebody_up'].map(cat => {
                const item = selections[cat];
                if (item) {
+                 const positioning = {
+                   wholebody_up: { top: '15%', left: '50%', transform: 'translateX(-50%)', width: '240px', zIndex: 3 },
+                   upperbody:    { top: '18%', left: '50%', transform: 'translateX(-50%)', width: '220px', zIndex: 2 },
+                   lowerbody:    { top: '45%', left: '50%', transform: 'translateX(-50%)', width: '220px', zIndex: 1 },
+                   shoes:        { bottom: '5%', left: '50%', transform: 'translateX(-50%)', width: '160px', zIndex: 4 }
+                 };
                  return (
-                   <div key={cat} style={{ position: 'relative' }}>
+                   <div key={cat} style={{ position: 'absolute', ...positioning[cat] }}>
                      <img 
                        src={item.thumbnail || item.image} 
                        alt={item.name} 
-                       style={{ width: '220px', maxHeight: '220px', objectFit: 'contain', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))' }} 
+                       style={{ width: '100%', objectFit: 'contain', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.4))' }} 
                      />
                    </div>
                  );
                }
                return null;
             })}
-            {Object.keys(selections).length === 0 && <p style={{ color: 'var(--text-muted)' }}>No items selected yet</p>}
+            {Object.keys(selections).length === 0 && (
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', textAlign: 'center', padding: '1rem' }}>
+                <p>Select clothes to try them on</p>
+              </div>
+            )}
           </div>
           
           {Object.values(selections).filter(Boolean).length > 0 && (

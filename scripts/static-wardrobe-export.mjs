@@ -116,6 +116,12 @@ export async function exportStaticWardrobe({ libraryPath, assetRoot, outputDir, 
       outfitCount = outfits.length;
       outfitAssetCount = copiedOutfits.size;
     }
+
+    const modelReferenceSrc = path.join(path.dirname(libraryPath), "model-reference.png");
+    if (await exists(modelReferenceSrc)) {
+      await copyFile(modelReferenceSrc, path.join(temporaryDir, "model-reference.png"));
+    }
+
     await rm(outputDir, { recursive: true, force: true });
     await rename(temporaryDir, outputDir);
     return {
