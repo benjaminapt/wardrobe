@@ -35,7 +35,7 @@ export function Builder({ items }) {
     const categoryItems = items.filter((i) => i.part === category);
     const currentSelection = Object.values(selections).filter(Boolean);
     
-    if (currentSelection.length === 0) return categoryItems.slice(0, 8);
+    if (currentSelection.length === 0) return categoryItems;
 
     return categoryItems
       .map(item => {
@@ -43,8 +43,7 @@ export function Builder({ items }) {
         return { item, score };
       })
       .sort((a, b) => b.score - a.score)
-      .map(scored => scored.item)
-      .slice(0, 8);
+      .map(scored => scored.item);
   };
 
   return (

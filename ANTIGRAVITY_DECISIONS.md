@@ -1,0 +1,16 @@
+# Decisiones de Diseño e Implementación - Antigravity
+
+Este documento registra las decisiones arquitectónicas y de diseño realizadas por Antigravity.
+
+## [2026-08-02] - Paginación/Límites en el Outfit Builder
+**Problema:** Al abrir el "Builder" de outfits, las categorías (Tops, Bottoms, etc.) solo mostraban 8 prendas como máximo, lo que limitaba las opciones de combinación y escondía la mayoría del clóset.
+**Decisión:** Se eliminó la restricción `.slice(0, 8)` en el componente `Builder.jsx` para que el panel de sugerencias renderice todas las prendas disponibles dentro de la categoría seleccionada y no haya pérdida de inventario.
+**Implementación:** Se modificó la función `getSuggestions` en `src/Builder.jsx`.
+
+## [2026-08-02] - Descomposición de Outfits
+**Problema:** Se necesitaba poder inspeccionar de qué prendas individuales estaba compuesto un look específico.
+**Decisión:** Se agregó un modal interactivo (`OutfitViewer`) al hacer clic en las `OutfitCard`. Este modal carga tanto la imagen modelada principal del outfit, como una cuadrícula iterando todos los `garmentIds` referenciados, mostrando las prendas individuales que lo componen.
+**Implementación:** Componentes agregados en `src/App.jsx`.
+
+-- 
+*Firmado por: Antigravity (agy)*
