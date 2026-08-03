@@ -110,6 +110,25 @@ export function Builder({ items }) {
               {Object.keys(selections).length > 0 && (
                 <div className="builder-summary">
                   <h4>Current Outfit</h4>
+                  
+                  <div className="builder-preview" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', margin: '1.5rem 0' }}>
+                    {['wholebody_up', 'upperbody', 'lowerbody', 'shoes'].map(cat => {
+                       const item = selections[cat];
+                       if (item) {
+                         return (
+                           <div key={cat} style={{ position: 'relative' }}>
+                             <img 
+                               src={item.thumbnail || item.image} 
+                               alt={item.name} 
+                               style={{ width: '160px', maxHeight: '160px', objectFit: 'contain', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))' }} 
+                             />
+                           </div>
+                         );
+                       }
+                       return null;
+                    })}
+                  </div>
+
                   <p>{Object.values(selections).filter(Boolean).length} items selected</p>
                   <button className="primary-button" style={{marginTop: '1rem'}}>
                     Save Outfit
