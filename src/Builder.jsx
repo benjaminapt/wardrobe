@@ -109,7 +109,52 @@ export function Builder({ items, onSaveOutfit }) {
           })}
         </div>
 
-        <div className="builder-suggestions-panel">
+        <div className="builder-preview-panel" style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <h4>Preview</h4>
+          <div className="builder-preview" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', margin: '1.5rem 0', minHeight: '300px', justifyContent: 'center' }}>
+            {['wholebody_up', 'upperbody', 'lowerbody', 'shoes'].map(cat => {
+               const item = selections[cat];
+               if (item) {
+                 return (
+                   <div key={cat} style={{ position: 'relative' }}>
+                     <img 
+                       src={item.thumbnail || item.image} 
+                       alt={item.name} 
+                       style={{ width: '220px', maxHeight: '220px', objectFit: 'contain', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))' }} 
+                     />
+                   </div>
+                 );
+               }
+               return null;
+            })}
+            {Object.keys(selections).length === 0 && <p style={{ color: 'var(--text-muted)' }}>No items selected yet</p>}
+          </div>
+          
+          {Object.values(selections).filter(Boolean).length > 0 && (
+            <button 
+              className="primary-button" 
+              style={{marginTop: '1rem', width: '100%'}}
+              onClick={() => {
+                const outfitItems = Object.values(selections).filter(Boolean);
+                if (outfitItems.length > 0 && onSaveOutfit) {
+                  onSaveOutfit({
+                    id: 'custom-outfit-' + Date.now(),
+                    name: 'Custom Outfit',
+                    garmentIds: outfitItems.map(i => i.id),
+                    image: null,
+                    occasion: []
+                  });
+                  setSelections({});
+                  alert("Outfit saved!");
+                }
+              }}
+            >
+              Save Outfit ({Object.values(selections).filter(Boolean).length} items)
+            </button>
+          )}
+        </div>
+
+        <div className="builder-suggestions-panel" style={{ flex: '1.5', paddingLeft: '1.5rem' }}>
           {activeSlot ? (
             <>
               <h3>Select {CATEGORIES.find(c => c.id === activeSlot).label}</h3>
@@ -133,52 +178,7 @@ export function Builder({ items, onSaveOutfit }) {
             </>
           ) : (
             <div className="builder-welcome">
-              <p>Select a slot on the left to start building your outfit.</p>
-              {Object.keys(selections).length > 0 && (
-                <div className="builder-summary">
-                  <h4>Current Outfit</h4>
-                  
-                  <div className="builder-preview" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '5px', margin: '1.5rem 0' }}>
-                    {['wholebody_up', 'upperbody', 'lowerbody', 'shoes'].map(cat => {
-                       const item = selections[cat];
-                       if (item) {
-                         return (
-                           <div key={cat} style={{ position: 'relative' }}>
-                             <img 
-                               src={item.thumbnail || item.image} 
-                               alt={item.name} 
-                               style={{ width: '160px', maxHeight: '160px', objectFit: 'contain', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))' }} 
-                             />
-                           </div>
-                         );
-                       }
-                       return null;
-                    })}
-                  </div>
-
-                  <p>{Object.values(selections).filter(Boolean).length} items selected</p>
-                  <button 
-                    className="primary-button" 
-                    style={{marginTop: '1rem'}}
-                    onClick={() => {
-                      const outfitItems = Object.values(selections).filter(Boolean);
-                      if (outfitItems.length > 0 && onSaveOutfit) {
-                        onSaveOutfit({
-                          id: 'custom-outfit-' + Date.now(),
-                          name: 'Custom Outfit',
-                          garmentIds: outfitItems.map(i => i.id),
-                          image: null,
-                          occasion: []
-                        });
-                        setSelections({});
-                        alert("Outfit saved!");
-                      }
-                    }}
-                  >
-                    Save Outfit
-                  </button>
-                </div>
-              )}
+              <p>Select a slot on the left to browse items.</p>
             </div>
           )}
         </div>
