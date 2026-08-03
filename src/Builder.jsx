@@ -118,7 +118,7 @@ export function Builder({ items, onSaveOutfit }) {
               width: '280px', 
               height: '420px', 
               margin: '1.5rem 0', 
-              backgroundImage: 'url(/wardrobe/model-reference.png)',
+              backgroundImage: 'url(/model-reference.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               borderRadius: '12px',

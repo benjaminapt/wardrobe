@@ -181,9 +181,10 @@ function GalleryItem({ item, selected, onOpen }) {
   );
 }
 
-function OutfitCard({ outfit, onClick }) {
+function OutfitCard({ outfit, onClick, items = [] }) {
   const occasions = Array.isArray(outfit.occasion) ? outfit.occasion : [];
   const garmentCount = Array.isArray(outfit.garmentIds) ? outfit.garmentIds.length : 0;
+  const outfitItems = items.filter(item => outfit.garmentIds?.includes(item.id));
 
   return (
     <article className="outfit-card" onClick={() => onClick && onClick(outfit.id)} style={{ cursor: onClick ? 'pointer' : 'default' }}>
@@ -195,6 +196,14 @@ function OutfitCard({ outfit, onClick }) {
           sizes="(max-width: 520px) calc(100vw - 24px), (max-width: 860px) calc(50vw - 32px), 360px"
           breakpoints={[240, 360, 480, 640, 800]}
         />
+      ) : outfitItems.length > 0 ? (
+        <div className="outfit-card__empty" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr', gap: '8px', padding: '1rem', aspectRatio: '2/3', background: 'var(--surface-color)' }}>
+          {outfitItems.slice(0, 4).map(item => (
+            <div key={item.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <img src={item.thumbnail || item.image} alt="" style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }} />
+            </div>
+          ))}
+        </div>
       ) : (
         <div className="outfit-card__empty" role="img" aria-label={"Modeled image unavailable for " + (outfit.name || "this outfit")}>
           Modeled image unavailable
@@ -213,7 +222,7 @@ function OutfitCard({ outfit, onClick }) {
   );
 }
 
-function OutfitViewer({ outfit, items, onClose }) {
+function OutfitViewer({ outfit, items, onClose, onDelete }) {
   const outfitItems = items.filter(item => outfit.garmentIds.includes(item.id));
   
   return (
@@ -253,6 +262,16 @@ function OutfitViewer({ outfit, items, onClose }) {
                 </div>
               ))}
             </div>
+            {outfit.id.startsWith('custom-outfit-') && onDelete && (
+              <button 
+                className="delete-button" 
+                style={{ marginTop: '2rem' }} 
+                type="button" 
+                onClick={() => { onDelete(outfit.id); onClose(); }}
+              >
+                <Trash size={15} weight="regular" aria-hidden="true" /> Delete Outfit
+              </button>
+            )}
           </div>
         </aside>
       </div>
@@ -666,6 +685,14 @@ export function App() {
     } catch (e) {}
   };
 
+  const deleteCustomOutfit = (outfitId) => {
+    setOutfits(prev => prev.filter(o => o.id !== outfitId));
+    try {
+      const customOutfits = JSON.parse(localStorage.getItem(CUSTOM_OUTFITS_KEY) || "[]");
+      localStorage.setItem(CUSTOM_OUTFITS_KEY, JSON.stringify(customOutfits.filter(o => o.id !== outfitId)));
+    } catch (e) {}
+  };
+
   useEffect(() => {
     document.documentElement.style.colorScheme = theme;
     document.querySelector('meta[name="theme-color"]')?.setAttribute("content", themeColor(theme));
@@ -800,7 +827,7 @@ export function App() {
             {!outfitsError && !outfitsLoading && !outfits.length && <p className="status empty">No active outfits yet.</p>}
             {!!outfits.length && (
               <section className="outfit-grid" aria-label="Outfits">
-                {outfits.map((outfit) => <OutfitCard key={outfit.id} outfit={outfit} onClick={setSelectedOutfitId} />)}
+                {outfits.map((outfit) => <OutfitCard key={outfit.id} outfit={outfit} items={items} onClick={setSelectedOutfitId} />)}
               </section>
             )}
           </>
@@ -812,7 +839,7 @@ export function App() {
       </main>
 
       {selectedItem && <ItemViewer item={selectedItem} onClose={() => setSelectedId(null)} onSave={saveItem} onDelete={deleteItem} />}
-      {selectedOutfit && <OutfitViewer outfit={selectedOutfit} items={items} onClose={() => setSelectedOutfitId(null)} />}
+      {selectedOutfit && <OutfitViewer outfit={selectedOutfit} items={items} onClose={() => setSelectedOutfitId(null)} onDelete={deleteCustomOutfit} />}
       {!STATIC_MODE && <WardrobeImportFlow onGarmentApproved={addImportedItem} onModeledApproved={attachImportedModeledImage} />}
     </div>
   );
