@@ -1,0 +1,558 @@
+[
+  {
+    "id": "navy-formal-suit",
+    "name": "Navy Formal Suit",
+    "occasion": [
+      "formal",
+      "office"
+    ],
+    "garmentIds": [
+      "import-3f63162d-8e4c-4fe0-ac8f-36a253afd2d3",
+      "import-7444e106-fbed-4311-8499-5a7aea43aa88",
+      "import-10cd3c00-caaf-4676-a38c-17e45280a3b7",
+      "import-13d8ad58-b718-41d3-a1e5-dfd51d286843"
+    ],
+    "reason": "Classic navy suit with white dress shirt and black satin tie — timeless formal elegance.",
+    "setting": "a warm-toned stone building entrance with soft afternoon light",
+    "image": "/wardrobe/outfits/navy-formal-suit.png",
+    "status": "active"
+  },
+  {
+    "id": "earth-tone-bomber",
+    "name": "Earth-Tone Bomber",
+    "occasion": [
+      "smart-casual",
+      "weekend"
+    ],
+    "garmentIds": [
+      "import-37c34e2c-d68e-46b3-8d6c-1de04a9b70e2",
+      "import-7a21f6b8-674b-4000-b2fc-0325bc59078c",
+      "import-f3e81dbd-9bac-42b2-95d9-42aa9b17173b",
+      "import-766f51bf-af04-4c94-9814-e891143d0311"
+    ],
+    "reason": "Taupe tee under tan bomber with light blue cargo jeans creates warm analogous harmony with a relaxed silhouette.",
+    "setting": "a quiet European cobblestone side street with warm-stone walls",
+    "image": "/wardrobe/outfits/earth-tone-bomber.png",
+    "status": "active"
+  },
+  {
+    "id": "dark-street-layer",
+    "name": "Dark Street Layer",
+    "occasion": [
+      "casual",
+      "evening"
+    ],
+    "garmentIds": [
+      "import-00507eaa-a145-4d37-be1c-b2d21995a03d",
+      "import-da283d4f-4232-457a-a426-40dde994fb1c",
+      "import-158e8a63-27a2-4358-82fa-cd230ae7b810",
+      "import-d9f94f41-ad3b-4470-b0f9-6d84b9ec9871"
+    ],
+    "reason": "All-black tonal look with denim trucker jacket adds texture contrast within a dark monochrome palette.",
+    "setting": "an urban alleyway with warm string lights at dusk",
+    "image": "/wardrobe/outfits/dark-street-layer.png",
+    "status": "active"
+  },
+  {
+    "id": "summer-abstract",
+    "name": "Summer Abstract",
+    "occasion": [
+      "casual",
+      "warm-weather"
+    ],
+    "garmentIds": [
+      "import-37e60e34-df15-4009-838d-0f5b651a4655",
+      "import-d759a870-66f8-466b-ad08-6ac1cd6d6571",
+      "import-7a7e616a-ba17-4dcb-bb5f-4a7ae34f190e",
+      "import-8d03c2f5-5db5-4392-976c-2aadda3f1a0c"
+    ],
+    "reason": "Abstract button-up as the statement piece with beige drawstring shorts and retro court sneakers — the tortoiseshell sunglasses echo the warm tones.",
+    "setting": "a sun-dappled outdoor café terrace with natural wood and greenery",
+    "image": "/wardrobe/outfits/summer-abstract.png",
+    "status": "active"
+  },
+  {
+    "id": "sporty-nike-casual",
+    "name": "Sporty Nike Casual",
+    "occasion": [
+      "casual",
+      "athletic"
+    ],
+    "garmentIds": [
+      "import-28bf2fa2-c413-4379-8efc-0ca2dcdb19ef",
+      "import-2d4a473a-3756-420f-90e9-12108f91fa3b",
+      "import-59c6e092-8a3b-4632-b946-0822feac3912"
+    ],
+    "reason": "Beige Nike Air tee with distressed charcoal denim shorts and chunky runners — easy athletic-casual with warm-cool contrast.",
+    "setting": "a clean urban park pathway with soft morning light",
+    "image": "/wardrobe/outfits/sporty-nike-casual.png",
+    "status": "active"
+  },
+  {
+    "id": "smart-blue-blazer",
+    "name": "Smart Blue Blazer",
+    "occasion": [
+      "smart-casual",
+      "dinner"
+    ],
+    "garmentIds": [
+      "import-ecd0c30c-86c8-4e90-b159-4e11636c6dc3",
+      "import-da283d4f-4232-457a-a426-40dde994fb1c",
+      "import-8357756b-8a69-46ef-91d9-896b72154a58",
+      "import-766f51bf-af04-4c94-9814-e891143d0311"
+    ],
+    "reason": "White oxford under blue textured blazer with black cargo trousers elevates the look from casual to smart-casual.",
+    "setting": "a warm-lit restaurant entrance with natural wood and brass details",
+    "image": "/wardrobe/outfits/smart-blue-blazer.png",
+    "status": "active"
+  },
+  {
+    "id": "graphic-streetwear",
+    "name": "Graphic Streetwear",
+    "occasion": [
+      "casual",
+      "weekend"
+    ],
+    "garmentIds": [
+      "import-8c77fe18-5b4c-4d66-b2e6-bb22ece3d9c9",
+      "import-bff12837-c454-4abd-be98-f8b8dda79109",
+      "import-d9f94f41-ad3b-4470-b0f9-6d84b9ec9871",
+      "import-481016e9-65e0-40a2-88dd-28e1e144e240"
+    ],
+    "reason": "Cream Stray Cats graphic tee carries the statement over black cargo shorts and skate sneakers — round sunglasses add personality.",
+    "setting": "a sunlit concrete skatepark with warm shadows",
+    "image": "/wardrobe/outfits/graphic-streetwear.png",
+    "status": "active"
+  },
+  {
+    "id": "field-utility-red",
+    "name": "Field Utility Red",
+    "occasion": [
+      "casual",
+      "layered"
+    ],
+    "garmentIds": [
+      "import-130b6cc8-a15a-4cc3-a3e4-883673985e32",
+      "import-ebd98960-92d3-4f4e-bd9d-cc58431e1d16",
+      "import-d4e79971-cfb0-491e-a8cf-a1f79ab9c7c2",
+      "import-59c6e092-8a3b-4632-b946-0822feac3912"
+    ],
+    "reason": "Brick red tee pops against grey cargo trousers and the black field jacket frames the look with utilitarian structure.",
+    "setting": "an autumn forest trail with warm golden-hour light filtering through trees",
+    "image": "/wardrobe/outfits/field-utility-red.png",
+    "status": "active"
+  },
+  {
+    "id": "beach-day-pink",
+    "name": "Beach Day Pink",
+    "occasion": [
+      "casual",
+      "beach",
+      "warm-weather"
+    ],
+    "garmentIds": [
+      "import-69cde1e7-6cd3-488a-9e9f-e97542b3c8d0",
+      "import-882e18a3-741a-4837-88bd-683451666d46",
+      "import-e610b3ec-1788-4526-b239-17c9f13d5ff9"
+    ],
+    "reason": "Pale pink duck graphic tee with navy swim shorts and blue slides — soft pastel beach palette.",
+    "setting": "a sandy boardwalk with the ocean visible in the warm background",
+    "image": "/wardrobe/outfits/beach-day-pink.png",
+    "status": "active"
+  },
+  {
+    "id": "leather-edge-minimal",
+    "name": "Leather Edge Minimal",
+    "occasion": [
+      "evening",
+      "casual"
+    ],
+    "garmentIds": [
+      "import-c5a0e43a-165d-47e7-bb55-94c5d9b352ec",
+      "import-fbdf65a0-8206-44ab-be23-82f239c68396",
+      "import-5d83f3cb-b55f-431b-b999-383b26f78542",
+      "import-4cda6d3a-78cc-4941-b8e2-e260bd7bf34d",
+      "import-893a0c94-13c2-4620-9ca3-be6c994e5eb3"
+    ],
+    "reason": "Off-white slub tee under black leather utility jacket with black athletic shorts and running sneakers — controlled dark-tonal edge with round metal sunglasses.",
+    "setting": "a moody urban rooftop at golden hour with warm cityscape in the distance",
+    "image": "/wardrobe/outfits/leather-edge-minimal.png",
+    "status": "active"
+  },
+  {
+    "id": "navy-tailoring-open",
+    "name": "Navy Tailoring Open",
+    "occasion": [
+      "office",
+      "smart-casual"
+    ],
+    "garmentIds": [
+      "import-3f63162d-8e4c-4fe0-ac8f-36a253afd2d3",
+      "import-7444e106-fbed-4311-8499-5a7aea43aa88",
+      "import-eeace696-cc61-4005-96fb-0f1fab8658e7"
+    ],
+    "reason": "Camisa blanca y pantalón sastre azul marino forman una base limpia; el cinturón negro la termina sin volverla rígida.",
+    "setting": "quiet warm-stone office courtyard with restrained greenery",
+    "image": "/wardrobe/outfits/navy-tailoring-open.png",
+    "status": "active"
+  },
+  {
+    "id": "blue-blazer-navy-trouser",
+    "name": "Blue Blazer Navy Trouser",
+    "occasion": [
+      "office",
+      "dinner"
+    ],
+    "garmentIds": [
+      "import-ecd0c30c-86c8-4e90-b159-4e11636c6dc3",
+      "import-7444e106-fbed-4311-8499-5a7aea43aa88",
+      "import-8357756b-8a69-46ef-91d9-896b72154a58",
+      "import-7a7e616a-ba17-4dcb-bb5f-4a7ae34f190e"
+    ],
+    "reason": "Oxford blanco, sastrería azul y zapatilla court suavizan el blazer texturado hacia smart-casual.",
+    "setting": "warm-lit restaurant entrance with natural wood and brass details",
+    "image": "/wardrobe/outfits/blue-blazer-navy-trouser.png",
+    "status": "active"
+  },
+  {
+    "id": "stone-blue-blazer-cargo",
+    "name": "Stone Blue Blazer Cargo",
+    "occasion": [
+      "smart-casual",
+      "daytime"
+    ],
+    "garmentIds": [
+      "import-ad8cb7f0-10ba-4a96-8a62-ba5f539c23c2",
+      "import-da283d4f-4232-457a-a426-40dde994fb1c",
+      "import-8357756b-8a69-46ef-91d9-896b72154a58",
+      "import-766f51bf-af04-4c94-9814-e891143d0311"
+    ],
+    "reason": "La polera stone baja la formalidad del blazer azul y el cargo negro mantiene contraste controlado.",
+    "setting": "restrained modern concrete courtyard in soft daylight",
+    "image": "/wardrobe/outfits/stone-blue-blazer-cargo.png",
+    "status": "active"
+  },
+  {
+    "id": "oxford-tan-bomber",
+    "name": "Oxford Tan Bomber",
+    "occasion": [
+      "smart-casual",
+      "weekend"
+    ],
+    "garmentIds": [
+      "import-ecd0c30c-86c8-4e90-b159-4e11636c6dc3",
+      "import-ebd98960-92d3-4f4e-bd9d-cc58431e1d16",
+      "import-f3e81dbd-9bac-42b2-95d9-42aa9b17173b",
+      "import-7a7e616a-ba17-4dcb-bb5f-4a7ae34f190e"
+    ],
+    "reason": "Oxford luminoso, cargo gris y bomber arena crean una capa práctica de tonos neutros cálidos.",
+    "setting": "quiet tree-lined city sidewalk in warm overcast afternoon light",
+    "image": "/wardrobe/outfits/oxford-tan-bomber.png",
+    "status": "active"
+  },
+  {
+    "id": "adidas-denim-trucker",
+    "name": "Adidas Denim Trucker",
+    "occasion": [
+      "casual",
+      "warm-weather"
+    ],
+    "garmentIds": [
+      "import-65149564-a319-45c9-9310-f19051b9af1a",
+      "import-2d4a473a-3756-420f-90e9-12108f91fa3b",
+      "import-158e8a63-27a2-4358-82fa-cd230ae7b810",
+      "import-766f51bf-af04-4c94-9814-e891143d0311"
+    ],
+    "reason": "El piping y logo Adidas se dejan como foco; trucker negro y shorts charcoal lo enmarcan sin competir.",
+    "setting": "clean urban park pathway in soft morning light",
+    "image": "/wardrobe/outfits/adidas-denim-trucker.png",
+    "status": "active"
+  },
+  {
+    "id": "taupe-field-utility",
+    "name": "Taupe Field Utility",
+    "occasion": [
+      "casual",
+      "layered"
+    ],
+    "garmentIds": [
+      "import-37c34e2c-d68e-46b3-8d6c-1de04a9b70e2",
+      "import-da283d4f-4232-457a-a426-40dde994fb1c",
+      "import-d4e79971-cfb0-491e-a8cf-a1f79ab9c7c2",
+      "import-d9f94f41-ad3b-4470-b0f9-6d84b9ec9871"
+    ],
+    "reason": "La polera taupe aporta calidez a la base negra utilitaria y mantiene una sola capa estructurada.",
+    "setting": "warm concrete passageway with restrained greenery",
+    "image": "/wardrobe/outfits/taupe-field-utility.png",
+    "status": "active"
+  },
+  {
+    "id": "offwhite-leather-cargo",
+    "name": "Offwhite Leather Cargo",
+    "occasion": [
+      "casual",
+      "evening"
+    ],
+    "garmentIds": [
+      "import-c5a0e43a-165d-47e7-bb55-94c5d9b352ec",
+      "import-da283d4f-4232-457a-a426-40dde994fb1c",
+      "import-5d83f3cb-b55f-431b-b999-383b26f78542",
+      "import-766f51bf-af04-4c94-9814-e891143d0311"
+    ],
+    "reason": "La polera off-white separa la chaqueta de cuero y los cargos negros, conservando un contraste oscuro nítido.",
+    "setting": "moody urban rooftop at golden hour with restrained city background",
+    "image": "/wardrobe/outfits/offwhite-leather-cargo.png",
+    "status": "active"
+  },
+  {
+    "id": "brick-light-cargo-bomber",
+    "name": "Brick Light Cargo Bomber",
+    "occasion": [
+      "casual",
+      "daytime"
+    ],
+    "garmentIds": [
+      "import-130b6cc8-a15a-4cc3-a3e4-883673985e32",
+      "import-7a21f6b8-674b-4000-b2fc-0325bc59078c",
+      "import-f3e81dbd-9bac-42b2-95d9-42aa9b17173b",
+      "import-7a7e616a-ba17-4dcb-bb5f-4a7ae34f190e"
+    ],
+    "reason": "Rojo ladrillo como acento sobre denim celeste; el bomber arena cierra una paleta cálida y relajada.",
+    "setting": "quiet warm-stone side street in late afternoon",
+    "image": "/wardrobe/outfits/brick-light-cargo-bomber.png",
+    "status": "active"
+  },
+  {
+    "id": "dog-graphic-grey-cargo",
+    "name": "Dog Graphic Grey Cargo",
+    "occasion": [
+      "casual",
+      "weekend"
+    ],
+    "garmentIds": [
+      "import-21200b60-8cae-4597-90ac-59add8f0519d",
+      "import-ebd98960-92d3-4f4e-bd9d-cc58431e1d16"
+    ],
+    "reason": "The brown statement graphic balances the muted grey cargo silhouette.",
+    "setting": "quiet contemporary concrete courtyard with restrained greenery",
+    "image": "/wardrobe/outfits/dog-graphic-grey-cargo.png",
+    "status": "active"
+  },
+  {
+    "id": "photo-graphic-field-shorts",
+    "name": "Photo Graphic Field Shorts",
+    "occasion": [
+      "street-casual",
+      "evening"
+    ],
+    "garmentIds": [
+      "import-12eaea7a-1500-412a-b83f-edbb9f81ca14",
+      "import-fbdf65a0-8206-44ab-be23-82f239c68396",
+      "import-d4e79971-cfb0-491e-a8cf-a1f79ab9c7c2"
+    ],
+    "reason": "The field jacket frames the monochrome photo graphic and keeps shorts structured.",
+    "setting": "warm urban brick courtyard",
+    "image": "/wardrobe/outfits/photo-graphic-field-shorts.png",
+    "status": "active"
+  },
+  {
+    "id": "bird-camp-cargo-short",
+    "name": "Bird Camp Cargo Short",
+    "occasion": [
+      "summer",
+      "smart-casual"
+    ],
+    "garmentIds": [
+      "import-bbb15322-658d-4350-bf11-5a4dc3e4bf86",
+      "import-bff12837-c454-4abd-be98-f8b8dda79109"
+    ],
+    "reason": "The bird-print camp shirt is the statement over restrained black cargo shorts.",
+    "setting": "shaded modern cafe terrace",
+    "image": "/wardrobe/outfits/bird-camp-cargo-short.png",
+    "status": "active"
+  },
+  {
+    "id": "abstract-charcoal-short",
+    "name": "Abstract Charcoal Short",
+    "occasion": [
+      "summer",
+      "creative-casual"
+    ],
+    "garmentIds": [
+      "import-37e60e34-df15-4009-838d-0f5b651a4655",
+      "import-2d4a473a-3756-420f-90e9-12108f91fa3b"
+    ],
+    "reason": "The rust-and-black abstract shirt connects to distressed charcoal denim without competing patterns.",
+    "setting": "sunlit gallery walkway",
+    "image": "/wardrobe/outfits/abstract-charcoal-short.png",
+    "status": "active"
+  },
+  {
+    "id": "tan-nike-beige-short",
+    "name": "Tan Nike Beige Short",
+    "occasion": [
+      "warm-weather",
+      "casual"
+    ],
+    "garmentIds": [
+      "import-f0b60ce3-05fb-4833-8c0a-8d24bd22335b",
+      "import-d759a870-66f8-466b-ad08-6ac1cd6d6571"
+    ],
+    "reason": "The analogous tan and beige palette gives a simple tonal warm-weather look.",
+    "setting": "bright quiet coastal promenade",
+    "image": "/wardrobe/outfits/tan-nike-beige-short.png",
+    "status": "active"
+  },
+  {
+    "id": "stray-cats-beige-short",
+    "name": "Stray Cats Beige Short",
+    "occasion": [
+      "warm-weather",
+      "weekend"
+    ],
+    "garmentIds": [
+      "import-8c77fe18-5b4c-4d66-b2e6-bb22ece3d9c9",
+      "import-d759a870-66f8-466b-ad08-6ac1cd6d6571"
+    ],
+    "reason": "The cream graphic tee and beige shorts keep the cat graphic as the controlled focal point.",
+    "setting": "warm bookstore courtyard",
+    "image": "/wardrobe/outfits/stray-cats-beige-short.png",
+    "status": "active"
+  },
+  {
+    "id": "netherlands-cargo-street",
+    "name": "Netherlands Cargo Street",
+    "occasion": [
+      "streetwear",
+      "match-day"
+    ],
+    "garmentIds": [
+      "import-1dfd113d-f11c-46bc-a1c1-b99d7a4772a4",
+      "import-da283d4f-4232-457a-a426-40dde994fb1c"
+    ],
+    "reason": "The orange Netherlands jersey carries the color while black cargos anchor the street silhouette.",
+    "setting": "clean urban basketball-court perimeter",
+    "image": "/wardrobe/outfits/netherlands-cargo-street.png",
+    "status": "active"
+  },
+  {
+    "id": "kaya-cargo-short",
+    "name": "Kaya Cargo Short",
+    "occasion": [
+      "summer",
+      "street-casual"
+    ],
+    "garmentIds": [
+      "import-999dcb83-3d5a-4d1b-a239-48e9de9d1054",
+      "import-bff12837-c454-4abd-be98-f8b8dda79109"
+    ],
+    "reason": "The black graphic tank and contrast-stitched cargo shorts make a clean tonal athletic look.",
+    "setting": "minimalist late-afternoon concrete plaza",
+    "image": "/wardrobe/outfits/kaya-cargo-short.png",
+    "status": "active"
+  },
+  {
+    "id": "blue-textured-tailoring",
+    "name": "Blue Textured Tailoring",
+    "occasion": [
+      "smart-casual",
+      "office"
+    ],
+    "garmentIds": [
+      "import-c5a0e43a-165d-47e7-bb55-94c5d9b352ec",
+      "import-997b2bde-db1d-40ca-8850-bfad0260702a",
+      "import-8357756b-8a69-46ef-91d9-896b72154a58",
+      "import-7a7e616a-ba17-4dcb-bb5f-4a7ae34f190e"
+    ],
+    "reason": "The matching blue tailoring is softened by off-white and clean court sneakers.",
+    "setting": "warm modern stone architecture",
+    "image": "/wardrobe/outfits/blue-textured-tailoring.png",
+    "status": "active"
+  },
+  {
+    "id": "charcoal-knit-city",
+    "name": "Charcoal Knit City",
+    "occasion": [
+      "cool-weather",
+      "casual"
+    ],
+    "garmentIds": [
+      "import-4df52d10-3ae8-4cd3-a82e-3b6d6e83c89a",
+      "import-da283d4f-4232-457a-a426-40dde994fb1c",
+      "import-d9f94f41-ad3b-4470-b0f9-6d84b9ec9871"
+    ],
+    "reason": "The chunky charcoal knit gives texture while black cargos keep the silhouette grounded.",
+    "setting": "soft late-afternoon city street",
+    "image": "/wardrobe/outfits/charcoal-knit-city.png",
+    "status": "active"
+  },
+  {
+    "id": "kappa-denim-cargo",
+    "name": "Kappa Denim Cargo",
+    "occasion": [
+      "street-casual",
+      "weekend"
+    ],
+    "garmentIds": [
+      "import-37f11c8a-8a4f-48b3-b9eb-b39e1d50d99a",
+      "import-7a21f6b8-674b-4000-b2fc-0325bc59078c",
+      "import-158e8a63-27a2-4358-82fa-cd230ae7b810",
+      "import-766f51bf-af04-4c94-9814-e891143d0311"
+    ],
+    "reason": "Black denim frames the Kappa tee while light-blue cargos keep the look graphic and relaxed.",
+    "setting": "sunlit urban street",
+    "image": "/wardrobe/outfits/kappa-denim-cargo.png",
+    "status": "active"
+  },
+  {
+    "id": "kappa-cargo-short",
+    "name": "Kappa Cargo Short",
+    "occasion": [
+      "warm-weather",
+      "athletic-casual"
+    ],
+    "garmentIds": [
+      "import-37f11c8a-8a4f-48b3-b9eb-b39e1d50d99a",
+      "import-bff12837-c454-4abd-be98-f8b8dda79109",
+      "import-59c6e092-8a3b-4632-b946-0822feac3912"
+    ],
+    "reason": "A compact black tonal look lets the Kappa mark and cargo stitching do the work.",
+    "setting": "minimal outdoor court",
+    "image": "/wardrobe/outfits/kappa-cargo-short.png",
+    "status": "active"
+  },
+  {
+    "id": "levis-black-cargo",
+    "name": "Levi's Black Cargo",
+    "occasion": [
+      "street-casual",
+      "weekend"
+    ],
+    "garmentIds": [
+      "import-65e96bd8-e149-4370-be7f-4f316e7b81c6",
+      "import-da283d4f-4232-457a-a426-40dde994fb1c",
+      "import-d9f94f41-ad3b-4470-b0f9-6d84b9ec9871"
+    ],
+    "reason": "The bold Levi's graphic gives a clean focal point over black cargo trousers and skate sneakers.",
+    "setting": "an airy urban walkway",
+    "image": "/wardrobe/outfits/levis-black-cargo.png",
+    "status": "active"
+  },
+  {
+    "id": "beige-tank-olive-swim",
+    "name": "Beige Tank Olive Swim",
+    "occasion": [
+      "warm-weather",
+      "poolside"
+    ],
+    "garmentIds": [
+      "import-3f372c8c-22b4-4d3c-9c41-17ea124261da",
+      "import-8e584aac-5457-4f80-806a-1cce3f129d4c",
+      "import-45a8be84-04c4-425b-a611-8082cf699403"
+    ],
+    "reason": "The neutral beige tank and dark olive swim shorts make a clean, understated warm-weather look.",
+    "setting": "a quiet pool terrace",
+    "image": "/wardrobe/outfits/beige-tank-olive-swim.png",
+    "status": "active"
+  }
+]

@@ -1,0 +1,1449 @@
+[
+  {
+    "id": "import-768b6ad5-969e-4e7f-8894-4b67e07e3ccf",
+    "name": "Black Round Optical Glasses",
+    "part": "accessories_up",
+    "color": "#141414",
+    "secondaryColor": null,
+    "palette": [
+      "#141414"
+    ],
+    "tags": [
+      "black",
+      "glasses",
+      "round",
+      "optical"
+    ],
+    "image": "/wardrobe/assets/import-768b6ad5-969e-4e7f-8894-4b67e07e3ccf-garment.png",
+    "thumbnail": "/wardrobe/assets/import-768b6ad5-969e-4e7f-8894-4b67e07e3ccf-garment.png",
+    "modeledImage": null,
+    "importJobId": "768b6ad5-969e-4e7f-8894-4b67e07e3ccf"
+  },
+  {
+    "id": "import-10cd3c00-caaf-4676-a38c-17e45280a3b7",
+    "name": "Navy Two-Button Suit Jacket (2022)",
+    "part": "wholebody_up",
+    "color": "#1d2943",
+    "secondaryColor": null,
+    "palette": [
+      "#1d2943"
+    ],
+    "tags": [
+      "navy",
+      "suit",
+      "tailored",
+      "two button"
+    ],
+    "image": "/wardrobe/assets/import-10cd3c00-caaf-4676-a38c-17e45280a3b7-garment.png",
+    "thumbnail": "/wardrobe/assets/import-10cd3c00-caaf-4676-a38c-17e45280a3b7-garment.png",
+    "modeledImage": null,
+    "importJobId": "10cd3c00-caaf-4676-a38c-17e45280a3b7"
+  },
+  {
+    "id": "import-7444e106-fbed-4311-8499-5a7aea43aa88",
+    "name": "Navy Suit Trousers (2022)",
+    "part": "lowerbody",
+    "color": "#1d2943",
+    "secondaryColor": null,
+    "palette": [
+      "#1d2943"
+    ],
+    "tags": [
+      "navy",
+      "suit",
+      "tailored",
+      "trousers"
+    ],
+    "image": "/wardrobe/assets/import-7444e106-fbed-4311-8499-5a7aea43aa88-garment.png",
+    "thumbnail": "/wardrobe/assets/import-7444e106-fbed-4311-8499-5a7aea43aa88-garment.png",
+    "modeledImage": null,
+    "importJobId": "7444e106-fbed-4311-8499-5a7aea43aa88"
+  },
+  {
+    "id": "import-3f63162d-8e4c-4fe0-ac8f-36a253afd2d3",
+    "name": "White Point-Collar Dress Shirt (2022)",
+    "part": "upperbody",
+    "color": "#f1f0e9",
+    "secondaryColor": null,
+    "palette": [
+      "#f1f0e9"
+    ],
+    "tags": [
+      "white",
+      "dress shirt",
+      "point collar",
+      "formal"
+    ],
+    "image": "/wardrobe/assets/import-3f63162d-8e4c-4fe0-ac8f-36a253afd2d3-garment.png",
+    "thumbnail": "/wardrobe/assets/import-3f63162d-8e4c-4fe0-ac8f-36a253afd2d3-garment.png",
+    "modeledImage": null,
+    "importJobId": "3f63162d-8e4c-4fe0-ac8f-36a253afd2d3"
+  },
+  {
+    "id": "import-13d8ad58-b718-41d3-a1e5-dfd51d286843",
+    "name": "Black Satin Necktie (2022)",
+    "part": "accessories_up",
+    "color": "#171719",
+    "secondaryColor": null,
+    "palette": [
+      "#171719"
+    ],
+    "tags": [
+      "black",
+      "tie",
+      "formal",
+      "satin"
+    ],
+    "image": "/wardrobe/assets/import-13d8ad58-b718-41d3-a1e5-dfd51d286843-garment.png",
+    "thumbnail": "/wardrobe/assets/import-13d8ad58-b718-41d3-a1e5-dfd51d286843-garment.png",
+    "modeledImage": null,
+    "importJobId": "13d8ad58-b718-41d3-a1e5-dfd51d286843"
+  },
+  {
+    "id": "import-eeace696-cc61-4005-96fb-0f1fab8658e7",
+    "name": "Black Leather Dress Belt (2022)",
+    "part": "accessories_up",
+    "color": "#171513",
+    "secondaryColor": "#a9a8a4",
+    "palette": [
+      "#171513",
+      "#a9a8a4"
+    ],
+    "tags": [
+      "black",
+      "belt",
+      "leather",
+      "formal"
+    ],
+    "image": "/wardrobe/assets/import-eeace696-cc61-4005-96fb-0f1fab8658e7-garment.png",
+    "thumbnail": "/wardrobe/assets/import-eeace696-cc61-4005-96fb-0f1fab8658e7-garment.png",
+    "modeledImage": null,
+    "importJobId": "eeace696-cc61-4005-96fb-0f1fab8658e7"
+  },
+  {
+    "id": "import-65149564-a319-45c9-9310-f19051b9af1a",
+    "name": "White and Black Piped Adidas Tee",
+    "part": "upperbody",
+    "color": "#eeeae1",
+    "secondaryColor": "#141517",
+    "palette": [
+      "#eeeae1",
+      "#141517"
+    ],
+    "tags": [
+      "white",
+      "black",
+      "adidas",
+      "logo",
+      "piping",
+      "tee"
+    ],
+    "image": "/wardrobe/assets/import-65149564-a319-45c9-9310-f19051b9af1a-garment.png",
+    "thumbnail": "/wardrobe/assets/import-65149564-a319-45c9-9310-f19051b9af1a-garment.png",
+    "modeledImage": null,
+    "importJobId": "65149564-a319-45c9-9310-f19051b9af1a"
+  },
+  {
+    "id": "import-5d83f3cb-b55f-431b-b999-383b26f78542",
+    "name": "Black Leather Utility Jacket",
+    "part": "wholebody_up",
+    "color": "#171918",
+    "secondaryColor": null,
+    "palette": [
+      "#171918"
+    ],
+    "tags": [
+      "black",
+      "leather",
+      "jacket",
+      "utility",
+      "zip",
+      "pockets"
+    ],
+    "image": "/wardrobe/assets/import-5d83f3cb-b55f-431b-b999-383b26f78542-garment.png",
+    "thumbnail": "/wardrobe/assets/import-5d83f3cb-b55f-431b-b999-383b26f78542-garment.png",
+    "modeledImage": null,
+    "importJobId": "5d83f3cb-b55f-431b-b999-383b26f78542"
+  },
+  {
+    "id": "import-37c34e2c-d68e-46b3-8d6c-1de04a9b70e2",
+    "name": "Taupe Washed Crewneck Tee",
+    "part": "upperbody",
+    "color": "#7b6b5d",
+    "secondaryColor": null,
+    "palette": [
+      "#7b6b5d"
+    ],
+    "tags": [
+      "taupe",
+      "brown",
+      "tee",
+      "washed",
+      "crewneck"
+    ],
+    "image": "/wardrobe/assets/import-37c34e2c-d68e-46b3-8d6c-1de04a9b70e2-garment.png",
+    "thumbnail": "/wardrobe/assets/import-37c34e2c-d68e-46b3-8d6c-1de04a9b70e2-garment.png",
+    "modeledImage": null,
+    "importJobId": "37c34e2c-d68e-46b3-8d6c-1de04a9b70e2"
+  },
+  {
+    "id": "import-b707d95c-3331-451e-90ad-34a351fc794c",
+    "name": "Black and Blue Grêmio Umbro Training Tank",
+    "part": "upperbody",
+    "color": "#20232b",
+    "secondaryColor": "#65b8d9",
+    "palette": [
+      "#20232b",
+      "#65b8d9"
+    ],
+    "tags": [
+      "black",
+      "blue",
+      "gremio",
+      "umbro",
+      "tank",
+      "training"
+    ],
+    "image": "/wardrobe/assets/import-b707d95c-3331-451e-90ad-34a351fc794c-garment.png",
+    "thumbnail": "/wardrobe/assets/import-b707d95c-3331-451e-90ad-34a351fc794c-garment.png",
+    "modeledImage": null,
+    "importJobId": "b707d95c-3331-451e-90ad-34a351fc794c"
+  },
+  {
+    "id": "import-fbdf65a0-8206-44ab-be23-82f239c68396",
+    "name": "Black Athletic Shorts (Grêmio Outfit)",
+    "part": "lowerbody",
+    "color": "#171819",
+    "secondaryColor": null,
+    "palette": [
+      "#171819"
+    ],
+    "tags": [
+      "black",
+      "shorts",
+      "athletic"
+    ],
+    "image": "/wardrobe/assets/import-fbdf65a0-8206-44ab-be23-82f239c68396-garment.png",
+    "thumbnail": "/wardrobe/assets/import-fbdf65a0-8206-44ab-be23-82f239c68396-garment.png",
+    "modeledImage": null,
+    "importJobId": "fbdf65a0-8206-44ab-be23-82f239c68396"
+  },
+  {
+    "id": "import-8357756b-8a69-46ef-91d9-896b72154a58",
+    "name": "Blue Textured Two-Button Suit Jacket",
+    "part": "wholebody_up",
+    "color": "#4b7195",
+    "secondaryColor": null,
+    "palette": [
+      "#4b7195"
+    ],
+    "tags": [
+      "blue",
+      "suit",
+      "tailored",
+      "textured",
+      "two button"
+    ],
+    "image": "/wardrobe/assets/import-8357756b-8a69-46ef-91d9-896b72154a58-garment.png",
+    "thumbnail": "/wardrobe/assets/import-8357756b-8a69-46ef-91d9-896b72154a58-garment.png",
+    "modeledImage": null,
+    "importJobId": "8357756b-8a69-46ef-91d9-896b72154a58"
+  },
+  {
+    "id": "import-c5a0e43a-165d-47e7-bb55-94c5d9b352ec",
+    "name": "Off-White Slub Crewneck Tee",
+    "part": "upperbody",
+    "color": "#ece9dd",
+    "secondaryColor": null,
+    "palette": [
+      "#ece9dd"
+    ],
+    "tags": [
+      "off white",
+      "tee",
+      "slub",
+      "crewneck"
+    ],
+    "image": "/wardrobe/assets/import-c5a0e43a-165d-47e7-bb55-94c5d9b352ec-garment.png",
+    "thumbnail": "/wardrobe/assets/import-c5a0e43a-165d-47e7-bb55-94c5d9b352ec-garment.png",
+    "modeledImage": null,
+    "importJobId": "c5a0e43a-165d-47e7-bb55-94c5d9b352ec"
+  },
+  {
+    "id": "import-158e8a63-27a2-4358-82fa-cd230ae7b810",
+    "name": "Washed Black Denim Trucker Jacket",
+    "part": "wholebody_up",
+    "color": "#292b2b",
+    "secondaryColor": null,
+    "palette": [
+      "#292b2b"
+    ],
+    "tags": [
+      "black",
+      "denim",
+      "trucker",
+      "washed",
+      "jacket"
+    ],
+    "image": "/wardrobe/assets/import-158e8a63-27a2-4358-82fa-cd230ae7b810-garment.png",
+    "thumbnail": "/wardrobe/assets/import-158e8a63-27a2-4358-82fa-cd230ae7b810-garment.png",
+    "modeledImage": null,
+    "importJobId": "158e8a63-27a2-4358-82fa-cd230ae7b810"
+  },
+  {
+    "id": "import-130b6cc8-a15a-4cc3-a3e4-883673985e32",
+    "name": "Brick Red Crewneck Tee",
+    "part": "upperbody",
+    "color": "#873e35",
+    "secondaryColor": null,
+    "palette": [
+      "#873e35"
+    ],
+    "tags": [
+      "brick red",
+      "tee",
+      "crewneck",
+      "basic"
+    ],
+    "image": "/wardrobe/assets/import-130b6cc8-a15a-4cc3-a3e4-883673985e32-garment.png",
+    "thumbnail": "/wardrobe/assets/import-130b6cc8-a15a-4cc3-a3e4-883673985e32-garment.png",
+    "modeledImage": null,
+    "importJobId": "130b6cc8-a15a-4cc3-a3e4-883673985e32"
+  },
+  {
+    "id": "import-da283d4f-4232-457a-a426-40dde994fb1c",
+    "name": "Black Cargo Trousers (2024 Mirror Outfit)",
+    "part": "lowerbody",
+    "color": "#252728",
+    "secondaryColor": null,
+    "palette": [
+      "#252728"
+    ],
+    "tags": [
+      "black",
+      "cargo",
+      "trousers",
+      "utility"
+    ],
+    "image": "/wardrobe/assets/import-da283d4f-4232-457a-a426-40dde994fb1c-garment.png",
+    "thumbnail": "/wardrobe/assets/import-da283d4f-4232-457a-a426-40dde994fb1c-garment.png",
+    "modeledImage": null,
+    "importJobId": "da283d4f-4232-457a-a426-40dde994fb1c"
+  },
+  {
+    "id": "import-999dcb83-3d5a-4d1b-a239-48e9de9d1054",
+    "name": "Black Kaya Graphic Tank",
+    "part": "upperbody",
+    "color": "#18191b",
+    "secondaryColor": "#d8d3c7",
+    "palette": [
+      "#18191b",
+      "#d8d3c7"
+    ],
+    "tags": [
+      "black",
+      "tank",
+      "graphic",
+      "casual"
+    ],
+    "image": "/wardrobe/assets/import-999dcb83-3d5a-4d1b-a239-48e9de9d1054-garment.png",
+    "thumbnail": "/wardrobe/assets/import-999dcb83-3d5a-4d1b-a239-48e9de9d1054-garment.png",
+    "modeledImage": null,
+    "importJobId": "999dcb83-3d5a-4d1b-a239-48e9de9d1054"
+  },
+  {
+    "id": "import-21200b60-8cae-4597-90ac-59add8f0519d",
+    "name": "Brown I Want More Dog Graphic Tee",
+    "part": "upperbody",
+    "color": "#4d332c",
+    "secondaryColor": "#e88ba0",
+    "palette": [
+      "#4d332c",
+      "#e88ba0"
+    ],
+    "tags": [
+      "brown",
+      "tee",
+      "graphic",
+      "dog",
+      "i want more"
+    ],
+    "image": "/wardrobe/assets/import-21200b60-8cae-4597-90ac-59add8f0519d-garment.png",
+    "thumbnail": "/wardrobe/assets/import-21200b60-8cae-4597-90ac-59add8f0519d-garment.png",
+    "modeledImage": "/wardrobe/assets/import-21200b60-8cae-4597-90ac-59add8f0519d-modeled.png",
+    "importJobId": "21200b60-8cae-4597-90ac-59add8f0519d"
+  },
+  {
+    "id": "import-bff12837-c454-4abd-be98-f8b8dda79109",
+    "name": "Black Contrast-Stitch Cargo Shorts",
+    "part": "lowerbody",
+    "color": "#262626",
+    "secondaryColor": null,
+    "palette": [
+      "#262626"
+    ],
+    "tags": [
+      "black",
+      "cargo",
+      "shorts",
+      "contrast stitch"
+    ],
+    "image": "/wardrobe/assets/import-bff12837-c454-4abd-be98-f8b8dda79109-garment.png",
+    "thumbnail": "/wardrobe/assets/import-bff12837-c454-4abd-be98-f8b8dda79109-garment.png",
+    "modeledImage": null,
+    "importJobId": "bff12837-c454-4abd-be98-f8b8dda79109"
+  },
+  {
+    "id": "import-766f51bf-af04-4c94-9814-e891143d0311",
+    "name": "White and Black Adidas Leather Sneakers",
+    "part": "shoes",
+    "color": "#e8e7df",
+    "secondaryColor": "#1b1b1b",
+    "palette": [
+      "#e8e7df",
+      "#1b1b1b"
+    ],
+    "tags": [
+      "white",
+      "black",
+      "adidas",
+      "sneakers",
+      "leather"
+    ],
+    "image": "/wardrobe/assets/import-766f51bf-af04-4c94-9814-e891143d0311-garment.png",
+    "thumbnail": "/wardrobe/assets/import-766f51bf-af04-4c94-9814-e891143d0311-garment.png",
+    "modeledImage": null,
+    "importJobId": "766f51bf-af04-4c94-9814-e891143d0311"
+  },
+  {
+    "id": "import-37e60e34-df15-4009-838d-0f5b651a4655",
+    "name": "White, Rust, and Black Abstract Button-Up",
+    "part": "upperbody",
+    "color": "#e9e4d8",
+    "secondaryColor": "#332f2b",
+    "palette": [
+      "#e9e4d8",
+      "#332f2b"
+    ],
+    "tags": [
+      "white",
+      "rust",
+      "black",
+      "button up",
+      "abstract",
+      "short sleeve"
+    ],
+    "image": "/wardrobe/assets/import-37e60e34-df15-4009-838d-0f5b651a4655-garment.png",
+    "thumbnail": "/wardrobe/assets/import-37e60e34-df15-4009-838d-0f5b651a4655-garment.png",
+    "modeledImage": null,
+    "importJobId": "37e60e34-df15-4009-838d-0f5b651a4655"
+  },
+  {
+    "id": "import-ad8cb7f0-10ba-4a96-8a62-ba5f539c23c2",
+    "name": "Stone Washed Crewneck Tee",
+    "part": "upperbody",
+    "color": "#9b8977",
+    "secondaryColor": null,
+    "palette": [
+      "#9b8977"
+    ],
+    "tags": [
+      "stone",
+      "tan",
+      "tee",
+      "washed",
+      "crewneck"
+    ],
+    "image": "/wardrobe/assets/import-ad8cb7f0-10ba-4a96-8a62-ba5f539c23c2-garment.png",
+    "thumbnail": "/wardrobe/assets/import-ad8cb7f0-10ba-4a96-8a62-ba5f539c23c2-garment.png",
+    "modeledImage": null,
+    "importJobId": "ad8cb7f0-10ba-4a96-8a62-ba5f539c23c2"
+  },
+  {
+    "id": "import-7a21f6b8-674b-4000-b2fc-0325bc59078c",
+    "name": "Light Blue Double-Pocket Cargo Jeans",
+    "part": "lowerbody",
+    "color": "#94acbd",
+    "secondaryColor": null,
+    "palette": [
+      "#94acbd"
+    ],
+    "tags": [
+      "light blue",
+      "denim",
+      "cargo",
+      "jeans",
+      "double pocket"
+    ],
+    "image": "/wardrobe/assets/import-7a21f6b8-674b-4000-b2fc-0325bc59078c-garment.png",
+    "thumbnail": "/wardrobe/assets/import-7a21f6b8-674b-4000-b2fc-0325bc59078c-garment.png",
+    "modeledImage": null,
+    "importJobId": "7a21f6b8-674b-4000-b2fc-0325bc59078c"
+  },
+  {
+    "id": "import-8e584aac-5457-4f80-806a-1cce3f129d4c",
+    "name": "Dark Olive Elastic-Waist Swim Shorts",
+    "part": "lowerbody",
+    "color": "#333a34",
+    "secondaryColor": null,
+    "palette": [
+      "#333a34"
+    ],
+    "tags": [
+      "dark olive",
+      "swim",
+      "shorts",
+      "elastic waist"
+    ],
+    "image": "/wardrobe/assets/import-8e584aac-5457-4f80-806a-1cce3f129d4c-garment.png",
+    "thumbnail": "/wardrobe/assets/import-8e584aac-5457-4f80-806a-1cce3f129d4c-garment.png",
+    "modeledImage": null,
+    "importJobId": "8e584aac-5457-4f80-806a-1cce3f129d4c"
+  },
+  {
+    "id": "import-12eaea7a-1500-412a-b83f-edbb9f81ca14",
+    "name": "Black Square Photo Graphic Tee",
+    "part": "upperbody",
+    "color": "#1d2026",
+    "secondaryColor": "#d8d7d0",
+    "palette": [
+      "#1d2026",
+      "#d8d7d0"
+    ],
+    "tags": [
+      "black",
+      "tee",
+      "graphic",
+      "square print"
+    ],
+    "image": "/wardrobe/assets/import-12eaea7a-1500-412a-b83f-edbb9f81ca14-garment.png",
+    "thumbnail": "/wardrobe/assets/import-12eaea7a-1500-412a-b83f-edbb9f81ca14-garment.png",
+    "modeledImage": null,
+    "importJobId": "12eaea7a-1500-412a-b83f-edbb9f81ca14"
+  },
+  {
+    "id": "import-d759a870-66f8-466b-ad08-6ac1cd6d6571",
+    "name": "Beige Small-Logo Drawstring Shorts",
+    "part": "lowerbody",
+    "color": "#c6ad83",
+    "secondaryColor": null,
+    "palette": [
+      "#c6ad83"
+    ],
+    "tags": [
+      "beige",
+      "shorts",
+      "drawstring",
+      "small logo"
+    ],
+    "image": "/wardrobe/assets/import-d759a870-66f8-466b-ad08-6ac1cd6d6571-garment.png",
+    "thumbnail": "/wardrobe/assets/import-d759a870-66f8-466b-ad08-6ac1cd6d6571-garment.png",
+    "modeledImage": null,
+    "importJobId": "d759a870-66f8-466b-ad08-6ac1cd6d6571"
+  },
+  {
+    "id": "import-d9f94f41-ad3b-4470-b0f9-6d84b9ec9871",
+    "name": "Black and White Side-Stripe Skate Sneakers",
+    "part": "shoes",
+    "color": "#202224",
+    "secondaryColor": "#ede9df",
+    "palette": [
+      "#202224",
+      "#ede9df"
+    ],
+    "tags": [
+      "black",
+      "white",
+      "sneakers",
+      "side stripe",
+      "skate"
+    ],
+    "image": "/wardrobe/assets/import-d9f94f41-ad3b-4470-b0f9-6d84b9ec9871-garment.png",
+    "thumbnail": "/wardrobe/assets/import-d9f94f41-ad3b-4470-b0f9-6d84b9ec9871-garment.png",
+    "modeledImage": null,
+    "importJobId": "d9f94f41-ad3b-4470-b0f9-6d84b9ec9871"
+  },
+  {
+    "id": "import-00b8af9f-b020-4797-912c-1b16f404bd05",
+    "name": "Charcoal DC Pocket-Graphic Tee",
+    "part": "upperbody",
+    "color": "#444748",
+    "secondaryColor": "#b5a74e",
+    "palette": [
+      "#444748",
+      "#b5a74e"
+    ],
+    "tags": [
+      "charcoal",
+      "tee",
+      "dc",
+      "pocket graphic"
+    ],
+    "image": "/wardrobe/assets/import-00b8af9f-b020-4797-912c-1b16f404bd05-garment.png",
+    "thumbnail": "/wardrobe/assets/import-00b8af9f-b020-4797-912c-1b16f404bd05-garment.png",
+    "modeledImage": null,
+    "importJobId": "00b8af9f-b020-4797-912c-1b16f404bd05"
+  },
+  {
+    "id": "import-2d4a473a-3756-420f-90e9-12108f91fa3b",
+    "name": "Distressed Charcoal Denim Shorts",
+    "part": "lowerbody",
+    "color": "#444545",
+    "secondaryColor": null,
+    "palette": [
+      "#444545"
+    ],
+    "tags": [
+      "charcoal",
+      "denim",
+      "shorts",
+      "distressed",
+      "rolled hem"
+    ],
+    "image": "/wardrobe/assets/import-2d4a473a-3756-420f-90e9-12108f91fa3b-garment.png",
+    "thumbnail": "/wardrobe/assets/import-2d4a473a-3756-420f-90e9-12108f91fa3b-garment.png",
+    "modeledImage": null,
+    "importJobId": "2d4a473a-3756-420f-90e9-12108f91fa3b"
+  },
+  {
+    "id": "import-59c6e092-8a3b-4632-b946-0822feac3912",
+    "name": "Black and Grey Chunky Running Sneakers",
+    "part": "shoes",
+    "color": "#25282a",
+    "secondaryColor": "#555a5c",
+    "palette": [
+      "#25282a",
+      "#555a5c"
+    ],
+    "tags": [
+      "black",
+      "grey",
+      "sneakers",
+      "running",
+      "chunky"
+    ],
+    "image": "/wardrobe/assets/import-59c6e092-8a3b-4632-b946-0822feac3912-garment.png",
+    "thumbnail": "/wardrobe/assets/import-59c6e092-8a3b-4632-b946-0822feac3912-garment.png",
+    "modeledImage": null,
+    "importJobId": "59c6e092-8a3b-4632-b946-0822feac3912"
+  },
+  {
+    "id": "import-69cde1e7-6cd3-488a-9e9f-e97542b3c8d0",
+    "name": "Pale Pink Duck Graphic Tee",
+    "part": "upperbody",
+    "color": "#d9bab8",
+    "secondaryColor": "#d1bd63",
+    "palette": [
+      "#d9bab8",
+      "#d1bd63"
+    ],
+    "tags": [
+      "pink",
+      "tee",
+      "duck",
+      "graphic"
+    ],
+    "image": "/wardrobe/assets/import-69cde1e7-6cd3-488a-9e9f-e97542b3c8d0-garment.png",
+    "thumbnail": "/wardrobe/assets/import-69cde1e7-6cd3-488a-9e9f-e97542b3c8d0-garment.png",
+    "modeledImage": null,
+    "importJobId": "69cde1e7-6cd3-488a-9e9f-e97542b3c8d0"
+  },
+  {
+    "id": "import-882e18a3-741a-4837-88bd-683451666d46",
+    "name": "Navy Logo-Patch Swim Shorts",
+    "part": "lowerbody",
+    "color": "#4b4c62",
+    "secondaryColor": "#e8e8e3",
+    "palette": [
+      "#4b4c62",
+      "#e8e8e3"
+    ],
+    "tags": [
+      "navy",
+      "swim",
+      "shorts",
+      "logo patch"
+    ],
+    "image": "/wardrobe/assets/import-882e18a3-741a-4837-88bd-683451666d46-garment.png",
+    "thumbnail": "/wardrobe/assets/import-882e18a3-741a-4837-88bd-683451666d46-garment.png",
+    "modeledImage": null,
+    "importJobId": "882e18a3-741a-4837-88bd-683451666d46"
+  },
+  {
+    "id": "import-e610b3ec-1788-4526-b239-17c9f13d5ff9",
+    "name": "Blue Rubber Slides",
+    "part": "shoes",
+    "color": "#5d76b0",
+    "secondaryColor": null,
+    "palette": [
+      "#5d76b0"
+    ],
+    "tags": [
+      "blue",
+      "slides",
+      "rubber"
+    ],
+    "image": "/wardrobe/assets/import-e610b3ec-1788-4526-b239-17c9f13d5ff9-garment.png",
+    "thumbnail": "/wardrobe/assets/import-e610b3ec-1788-4526-b239-17c9f13d5ff9-garment.png",
+    "modeledImage": "/wardrobe/assets/import-e610b3ec-1788-4526-b239-17c9f13d5ff9-modeled.png",
+    "importJobId": "e610b3ec-1788-4526-b239-17c9f13d5ff9"
+  },
+  {
+    "id": "import-28bf2fa2-c413-4379-8efc-0ca2dcdb19ef",
+    "name": "Beige Nike Air Box-Logo Tee",
+    "part": "upperbody",
+    "color": "#d8c7aa",
+    "secondaryColor": "#1c1b1c",
+    "palette": [
+      "#d8c7aa",
+      "#1c1b1c"
+    ],
+    "tags": [
+      "beige",
+      "nike",
+      "air",
+      "tee",
+      "box logo"
+    ],
+    "image": "/wardrobe/assets/import-28bf2fa2-c413-4379-8efc-0ca2dcdb19ef-garment.png",
+    "thumbnail": "/wardrobe/assets/import-28bf2fa2-c413-4379-8efc-0ca2dcdb19ef-garment.png",
+    "modeledImage": "/wardrobe/assets/import-28bf2fa2-c413-4379-8efc-0ca2dcdb19ef-modeled.png",
+    "importJobId": "28bf2fa2-c413-4379-8efc-0ca2dcdb19ef"
+  },
+  {
+    "id": "import-f515780e-54a7-4e3b-8b57-62d9ae5b48ee",
+    "name": "Oversized White Signature Tee",
+    "part": "upperbody",
+    "color": "#eeeae2",
+    "secondaryColor": "#383837",
+    "palette": [
+      "#eeeae2",
+      "#383837"
+    ],
+    "tags": [
+      "white",
+      "tee",
+      "oversized",
+      "signature logo"
+    ],
+    "image": "/wardrobe/assets/import-f515780e-54a7-4e3b-8b57-62d9ae5b48ee-garment.png",
+    "thumbnail": "/wardrobe/assets/import-f515780e-54a7-4e3b-8b57-62d9ae5b48ee-garment.png",
+    "modeledImage": null,
+    "importJobId": "f515780e-54a7-4e3b-8b57-62d9ae5b48ee"
+  },
+  {
+    "id": "import-097ce42b-e495-49f7-95d5-20978311ceeb",
+    "name": "Black Athletic Shorts (Stadium Outfit)",
+    "part": "lowerbody",
+    "color": "#191a1b",
+    "secondaryColor": null,
+    "palette": [
+      "#191a1b"
+    ],
+    "tags": [
+      "black",
+      "shorts",
+      "athletic"
+    ],
+    "image": "/wardrobe/assets/import-097ce42b-e495-49f7-95d5-20978311ceeb-garment.png",
+    "thumbnail": "/wardrobe/assets/import-097ce42b-e495-49f7-95d5-20978311ceeb-garment.png",
+    "modeledImage": null,
+    "importJobId": "097ce42b-e495-49f7-95d5-20978311ceeb"
+  },
+  {
+    "id": "import-7a7e616a-ba17-4dcb-bb5f-4a7ae34f190e",
+    "name": "White and Grey Retro Court Sneakers",
+    "part": "shoes",
+    "color": "#ddd8cc",
+    "secondaryColor": "#8d8c87",
+    "palette": [
+      "#ddd8cc",
+      "#8d8c87"
+    ],
+    "tags": [
+      "white",
+      "grey",
+      "sneakers",
+      "court",
+      "retro"
+    ],
+    "image": "/wardrobe/assets/import-7a7e616a-ba17-4dcb-bb5f-4a7ae34f190e-garment.png",
+    "thumbnail": "/wardrobe/assets/import-7a7e616a-ba17-4dcb-bb5f-4a7ae34f190e-garment.png",
+    "modeledImage": null,
+    "importJobId": "7a7e616a-ba17-4dcb-bb5f-4a7ae34f190e"
+  },
+  {
+    "id": "import-481016e9-65e0-40a2-88dd-28e1e144e240",
+    "name": "Black Round Sunglasses",
+    "part": "accessories_up",
+    "color": "#171718",
+    "secondaryColor": null,
+    "palette": [
+      "#171718"
+    ],
+    "tags": [
+      "black",
+      "sunglasses",
+      "round"
+    ],
+    "image": "/wardrobe/assets/import-481016e9-65e0-40a2-88dd-28e1e144e240-garment.png",
+    "thumbnail": "/wardrobe/assets/import-481016e9-65e0-40a2-88dd-28e1e144e240-garment.png",
+    "modeledImage": null,
+    "importJobId": "481016e9-65e0-40a2-88dd-28e1e144e240"
+  },
+  {
+    "id": "import-e70f05fa-cf29-4876-bdd0-893bd8be0ae4",
+    "name": "White Colo-Colo Umbro Jersey",
+    "part": "upperbody",
+    "color": "#eeeae4",
+    "secondaryColor": "#d1a054",
+    "palette": [
+      "#eeeae4",
+      "#d1a054"
+    ],
+    "tags": [
+      "white",
+      "colo colo",
+      "umbro",
+      "jersey",
+      "cristal"
+    ],
+    "image": "/wardrobe/assets/import-e70f05fa-cf29-4876-bdd0-893bd8be0ae4-garment.png",
+    "thumbnail": "/wardrobe/assets/import-e70f05fa-cf29-4876-bdd0-893bd8be0ae4-garment.png",
+    "modeledImage": null,
+    "importJobId": "e70f05fa-cf29-4876-bdd0-893bd8be0ae4"
+  },
+  {
+    "id": "import-bbb15322-658d-4350-bf11-5a4dc3e4bf86",
+    "name": "Black and White Bird-Print Camp Shirt",
+    "part": "upperbody",
+    "color": "#1b1d20",
+    "secondaryColor": "#e1ded5",
+    "palette": [
+      "#1b1d20",
+      "#e1ded5"
+    ],
+    "tags": [
+      "black",
+      "white",
+      "button up",
+      "bird print",
+      "camp collar"
+    ],
+    "image": "/wardrobe/assets/import-bbb15322-658d-4350-bf11-5a4dc3e4bf86-garment.png",
+    "thumbnail": "/wardrobe/assets/import-bbb15322-658d-4350-bf11-5a4dc3e4bf86-garment.png",
+    "modeledImage": null,
+    "importJobId": "bbb15322-658d-4350-bf11-5a4dc3e4bf86"
+  },
+  {
+    "id": "import-893a0c94-13c2-4620-9ca3-be6c994e5eb3",
+    "name": "Round Metal Dark-Lens Sunglasses",
+    "part": "accessories_up",
+    "color": "#302e2c",
+    "secondaryColor": "#b7a67f",
+    "palette": [
+      "#302e2c",
+      "#b7a67f"
+    ],
+    "tags": [
+      "round",
+      "metal",
+      "sunglasses",
+      "dark lens"
+    ],
+    "image": "/wardrobe/assets/import-893a0c94-13c2-4620-9ca3-be6c994e5eb3-garment.png",
+    "thumbnail": "/wardrobe/assets/import-893a0c94-13c2-4620-9ca3-be6c994e5eb3-garment.png",
+    "modeledImage": null,
+    "importJobId": "893a0c94-13c2-4620-9ca3-be6c994e5eb3"
+  },
+  {
+    "id": "import-f0b60ce3-05fb-4833-8c0a-8d24bd22335b",
+    "name": "Tan Small-Swoosh Nike Tee",
+    "part": "upperbody",
+    "color": "#b99b76",
+    "secondaryColor": "#232426",
+    "palette": [
+      "#b99b76",
+      "#232426"
+    ],
+    "tags": [
+      "tan",
+      "nike",
+      "tee",
+      "small swoosh"
+    ],
+    "image": "/wardrobe/assets/import-f0b60ce3-05fb-4833-8c0a-8d24bd22335b-garment.png",
+    "thumbnail": "/wardrobe/assets/import-f0b60ce3-05fb-4833-8c0a-8d24bd22335b-garment.png",
+    "modeledImage": null,
+    "importJobId": "f0b60ce3-05fb-4833-8c0a-8d24bd22335b"
+  },
+  {
+    "id": "import-d4e79971-cfb0-491e-a8cf-a1f79ab9c7c2",
+    "name": "Black Four-Pocket Field Jacket",
+    "part": "wholebody_up",
+    "color": "#1f2223",
+    "secondaryColor": null,
+    "palette": [
+      "#1f2223"
+    ],
+    "tags": [
+      "black",
+      "field jacket",
+      "four pocket",
+      "zip",
+      "snap"
+    ],
+    "image": "/wardrobe/assets/import-d4e79971-cfb0-491e-a8cf-a1f79ab9c7c2-garment.png",
+    "thumbnail": "/wardrobe/assets/import-d4e79971-cfb0-491e-a8cf-a1f79ab9c7c2-garment.png",
+    "modeledImage": null,
+    "importJobId": "d4e79971-cfb0-491e-a8cf-a1f79ab9c7c2"
+  },
+  {
+    "id": "import-ebd98960-92d3-4f4e-bd9d-cc58431e1d16",
+    "name": "Grey Cargo Trousers (Riding Outfit)",
+    "part": "lowerbody",
+    "color": "#66676a",
+    "secondaryColor": null,
+    "palette": [
+      "#66676a"
+    ],
+    "tags": [
+      "grey",
+      "cargo",
+      "trousers",
+      "utility"
+    ],
+    "image": "/wardrobe/assets/import-ebd98960-92d3-4f4e-bd9d-cc58431e1d16-garment.png",
+    "thumbnail": "/wardrobe/assets/import-ebd98960-92d3-4f4e-bd9d-cc58431e1d16-garment.png",
+    "modeledImage": null,
+    "importJobId": "ebd98960-92d3-4f4e-bd9d-cc58431e1d16"
+  },
+  {
+    "id": "import-3b6debf2-dc79-42bd-9d13-10c82c4fdc1f",
+    "name": "Matte Black Riding Helmet",
+    "part": "accessories_up",
+    "color": "#202122",
+    "secondaryColor": null,
+    "palette": [
+      "#202122"
+    ],
+    "tags": [
+      "black",
+      "helmet",
+      "riding",
+      "matte"
+    ],
+    "image": "/wardrobe/assets/import-3b6debf2-dc79-42bd-9d13-10c82c4fdc1f-garment.png",
+    "thumbnail": "/wardrobe/assets/import-3b6debf2-dc79-42bd-9d13-10c82c4fdc1f-garment.png",
+    "modeledImage": null,
+    "importJobId": "3b6debf2-dc79-42bd-9d13-10c82c4fdc1f"
+  },
+  {
+    "id": "import-6aaad43f-7929-4917-afca-d3517ae0f8e5",
+    "name": "White and Red Chili-Print Swim Shorts",
+    "part": "lowerbody",
+    "color": "#ede9df",
+    "secondaryColor": "#b53636",
+    "palette": [
+      "#ede9df",
+      "#b53636"
+    ],
+    "tags": [
+      "white",
+      "red",
+      "swim",
+      "shorts",
+      "chili print"
+    ],
+    "image": "/wardrobe/assets/import-6aaad43f-7929-4917-afca-d3517ae0f8e5-garment.png",
+    "thumbnail": "/wardrobe/assets/import-6aaad43f-7929-4917-afca-d3517ae0f8e5-garment.png",
+    "modeledImage": null,
+    "importJobId": "6aaad43f-7929-4917-afca-d3517ae0f8e5"
+  },
+  {
+    "id": "import-7bc9af4b-1217-4101-9b9e-40d418a01fea",
+    "name": "Black Kappa Logo Slides",
+    "part": "shoes",
+    "color": "#202122",
+    "secondaryColor": "#e8e7df",
+    "palette": [
+      "#202122",
+      "#e8e7df"
+    ],
+    "tags": [
+      "black",
+      "kappa",
+      "slides",
+      "logo"
+    ],
+    "image": "/wardrobe/assets/import-7bc9af4b-1217-4101-9b9e-40d418a01fea-garment.png",
+    "thumbnail": "/wardrobe/assets/import-7bc9af4b-1217-4101-9b9e-40d418a01fea-garment.png",
+    "modeledImage": null,
+    "importJobId": "7bc9af4b-1217-4101-9b9e-40d418a01fea"
+  },
+  {
+    "id": "import-45a8be84-04c4-425b-a611-8082cf699403",
+    "name": "White Puma Logo Slides",
+    "part": "shoes",
+    "color": "#e8e7df",
+    "secondaryColor": "#202123",
+    "palette": [
+      "#e8e7df",
+      "#202123"
+    ],
+    "tags": [
+      "white",
+      "puma",
+      "slides",
+      "logo"
+    ],
+    "image": "/wardrobe/assets/import-45a8be84-04c4-425b-a611-8082cf699403-garment.png",
+    "thumbnail": "/wardrobe/assets/import-45a8be84-04c4-425b-a611-8082cf699403-garment.png",
+    "modeledImage": null,
+    "importJobId": "45a8be84-04c4-425b-a611-8082cf699403"
+  },
+  {
+    "id": "import-6c3f3dfc-2d87-492b-984a-519e0b94ce34",
+    "name": "Blue Al-Nassr Nike Sleeveless Top",
+    "part": "upperbody",
+    "color": "#173c88",
+    "secondaryColor": "#e1c647",
+    "palette": [
+      "#173c88",
+      "#e1c647"
+    ],
+    "tags": [
+      "blue",
+      "al nassr",
+      "nike",
+      "sleeveless",
+      "football"
+    ],
+    "image": "/wardrobe/assets/import-6c3f3dfc-2d87-492b-984a-519e0b94ce34-garment.png",
+    "thumbnail": "/wardrobe/assets/import-6c3f3dfc-2d87-492b-984a-519e0b94ce34-garment.png",
+    "modeledImage": null,
+    "importJobId": "6c3f3dfc-2d87-492b-984a-519e0b94ce34"
+  },
+  {
+    "id": "import-2bfded18-c59b-43d5-a292-03d1da23a644",
+    "name": "Black Athletic Shorts (Blue Jersey Outfit)",
+    "part": "lowerbody",
+    "color": "#1e2022",
+    "secondaryColor": null,
+    "palette": [
+      "#1e2022"
+    ],
+    "tags": [
+      "black",
+      "athletic",
+      "shorts"
+    ],
+    "image": "/wardrobe/assets/import-2bfded18-c59b-43d5-a292-03d1da23a644-garment.png",
+    "thumbnail": "/wardrobe/assets/import-2bfded18-c59b-43d5-a292-03d1da23a644-garment.png",
+    "modeledImage": "/wardrobe/assets/import-2bfded18-c59b-43d5-a292-03d1da23a644-modeled.png",
+    "importJobId": "2bfded18-c59b-43d5-a292-03d1da23a644"
+  },
+  {
+    "id": "import-4cda6d3a-78cc-4941-b8e2-e260bd7bf34d",
+    "name": "Black Nike Running Sneakers (Blue Jersey Outfit)",
+    "part": "shoes",
+    "color": "#202326",
+    "secondaryColor": "#5d6264",
+    "palette": [
+      "#202326",
+      "#5d6264"
+    ],
+    "tags": [
+      "black",
+      "nike",
+      "running",
+      "sneakers"
+    ],
+    "image": "/wardrobe/assets/import-4cda6d3a-78cc-4941-b8e2-e260bd7bf34d-garment.png",
+    "thumbnail": "/wardrobe/assets/import-4cda6d3a-78cc-4941-b8e2-e260bd7bf34d-garment.png",
+    "modeledImage": null,
+    "importJobId": "4cda6d3a-78cc-4941-b8e2-e260bd7bf34d"
+  },
+  {
+    "id": "import-aaee2b99-f737-4e33-8c3c-b4d7b1b4769c",
+    "name": "Black Long Puffer Coat",
+    "part": "wholebody_up",
+    "color": "#1b2026",
+    "secondaryColor": null,
+    "palette": [
+      "#1b2026"
+    ],
+    "tags": [
+      "black",
+      "puffer",
+      "coat",
+      "winter",
+      "long"
+    ],
+    "image": "/wardrobe/assets/import-aaee2b99-f737-4e33-8c3c-b4d7b1b4769c-garment.png",
+    "thumbnail": "/wardrobe/assets/import-aaee2b99-f737-4e33-8c3c-b4d7b1b4769c-garment.png",
+    "modeledImage": null,
+    "importJobId": "aaee2b99-f737-4e33-8c3c-b4d7b1b4769c"
+  },
+  {
+    "id": "import-34b810ae-0b70-4391-bdcf-ff00755e0db3",
+    "name": "Black Chunky-Knit Scarf",
+    "part": "accessories_up",
+    "color": "#171819",
+    "secondaryColor": null,
+    "palette": [
+      "#171819"
+    ],
+    "tags": [
+      "black",
+      "scarf",
+      "knit",
+      "chunky"
+    ],
+    "image": "/wardrobe/assets/import-34b810ae-0b70-4391-bdcf-ff00755e0db3-garment.png",
+    "thumbnail": "/wardrobe/assets/import-34b810ae-0b70-4391-bdcf-ff00755e0db3-garment.png",
+    "modeledImage": null,
+    "importJobId": "34b810ae-0b70-4391-bdcf-ff00755e0db3"
+  },
+  {
+    "id": "import-ecd0c30c-86c8-4e90-b159-4e11636c6dc3",
+    "name": "White Button-Down Oxford Shirt",
+    "part": "upperbody",
+    "color": "#f0eee7",
+    "secondaryColor": null,
+    "palette": [
+      "#f0eee7"
+    ],
+    "tags": [
+      "white",
+      "oxford",
+      "button down",
+      "long sleeve",
+      "pocket"
+    ],
+    "image": "/wardrobe/assets/import-ecd0c30c-86c8-4e90-b159-4e11636c6dc3-garment.png",
+    "thumbnail": "/wardrobe/assets/import-ecd0c30c-86c8-4e90-b159-4e11636c6dc3-garment.png",
+    "modeledImage": null,
+    "importJobId": "ecd0c30c-86c8-4e90-b159-4e11636c6dc3"
+  },
+  {
+    "id": "import-46e59f94-9d90-43e6-bc40-3df5bc64917d",
+    "name": "Argentina Adidas Two-Star Jersey",
+    "part": "upperbody",
+    "color": "#e8eef0",
+    "secondaryColor": "#8dc0d9",
+    "palette": [
+      "#e8eef0",
+      "#8dc0d9"
+    ],
+    "tags": [
+      "argentina",
+      "adidas",
+      "jersey",
+      "white",
+      "sky blue",
+      "two star"
+    ],
+    "image": "/wardrobe/assets/import-46e59f94-9d90-43e6-bc40-3df5bc64917d-garment.png",
+    "thumbnail": "/wardrobe/assets/import-46e59f94-9d90-43e6-bc40-3df5bc64917d-garment.png",
+    "modeledImage": null,
+    "importJobId": "46e59f94-9d90-43e6-bc40-3df5bc64917d"
+  },
+  {
+    "id": "import-18e960e3-610b-4d51-8b86-578cb6e76a9d",
+    "name": "Grey Diagonal-Weave Necktie",
+    "part": "accessories_up",
+    "color": "#606167",
+    "secondaryColor": null,
+    "palette": [
+      "#606167"
+    ],
+    "tags": [
+      "grey",
+      "tie",
+      "formal",
+      "diagonal weave"
+    ],
+    "image": "/wardrobe/assets/import-18e960e3-610b-4d51-8b86-578cb6e76a9d-garment.png",
+    "thumbnail": "/wardrobe/assets/import-18e960e3-610b-4d51-8b86-578cb6e76a9d-garment.png",
+    "modeledImage": null,
+    "importJobId": "18e960e3-610b-4d51-8b86-578cb6e76a9d"
+  },
+  {
+    "id": "import-e3ee04fd-a4d1-451e-a9b0-c4b958da3196",
+    "name": "Black Graduation Mortarboard",
+    "part": "accessories_up",
+    "color": "#17181a",
+    "secondaryColor": null,
+    "palette": [
+      "#17181a"
+    ],
+    "tags": [
+      "black",
+      "graduation",
+      "mortarboard",
+      "academic"
+    ],
+    "image": "/wardrobe/assets/import-e3ee04fd-a4d1-451e-a9b0-c4b958da3196-garment.png",
+    "thumbnail": "/wardrobe/assets/import-e3ee04fd-a4d1-451e-a9b0-c4b958da3196-garment.png",
+    "modeledImage": "/wardrobe/assets/import-e3ee04fd-a4d1-451e-a9b0-c4b958da3196-modeled.png",
+    "importJobId": "e3ee04fd-a4d1-451e-a9b0-c4b958da3196"
+  },
+  {
+    "id": "import-8c77fe18-5b4c-4d66-b2e6-bb22ece3d9c9",
+    "name": "Cream Stray Cats Graphic Tee",
+    "part": "upperbody",
+    "color": "#e5dfc5",
+    "secondaryColor": "#333433",
+    "palette": [
+      "#e5dfc5",
+      "#333433"
+    ],
+    "tags": [
+      "cream",
+      "tee",
+      "stray cats",
+      "cat graphic"
+    ],
+    "image": "/wardrobe/assets/import-8c77fe18-5b4c-4d66-b2e6-bb22ece3d9c9-garment.png",
+    "thumbnail": "/wardrobe/assets/import-8c77fe18-5b4c-4d66-b2e6-bb22ece3d9c9-garment.png",
+    "modeledImage": "/wardrobe/assets/import-8c77fe18-5b4c-4d66-b2e6-bb22ece3d9c9-modeled.png",
+    "importJobId": "8c77fe18-5b4c-4d66-b2e6-bb22ece3d9c9"
+  },
+  {
+    "id": "import-8d03c2f5-5db5-4392-976c-2aadda3f1a0c",
+    "name": "Tortoiseshell Browline Sunglasses",
+    "part": "accessories_up",
+    "color": "#654130",
+    "secondaryColor": "#b39a72",
+    "palette": [
+      "#654130",
+      "#b39a72"
+    ],
+    "tags": [
+      "tortoiseshell",
+      "sunglasses",
+      "browline",
+      "dark lens"
+    ],
+    "image": "/wardrobe/assets/import-8d03c2f5-5db5-4392-976c-2aadda3f1a0c-garment.png",
+    "thumbnail": "/wardrobe/assets/import-8d03c2f5-5db5-4392-976c-2aadda3f1a0c-garment.png",
+    "modeledImage": null,
+    "importJobId": "8d03c2f5-5db5-4392-976c-2aadda3f1a0c"
+  },
+  {
+    "id": "import-f3e81dbd-9bac-42b2-95d9-42aa9b17173b",
+    "name": "Tan Bomber Jacket with Dark Collar",
+    "part": "wholebody_up",
+    "color": "#a98e6e",
+    "secondaryColor": "#4a4846",
+    "palette": [
+      "#a98e6e",
+      "#4a4846"
+    ],
+    "tags": [
+      "tan",
+      "bomber",
+      "jacket",
+      "dark collar",
+      "zip"
+    ],
+    "image": "/wardrobe/assets/import-f3e81dbd-9bac-42b2-95d9-42aa9b17173b-garment.png",
+    "thumbnail": "/wardrobe/assets/import-f3e81dbd-9bac-42b2-95d9-42aa9b17173b-garment.png",
+    "modeledImage": null,
+    "importJobId": "f3e81dbd-9bac-42b2-95d9-42aa9b17173b"
+  },
+  {
+    "id": "import-00507eaa-a145-4d37-be1c-b2d21995a03d",
+    "name": "Black Crewneck Tee (Paris Outfit)",
+    "part": "upperbody",
+    "color": "#1a1a1b",
+    "secondaryColor": null,
+    "palette": [
+      "#1a1a1b"
+    ],
+    "tags": [
+      "black",
+      "tee",
+      "crewneck",
+      "basic"
+    ],
+    "image": "/wardrobe/assets/import-00507eaa-a145-4d37-be1c-b2d21995a03d-garment.png",
+    "thumbnail": "/wardrobe/assets/import-00507eaa-a145-4d37-be1c-b2d21995a03d-garment.png",
+    "modeledImage": null,
+    "importJobId": "00507eaa-a145-4d37-be1c-b2d21995a03d"
+  },
+  {
+    "id": "import-1dfd113d-f11c-46bc-a1c1-b99d7a4772a4",
+    "name": "Orange Netherlands Pattern Football Jersey",
+    "part": "upperbody",
+    "color": "#d94e27",
+    "secondaryColor": "#782c22",
+    "palette": [
+      "#d94e27",
+      "#782c22"
+    ],
+    "tags": [
+      "orange",
+      "netherlands",
+      "jersey",
+      "football",
+      "pattern"
+    ],
+    "image": "/wardrobe/assets/import-1dfd113d-f11c-46bc-a1c1-b99d7a4772a4-garment.png",
+    "thumbnail": "/wardrobe/assets/import-1dfd113d-f11c-46bc-a1c1-b99d7a4772a4-garment.png",
+    "modeledImage": null,
+    "importJobId": "1dfd113d-f11c-46bc-a1c1-b99d7a4772a4"
+  },
+  {
+    "id": "import-20d6a882-e403-417b-995d-fb71c56442df",
+    "name": "Orange Rectangular Wrap Sunglasses",
+    "part": "accessories_up",
+    "color": "#e65026",
+    "secondaryColor": "#303034",
+    "palette": [
+      "#e65026",
+      "#303034"
+    ],
+    "tags": [
+      "orange",
+      "sunglasses",
+      "rectangular",
+      "wrap"
+    ],
+    "image": "/wardrobe/assets/import-20d6a882-e403-417b-995d-fb71c56442df-garment.png",
+    "thumbnail": "/wardrobe/assets/import-20d6a882-e403-417b-995d-fb71c56442df-garment.png",
+    "modeledImage": null,
+    "importJobId": "20d6a882-e403-417b-995d-fb71c56442df"
+  },
+  {
+    "id": "import-939d1858-aa5e-49a1-a6ce-488c7ebb8e02",
+    "name": "Orange Zip Waist Bag",
+    "part": "accessories_up",
+    "color": "#ed642b",
+    "secondaryColor": "#202124",
+    "palette": [
+      "#ed642b",
+      "#202124"
+    ],
+    "tags": [
+      "orange",
+      "waist bag",
+      "zip",
+      "festival"
+    ],
+    "image": "/wardrobe/assets/import-939d1858-aa5e-49a1-a6ce-488c7ebb8e02-garment.png",
+    "thumbnail": "/wardrobe/assets/import-939d1858-aa5e-49a1-a6ce-488c7ebb8e02-garment.png",
+    "modeledImage": null,
+    "importJobId": "939d1858-aa5e-49a1-a6ce-488c7ebb8e02"
+  },
+  {
+    "id": "import-4df52d10-3ae8-4cd3-a82e-3b6d6e83c89a",
+    "name": "Grey Chunky-Knit High-Neck",
+    "part": "upperbody",
+    "color": "#4a4a4b",
+    "secondaryColor": null,
+    "palette": [
+      "#4a4a4b"
+    ],
+    "tags": [
+      "grey",
+      "chunky knit",
+      "high neck",
+      "cowl neck",
+      "long sleeve",
+      "oversized"
+    ],
+    "image": "/wardrobe/assets/import-4df52d10-3ae8-4cd3-a82e-3b6d6e83c89a-garment.png",
+    "thumbnail": "/wardrobe/assets/import-4df52d10-3ae8-4cd3-a82e-3b6d6e83c89a-garment.png",
+    "modeledImage": "/wardrobe/assets/import-4df52d10-3ae8-4cd3-a82e-3b6d6e83c89a-modeled.png",
+    "importJobId": "4df52d10-3ae8-4cd3-a82e-3b6d6e83c89a"
+  },
+  {
+    "id": "import-997b2bde-db1d-40ca-8850-bfad0260702a",
+    "name": "Blue Textured Suit Trousers",
+    "part": "lowerbody",
+    "color": "#4b7195",
+    "secondaryColor": null,
+    "palette": [
+      "#4b7195"
+    ],
+    "tags": [
+      "blue",
+      "suit",
+      "tailored",
+      "textured",
+      "straight leg"
+    ],
+    "image": "/wardrobe/assets/import-997b2bde-db1d-40ca-8850-bfad0260702a-garment.png",
+    "thumbnail": "/wardrobe/assets/import-997b2bde-db1d-40ca-8850-bfad0260702a-garment.png",
+    "modeledImage": "/wardrobe/assets/import-997b2bde-db1d-40ca-8850-bfad0260702a-modeled.png",
+    "importJobId": "997b2bde-db1d-40ca-8850-bfad0260702a"
+  },
+  {
+    "id": "import-37f11c8a-8a4f-48b3-b9eb-b39e1d50d99a",
+    "name": "Black Kappa Logo Tee",
+    "part": "upperbody",
+    "color": "#171719",
+    "secondaryColor": "#f1f1ed",
+    "palette": [
+      "#171719",
+      "#f1f1ed"
+    ],
+    "tags": [
+      "black",
+      "kappa",
+      "crewneck",
+      "short sleeve",
+      "logo tee"
+    ],
+    "image": "/wardrobe/assets/import-37f11c8a-8a4f-48b3-b9eb-b39e1d50d99a-garment.png",
+    "thumbnail": "/wardrobe/assets/import-37f11c8a-8a4f-48b3-b9eb-b39e1d50d99a-garment.png",
+    "modeledImage": "/wardrobe/assets/import-37f11c8a-8a4f-48b3-b9eb-b39e1d50d99a-modeled.png",
+    "importJobId": "37f11c8a-8a4f-48b3-b9eb-b39e1d50d99a"
+  },
+  {
+    "id": "import-65e96bd8-e149-4370-be7f-4f316e7b81c6",
+    "name": "White Levi's Batwing Tee",
+    "part": "upperbody",
+    "color": "#f2f1ec",
+    "secondaryColor": "#202124",
+    "palette": [
+      "#f2f1ec",
+      "#202124"
+    ],
+    "tags": [
+      "white",
+      "levis",
+      "batwing",
+      "graphic tee",
+      "crewneck",
+      "short sleeve"
+    ],
+    "image": "/wardrobe/assets/import-65e96bd8-e149-4370-be7f-4f316e7b81c6-garment.png",
+    "thumbnail": "/wardrobe/assets/import-65e96bd8-e149-4370-be7f-4f316e7b81c6-garment.png",
+    "modeledImage": "/wardrobe/assets/import-65e96bd8-e149-4370-be7f-4f316e7b81c6-modeled.png",
+    "importJobId": "65e96bd8-e149-4370-be7f-4f316e7b81c6"
+  },
+  {
+    "id": "import-3f372c8c-22b4-4d3c-9c41-17ea124261da",
+    "name": "Beige Sleeveless Muscle Tank",
+    "part": "upperbody",
+    "color": "#b7aa9a",
+    "secondaryColor": null,
+    "palette": [
+      "#b7aa9a"
+    ],
+    "tags": [
+      "beige",
+      "sleeveless",
+      "muscle tank",
+      "crewneck",
+      "relaxed"
+    ],
+    "image": "/wardrobe/assets/import-3f372c8c-22b4-4d3c-9c41-17ea124261da-garment.png",
+    "thumbnail": "/wardrobe/assets/import-3f372c8c-22b4-4d3c-9c41-17ea124261da-garment.png",
+    "modeledImage": "/wardrobe/assets/import-3f372c8c-22b4-4d3c-9c41-17ea124261da-modeled.png",
+    "importJobId": "3f372c8c-22b4-4d3c-9c41-17ea124261da"
+  }
+]

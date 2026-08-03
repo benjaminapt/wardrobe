@@ -81,10 +81,61 @@ function DraggableItem({ item, positionProps, zIndex }) {
 export function Builder({ items, onSaveOutfit }) {
   const [selections, setSelections] = useState({});
   const [activeSlot, setActiveSlot] = useState(null);
+  const [isGeneratingPro, setIsGeneratingPro] = useState(false);
+  const [proPreviewUrl, setProPreviewUrl] = useState(null);
 
   const handleSelect = (category, item) => {
     setSelections((prev) => ({ ...prev, [category]: item }));
     setActiveSlot(null);
+  };
+
+  const handleGenerateProPreview = async () => {
+    setIsGeneratingPro(true);
+    try {
+      const outfitItems = Object.values(selections).filter(Boolean);
+      const images = [];
+      
+      const base = selections.wholebody_up || selections.upperbody || selections.lowerbody;
+      const backgroundIsModeled = !!base?.modeledImage;
+      const baseImgUrl = backgroundIsModeled ? base.modeledImage : '/model-reference.png';
+      images.push(baseImgUrl);
+      
+      outfitItems.forEach(item => {
+        if (item && (!backgroundIsModeled || item !== base)) {
+           images.push(item.image);
+        }
+      });
+      
+      const urlToBase64 = async (url) => {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        return new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve({ data: reader.result, mimeType: blob.type });
+          reader.readAsDataURL(blob);
+        });
+      };
+      
+      const base64Images = await Promise.all(images.map(url => urlToBase64(url)));
+      
+      const res = await fetch('/api/generate-outfit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          prompt: "Create a professional horizontal 3:2 editorial fashion photograph of the person in Image 1 wearing exactly the clothing items from the subsequent images. Preserve the person's face, build, skin, and the background style. Ensure the overlaid clothes perfectly fit, maintaining highly realistic lighting and shadows. Do not invent any logos or details.",
+          images: base64Images
+        })
+      });
+      
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to generate image');
+      
+      setProPreviewUrl(data.image);
+    } catch (err) {
+      alert("Error generating Pro Preview: " + err.message);
+    } finally {
+      setIsGeneratingPro(false);
+    }
   };
 
   const calculateCompatibility = (item1, item2) => {
@@ -229,10 +280,21 @@ export function Builder({ items, onSaveOutfit }) {
             )}
           </div>
           
+          {Object.values(selections).filter(Boolean).length > 1 && (
+            <button 
+              className="secondary-button" 
+              style={{marginTop: '1rem', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'linear-gradient(45deg, #FFD700, #FFA500)', color: 'black', border: 'none', fontWeight: 'bold'}}
+              onClick={handleGenerateProPreview}
+              disabled={isGeneratingPro}
+            >
+              {isGeneratingPro ? '✨ Generando con Nano Banana...' : '✨ Generar Preview Pro (IA)'}
+            </button>
+          )}
+
           {Object.values(selections).filter(Boolean).length > 0 && (
             <button 
               className="primary-button" 
-              style={{marginTop: '1rem', width: '100%'}}
+              style={{marginTop: '0.5rem', width: '100%'}}
               onClick={() => {
                 const outfitItems = Object.values(selections).filter(Boolean);
                 if (outfitItems.length > 0 && onSaveOutfit) {
@@ -282,6 +344,22 @@ export function Builder({ items, onSaveOutfit }) {
           )}
         </div>
       </div>
+
+      {proPreviewUrl && (
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)', zIndex: 9999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+           <h2 style={{ color: 'white', marginBottom: '1rem' }}>✨ Pro Preview</h2>
+           <img src={proPreviewUrl} alt="Pro Preview" style={{ maxWidth: '100%', maxHeight: '70vh', borderRadius: '12px', boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }} />
+           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+             <button className="primary-button" onClick={() => {
+                const link = document.createElement('a');
+                link.download = 'wardrobe-pro-preview.png';
+                link.href = proPreviewUrl;
+                link.click();
+             }}>Download</button>
+             <button className="secondary-button" onClick={() => setProPreviewUrl(null)}>Close</button>
+           </div>
+        </div>
+      )}
     </div>
   );
 }
