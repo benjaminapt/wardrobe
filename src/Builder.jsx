@@ -114,33 +114,26 @@ export function Builder({ items, onSaveOutfit }) {
           <div 
             className="builder-preview" 
             style={{ 
-              position: 'relative', 
-              width: '280px', 
-              height: '420px', 
-              margin: '1.5rem 0', 
-              backgroundImage: 'url(/model-reference.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              borderRadius: '12px',
-              overflow: 'hidden',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0',
+              width: '100%',
+              minHeight: '400px',
+              padding: '2rem 0',
+              position: 'relative'
             }}
           >
-            {['shoes', 'lowerbody', 'upperbody', 'wholebody_up'].map(cat => {
+            {['wholebody_up', 'upperbody', 'lowerbody', 'shoes'].map(cat => {
                const item = selections[cat];
                if (item) {
-                 const positioning = {
-                   wholebody_up: { top: '15%', left: '50%', transform: 'translateX(-50%)', width: '240px', zIndex: 3 },
-                   upperbody:    { top: '18%', left: '50%', transform: 'translateX(-50%)', width: '220px', zIndex: 2 },
-                   lowerbody:    { top: '45%', left: '50%', transform: 'translateX(-50%)', width: '220px', zIndex: 1 },
-                   shoes:        { bottom: '5%', left: '50%', transform: 'translateX(-50%)', width: '160px', zIndex: 4 }
-                 };
                  return (
-                   <div key={cat} style={{ position: 'absolute', ...positioning[cat] }}>
+                   <div key={cat} style={{ position: 'relative', margin: cat === 'wholebody_up' || cat === 'upperbody' ? '-10px 0' : '-20px 0', zIndex: cat === 'wholebody_up' ? 3 : (cat === 'upperbody' ? 2 : 1) }}>
                      <img 
                        src={item.thumbnail || item.image} 
                        alt={item.name} 
-                       style={{ width: '100%', objectFit: 'contain', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.4))' }} 
+                       style={{ width: '220px', maxHeight: '240px', objectFit: 'contain', filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.15))' }} 
                      />
                    </div>
                  );
@@ -148,8 +141,8 @@ export function Builder({ items, onSaveOutfit }) {
                return null;
             })}
             {Object.keys(selections).length === 0 && (
-              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', textAlign: 'center', padding: '1rem' }}>
-                <p>Select clothes to try them on</p>
+              <div style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
+                <p>Select clothes to build your outfit</p>
               </div>
             )}
           </div>
