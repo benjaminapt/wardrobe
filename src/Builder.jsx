@@ -9,6 +9,74 @@ const CATEGORIES = [
   { id: "shoes", label: "Shoes" }
 ];
 
+function DraggableItem({ item, positionProps, zIndex }) {
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+  const [scale, setScale] = useState(1);
+  const [isDragging, setIsDragging] = useState(false);
+  const [start, setStart] = useState({ x: 0, y: 0 });
+
+  const handleDown = (clientX, clientY, e) => {
+    setIsDragging(true);
+    setStart({ x: clientX - pos.x, y: clientY - pos.y });
+    e.stopPropagation();
+  };
+
+  const handleMove = (clientX, clientY) => {
+    if (!isDragging) return;
+    setPos({ x: clientX - start.x, y: clientY - start.y });
+  };
+
+  const handleUp = () => setIsDragging(false);
+
+  const onWheel = (e) => {
+    e.preventDefault();
+    setScale(s => Math.max(0.3, Math.min(3, s - e.deltaY * 0.002)));
+  };
+
+  // Attach window events for dragging outside the element
+  useMemo(() => {
+    if (typeof window === 'undefined') return;
+    const onMouseMove = (e) => handleMove(e.clientX, e.clientY);
+    const onTouchMove = (e) => handleMove(e.touches[0].clientX, e.touches[0].clientY);
+    if (isDragging) {
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', handleUp);
+      window.addEventListener('touchmove', onTouchMove, { passive: false });
+      window.addEventListener('touchend', handleUp);
+    } else {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', handleUp);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', handleUp);
+    }
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', handleUp);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', handleUp);
+    };
+  }, [isDragging, start]);
+
+  return (
+    <div 
+      style={{
+        position: 'absolute',
+        ...positionProps,
+        transform: `translate(calc(-50% + ${pos.x}px), ${pos.y}px) scale(${scale})`,
+        cursor: isDragging ? 'grabbing' : 'grab',
+        zIndex: isDragging ? 100 : zIndex,
+        touchAction: 'none'
+      }}
+      onMouseDown={(e) => handleDown(e.clientX, e.clientY, e)}
+      onTouchStart={(e) => handleDown(e.touches[0].clientX, e.touches[0].clientY, e)}
+      onWheel={onWheel}
+    >
+       <img src={item.thumbnail || item.image} alt={item.name} style={{ width: '100%', objectFit: 'contain', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.4))', pointerEvents: 'none' }} />
+       <div style={{position: 'absolute', bottom: '-20px', left: '50%', transform: 'translateX(-50%)', background: 'rgba(0,0,0,0.6)', color: 'white', padding: '2px 6px', borderRadius: '4px', fontSize: '10px', whiteSpace: 'nowrap', opacity: isDragging ? 1 : 0, transition: 'opacity 0.2s', pointerEvents: 'none'}}>Drag to move • Scroll to resize</div>
+    </div>
+  );
+}
+
 export function Builder({ items, onSaveOutfit }) {
   const [selections, setSelections] = useState({});
   const [activeSlot, setActiveSlot] = useState(null);
@@ -73,6 +141,17 @@ export function Builder({ items, onSaveOutfit }) {
       .map(scored => scored.item);
   };
 
+  // Determine the background image (prioritize modeled images of selected tops/jackets)
+  const baseItem = selections.wholebody_up || selections.upperbody || selections.lowerbody;
+  const backgroundUrl = baseItem?.modeledImage || '/model-reference.png';
+
+  const positioning = {
+    wholebody_up: { top: '15%', left: '50%', width: '240px', zIndex: 3 },
+    upperbody:    { top: '18%', left: '50%', width: '220px', zIndex: 2 },
+    lowerbody:    { top: '45%', left: '50%', width: '220px', zIndex: 1 },
+    shoes:        { bottom: '5%', left: '50%', width: '160px', zIndex: 4 }
+  };
+
   return (
     <div className="builder-container">
       <div className="builder-layout">
@@ -110,39 +189,40 @@ export function Builder({ items, onSaveOutfit }) {
         </div>
 
         <div className="builder-preview-panel" style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <h4>Preview</h4>
+          <h4>Interactive Fitting Room</h4>
+          <p style={{fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.5rem'}}>Drag pieces to move them. Scroll over them to resize.</p>
           <div 
             className="builder-preview" 
             style={{ 
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0',
-              width: '100%',
-              minHeight: '400px',
-              padding: '2rem 0',
-              position: 'relative'
+              position: 'relative', 
+              width: '280px', 
+              height: '420px', 
+              backgroundImage: `url(${backgroundUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              touchAction: 'none'
             }}
           >
-            {['wholebody_up', 'upperbody', 'lowerbody', 'shoes'].map(cat => {
+            {['shoes', 'lowerbody', 'upperbody', 'wholebody_up'].map(cat => {
                const item = selections[cat];
-               if (item) {
+               if (item && item !== baseItem) {
                  return (
-                   <div key={cat} style={{ position: 'relative', margin: cat === 'wholebody_up' || cat === 'upperbody' ? '-10px 0' : '-20px 0', zIndex: cat === 'wholebody_up' ? 3 : (cat === 'upperbody' ? 2 : 1) }}>
-                     <img 
-                       src={item.thumbnail || item.image} 
-                       alt={item.name} 
-                       style={{ width: '220px', maxHeight: '240px', objectFit: 'contain', filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.15))' }} 
-                     />
-                   </div>
+                   <DraggableItem 
+                     key={item.id} 
+                     item={item} 
+                     positionProps={positioning[cat]} 
+                     zIndex={positioning[cat].zIndex} 
+                   />
                  );
                }
                return null;
             })}
             {Object.keys(selections).length === 0 && (
-              <div style={{ color: 'var(--text-muted)', textAlign: 'center' }}>
-                <p>Select clothes to build your outfit</p>
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', textAlign: 'center', padding: '1rem' }}>
+                <p>Select clothes to try them on</p>
               </div>
             )}
           </div>
