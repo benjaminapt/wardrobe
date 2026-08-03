@@ -122,3 +122,16 @@ vercel deploy --prebuilt --target preview
 - **New looks:** `Athletic Black & Grey`, `Street Ready Tank & Denim`, `Relaxed Off-White & Grey`, and `Earthy Taupe & Blue-Grey`. Each passed visual QA for identity and garment representation.
 - **Catalog state:** 85 accepted items, 45 active outfits, and 45 modeled outfit images.
 - **Published snapshot:** Protected preview `https://wardrobe-private-4mo5kks33-benjaminaptc-4943s-projects.vercel.app`.
+
+## Outfit Viewer & Builder (2026-08-02)
+
+- **Feature:** Added `OutfitViewer` modal that decomposes outfits into individual garments.
+- **Published snapshot:** Protected preview `https://wardrobe-private-bakkbc0om-benjaminaptc-4943s-projects.vercel.app`.
+
+## Builder Enhancements & Custom Outfits (2026-08-02)
+
+- **Feature:** Advanced intelligent suggestion engine implemented in `Builder.jsx` (`calculateCompatibility`). It evaluates monochrome vs contrast coloring, matches or avoids clashing styles (athletic vs formal), boosts versatile items (denim), and checks weather tags.
+- **Feature:** Builder "Save Outfit" functionality is now fully operational via `localStorage`. User-curated outfits are persisted in the browser, appear in the "Outfits" tab, and can be inspected component-by-component in the `OutfitViewer` modal.
+- **Visual Preview:** Builder UI now shows a stacked visual composite of selected garments before saving.
+- **API Pause:** Encountered quota exhaustion on `generate_image` tool. 7 items remain queued for cutout and modeled photo generation in `/tmp/wardrobe-pending-imports.txt` until rate limit resets.
+- **Decisions Log:** Updated `ANTIGRAVITY_DECISIONS.md` with implementation details.
