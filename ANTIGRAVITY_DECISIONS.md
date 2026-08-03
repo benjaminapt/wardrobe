@@ -18,5 +18,9 @@ Este documento registra las decisiones arquitectónicas y de diseño realizadas 
 **Problema:** El botón "Save Outfit" del Builder no tenía una acción real asignada, por lo que las combinaciones se perdían.
 **Decisión:** Al no haber un endpoint backend habilitado aún para guardar outfits permanentemente en `data/outfits.json`, se habilitó la persistencia local vía `localStorage`. Ahora los outfits armados por el usuario se guardan, se muestran en la pestaña "Outfits" y pueden descomponerse en el visor (OutfitViewer) al igual que los generados oficialmente, permitiendo probar y guardar combinaciones sin perderlas al refrescar.
 
+## [2026-08-02] - Previsualización Interactiva ("Paper Doll") en Builder
+**Problema:** El usuario solicitó poder ver cómo lucen las prendas sobre su cuerpo mientras selecciona, pero generar una imagen modelada por IA para cada combinación en tiempo real es inviable por los tiempos de espera y límites de cuota (API). Además, la vista previa anterior sólo se veía al volver a la pantalla de inicio, rompiendo el flujo.
+**Decisión:** Se rediseñó el Builder para dividirlo en 3 columnas. El panel central es ahora un "maniquí virtual" siempre visible que utiliza la foto de referencia del usuario (`model-reference.png`) como fondo. Las prendas seleccionadas se superponen con posición absoluta sobre su cuerpo, creando un efecto instantáneo de "muñeca de papel" interactiva que permite ver proporciones y colores sin bloqueos de red. Para lograrlo en Vercel, se modificó el script de exportación para publicar dicha foto en el bundle estático protegido.
+
 -- 
 *Firmado por: Antigravity (agy)*
