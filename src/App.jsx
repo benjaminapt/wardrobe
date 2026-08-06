@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Check, Moon, Plus, Sun, Trash, X } from "@phosphor-icons/react";
+import { Check, Moon, Plus, Sun, Trash, X, Heart, Suitcase } from "@phosphor-icons/react";
 import { WardrobeImportFlow } from "./import-flow.jsx";
 import { OptimizedImage } from "./OptimizedImage.jsx";
 import { loadOutfits } from "./outfit-source.js";
 import { persistTheme, resolveTheme, themeColor, toggleTheme } from "./theme.js";
 import { loadWardrobe } from "./wardrobe-source.js";
 import { Builder } from "./Builder.jsx";
+import { PackingLists, readSuitcases, writeSuitcases } from "./PackingLists.jsx";
+import { Insights } from "./Insights.jsx";
 
 const STORAGE_KEY = "open-wardrobe-edits-v1";
 const DELETED_STORAGE_KEY = "open-wardrobe-deleted-v1";
@@ -14,15 +16,17 @@ const STATIC_MODE = import.meta.env.VITE_STATIC_WARDROBE === "1";
 
 const TYPES = [
   { id: "all", label: "All" },
+  { id: "favorites", label: "Favorites", singular: "Favorite" },
   { id: "upperbody", label: "Tops", singular: "Top" },
   { id: "wholebody_up", label: "Jackets", singular: "Jacket" },
   { id: "lowerbody", label: "Bottoms", singular: "Bottom" },
   { id: "accessories_up", label: "Accessories", singular: "Accessory" },
   { id: "shoes", label: "Shoes", singular: "Shoes" },
+  { id: "missing-photo", label: "Missing Photo", singular: "Missing Photo" },
 ];
 
 const TYPE_MAP = Object.fromEntries(TYPES.map((type) => [type.id, type]));
-const TYPE_ORDER = Object.fromEntries(TYPES.slice(1).map((type, index) => [type.id, index]));
+const TYPE_ORDER = Object.fromEntries(TYPES.slice(2, -1).map((type, index) => [type.id, index]));
 
 
 function readEdits() {
@@ -42,6 +46,7 @@ function persistEdit(item) {
     color: item.color || null,
     secondaryColor: item.secondaryColor || null,
     tags: item.tags || [],
+    favorite: !!item.favorite,
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(edits));
 }
@@ -159,25 +164,34 @@ function sampleImageColor(image, canvas, event) {
   return null;
 }
 
-function GalleryItem({ item, selected, onOpen }) {
+function GalleryItem({ item, selected, onOpen, onToggleFavorite }) {
   const type = TYPE_MAP[item.part]?.singular || "wardrobe item";
 
   return (
-    <button
-      className={`gallery-item${selected ? " selected" : ""}`}
-      type="button"
-      onClick={() => onOpen(item.id)}
-      aria-label={`View ${item.name || type}`}
-      aria-pressed={selected}
-      data-testid={`wardrobe-item-${item.id}`}
-    >
-      <OptimizedImage
-        src={item.thumbnail || item.image}
-        alt=""
-        sizes="(max-width: 520px) calc(50vw - 16px), (max-width: 860px) calc(33vw - 18px), 180px"
-        breakpoints={[120, 180, 240, 320, 480]}
-      />
-    </button>
+    <div className={`gallery-item-wrapper${selected ? " selected" : ""}`} style={{ position: 'relative' }}>
+      <button
+        className="gallery-item"
+        type="button"
+        onClick={() => onOpen(item.id)}
+        aria-label={`View ${item.name || type}`}
+        aria-pressed={selected}
+        data-testid={`wardrobe-item-${item.id}`}
+      >
+        <OptimizedImage
+          src={item.modeledImage || item.thumbnail || item.image}
+          alt=""
+          sizes="(max-width: 520px) calc(50vw - 16px), (max-width: 860px) calc(33vw - 18px), 180px"
+          breakpoints={[120, 180, 240, 320, 480]}
+        />
+      </button>
+      <button 
+        className={`favorite-button${item.favorite ? " active" : ""}`} 
+        onClick={(e) => { e.stopPropagation(); onToggleFavorite(item.id); }}
+        aria-label={item.favorite ? "Remove from favorites" : "Add to favorites"}
+      >
+        <Heart size={20} weight={item.favorite ? "fill" : "regular"} color={item.favorite ? "var(--accent)" : "currentColor"} />
+      </button>
+    </div>
   );
 }
 
@@ -222,7 +236,7 @@ function OutfitCard({ outfit, onClick, items = [] }) {
   );
 }
 
-function OutfitViewer({ outfit, items, onClose, onDelete }) {
+function OutfitViewer({ outfit, items, onClose, onDelete, onPack }) {
   const outfitItems = items.filter(item => outfit.garmentIds.includes(item.id));
   
   return (
@@ -262,16 +276,24 @@ function OutfitViewer({ outfit, items, onClose, onDelete }) {
                 </div>
               ))}
             </div>
-            {outfit.id.startsWith('custom-outfit-') && onDelete && (
+            <div style={{ marginTop: '2rem', display: 'flex', gap: '8px' }}>
               <button 
-                className="delete-button" 
-                style={{ marginTop: '2rem' }} 
+                className="secondary-button" 
                 type="button" 
-                onClick={() => { onDelete(outfit.id); onClose(); }}
+                onClick={() => onPack(outfit)}
               >
-                <Trash size={15} weight="regular" aria-hidden="true" /> Delete Outfit
+                <Suitcase size={15} weight="regular" aria-hidden="true" /> Pack Outfit
               </button>
-            )}
+              {outfit.id.startsWith('custom-outfit-') && onDelete && (
+                <button 
+                  className="delete-button" 
+                  type="button" 
+                  onClick={() => { onDelete(outfit.id); onClose(); }}
+                >
+                  <Trash size={15} weight="regular" aria-hidden="true" /> Delete Outfit
+                </button>
+              )}
+            </div>
           </div>
         </aside>
       </div>
@@ -439,7 +461,7 @@ function ItemEditor({ draft, setDraft, palette, sampling, setSampling, sampleSta
   );
 }
 
-function ItemViewer({ item, onClose, onSave, onDelete }) {
+function ItemViewer({ item, onClose, onSave, onDelete, onPack }) {
   const closeButtonRef = useRef(null);
   const imageRef = useRef(null);
   const samplingCanvasRef = useRef(null);
@@ -623,6 +645,9 @@ function ItemViewer({ item, onClose, onSave, onDelete }) {
           <button className="delete-button" type="button" onClick={() => onDelete(item.id)}>
             <Trash size={15} weight="regular" aria-hidden="true" /> Delete
           </button>
+          <button className="secondary-button" type="button" onClick={() => onPack(item)} style={{ marginLeft: 8 }}>
+            <Suitcase size={15} weight="regular" aria-hidden="true" /> Pack
+          </button>
           <span className="action-spacer" />
           <button className="secondary-button" type="button" onClick={cancelEditing}>Cancel</button>
           <button className="primary-button" type="button" onClick={saveEditing}>
@@ -647,10 +672,13 @@ export function App() {
   const [error, setError] = useState("");
   const [outfitsError, setOutfitsError] = useState("");
   const [selectedOutfitId, setSelectedOutfitId] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const [theme, setTheme] = useState(() => resolveTheme({
     storage: typeof window === "undefined" ? null : window.localStorage,
     prefersDark: typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches,
   }));
+  const [suitcases, setSuitcases] = useState(readSuitcases);
+  const [packTarget, setPackTarget] = useState(null); // { type: 'item' | 'outfit', id: string }
 
   useEffect(() => {
     loadWardrobe({ staticMode: STATIC_MODE })
@@ -702,7 +730,26 @@ export function App() {
   const selectedOutfit = outfits.find((o) => o.id === selectedOutfitId) || null;
 
   const visibleItems = useMemo(() => {
-    const filtered = activeType === "all" ? items : items.filter((item) => item.part === activeType);
+    let filtered;
+    if (activeType === "all") {
+      filtered = items;
+    } else if (activeType === "favorites") {
+      filtered = items.filter(item => item.favorite);
+    } else if (activeType === "missing-photo") {
+      filtered = items.filter(item => !item.modeledImage);
+    } else {
+      filtered = items.filter((item) => item.part === activeType);
+    }
+    
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(item => 
+        (item.name || "").toLowerCase().includes(q) || 
+        (item.tags || []).some(tag => tag.toLowerCase().includes(q)) ||
+        (item.color || "").toLowerCase().includes(q)
+      );
+    }
+
     return [...filtered].sort((a, b) => {
       if (activeType === "all") {
         const typeDifference = (TYPE_ORDER[a.part] ?? 99) - (TYPE_ORDER[b.part] ?? 99);
@@ -710,7 +757,7 @@ export function App() {
       }
       return a.id.localeCompare(b.id);
     });
-  }, [activeType, items]);
+  }, [activeType, items, searchQuery]);
 
   const chooseType = (typeId) => {
     setView("wardrobe");
@@ -726,6 +773,37 @@ export function App() {
   const chooseBuilder = () => {
     setView("builder");
     setSelectedId(null);
+  };
+
+  const toggleFavorite = (id) => {
+    setItems((current) => current.map((item) => {
+      if (item.id === id) {
+        const updatedItem = { ...item, favorite: !item.favorite };
+        persistEdit(updatedItem);
+        return updatedItem;
+      }
+      return item;
+    }));
+  };
+
+  const handlePackItem = (item) => setPackTarget({ type: 'item', id: item.id });
+  const handlePackOutfit = (outfit) => setPackTarget({ type: 'outfit', id: outfit.id });
+
+  const confirmPack = (suitcaseId) => {
+    const updatedSuitcases = suitcases.map(s => {
+      if (s.id === suitcaseId) {
+        if (packTarget.type === 'item' && !s.items.includes(packTarget.id)) {
+          return { ...s, items: [...s.items, packTarget.id] };
+        }
+        if (packTarget.type === 'outfit' && !s.outfits.includes(packTarget.id)) {
+          return { ...s, outfits: [...s.outfits, packTarget.id] };
+        }
+      }
+      return s;
+    });
+    setSuitcases(updatedSuitcases);
+    writeSuitcases(updatedSuitcases);
+    setPackTarget(null);
   };
 
   const changeTheme = () => {
@@ -772,8 +850,28 @@ export function App() {
             <p className="piece-count">
               {view === "outfits"
                 ? `${outfits.length} ${outfits.length === 1 ? "outfit" : "outfits"}`
-                : `${items.length} ${items.length === 1 ? "piece" : "pieces"}`}
+                : `${visibleItems.length} ${visibleItems.length === 1 ? "piece" : "pieces"}`}
             </p>
+            
+            {view === "wardrobe" && (
+              <input 
+                type="text" 
+                placeholder="Search colors, tags, names..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{
+                  flex: 1, 
+                  maxWidth: '300px', 
+                  background: 'var(--surface)', 
+                  border: '1px solid var(--line)', 
+                  color: 'var(--ink)', 
+                  padding: '8px 16px', 
+                  borderRadius: '999px',
+                  outline: 'none'
+                }}
+              />
+            )}
+
             <button className="theme-toggle" type="button" onClick={changeTheme} aria-label={`Switch to ${theme === "dark" ? "day" : "night"} mode`}>
               {theme === "dark" ? <Sun size={16} weight="regular" aria-hidden="true" /> : <Moon size={16} weight="regular" aria-hidden="true" />}
               <span>{theme === "dark" ? "Day" : "Night"}</span>
@@ -785,6 +883,12 @@ export function App() {
             </button>
             <button type="button" className={view === "outfits" ? "active" : ""} onClick={chooseOutfits} aria-pressed={view === "outfits"}>
               Outfits
+            </button>
+            <button type="button" className={view === "packing" ? "active" : ""} onClick={() => { setView("packing"); setSelectedId(null); setSelectedOutfitId(null); }} aria-pressed={view === "packing"}>
+              Packing Lists
+            </button>
+            <button type="button" className={view === "insights" ? "active" : ""} onClick={() => { setView("insights"); setSelectedId(null); setSelectedOutfitId(null); }} aria-pressed={view === "insights"}>
+              Insights
             </button>
             {TYPES.map((type) => (
               <button
@@ -806,16 +910,45 @@ export function App() {
             {!error && loading && <p className="status">Loading wardrobe</p>}
             {!error && !loading && !items.length && <p className="status empty">Drop, paste, or add a photo to import your first piece.</p>}
             {!!items.length && (
-              <section className="gallery-grid" aria-label={`${TYPE_MAP[activeType]?.label || "All"} wardrobe items`}>
-                {visibleItems.map((item) => (
-                  <GalleryItem
-                    key={item.id}
-                    item={item}
-                    selected={selectedId === item.id}
-                    onOpen={setSelectedId}
-                  />
-                ))}
-              </section>
+              <>
+                {activeType === "all" && outfits.length > 0 && (
+                  <div className="ootd-section" style={{ marginBottom: 40 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                      <Sun size={24} weight="duotone" color="var(--accent)" />
+                      <h3 style={{ margin: 0, fontSize: 18, fontWeight: 600 }}>Outfit of the Day</h3>
+                    </div>
+                    <div style={{ padding: '24px', background: 'var(--surface-hover)', borderRadius: 24, border: '1px solid var(--line)', display: 'flex', gap: 24, alignItems: 'center' }}>
+                      <div style={{ flex: '0 0 160px', aspectRatio: '4/5', borderRadius: 16, overflow: 'hidden', background: 'var(--surface)' }}>
+                        <OptimizedImage 
+                          src={outfits[new Date().getDate() % outfits.length]?.image} 
+                          alt="OOTD" 
+                          sizes="160px"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                      </div>
+                      <div>
+                        <h4 style={{ margin: '0 0 8px 0', fontSize: 20 }}>{outfits[new Date().getDate() % outfits.length]?.name || "Daily Suggestion"}</h4>
+                        <p style={{ margin: '0 0 16px 0', color: 'var(--muted)', fontSize: 14 }}>Based on what you haven't worn recently.</p>
+                        <button className="primary-button" onClick={() => setSelectedOutfitId(outfits[new Date().getDate() % outfits.length]?.id)}>
+                          View Details
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                <div className="gallery-masonry" aria-label={`${TYPE_MAP[activeType]?.label || "All"} wardrobe items`}>
+                  {visibleItems.map((item) => (
+                    <GalleryItem
+                      key={item.id}
+                      item={item}
+                      selected={item.id === selectedId}
+                      onOpen={setSelectedId}
+                      onToggleFavorite={toggleFavorite}
+                    />
+                  ))}
+                </div>
+              </>
             )}
           </>
         )}
@@ -836,11 +969,40 @@ export function App() {
         {view === "builder" && (
           <Builder items={items} onSaveOutfit={handleSaveOutfit} />
         )}
+
+        {view === "packing" && (
+          <PackingLists items={items} outfits={outfits} />
+        )}
+
+        {view === "insights" && (
+          <Insights items={items} outfits={outfits} />
+        )}
       </main>
 
-      {selectedItem && <ItemViewer item={selectedItem} onClose={() => setSelectedId(null)} onSave={saveItem} onDelete={deleteItem} />}
-      {selectedOutfit && <OutfitViewer outfit={selectedOutfit} items={items} onClose={() => setSelectedOutfitId(null)} onDelete={deleteCustomOutfit} />}
+      {selectedItem && <ItemViewer item={selectedItem} onClose={() => setSelectedId(null)} onSave={saveItem} onDelete={deleteItem} onPack={handlePackItem} />}
+      {selectedOutfit && <OutfitViewer outfit={selectedOutfit} items={items} onClose={() => setSelectedOutfitId(null)} onDelete={deleteCustomOutfit} onPack={handlePackOutfit} />}
       {!STATIC_MODE && <WardrobeImportFlow onGarmentApproved={addImportedItem} onModeledApproved={attachImportedModeledImage} />}
+
+      {packTarget && (
+        <div className="viewer-overlay" style={{ zIndex: 100, display: 'flex', justifyContent: 'center', alignItems: 'center' }} onMouseDown={() => setPackTarget(null)}>
+          <div style={{ background: 'var(--surface-panel)', padding: 32, borderRadius: 16, width: 400, border: '1px solid var(--line)', backdropFilter: 'blur(24px)' }} onMouseDown={(e) => e.stopPropagation()}>
+            <h3 style={{ marginTop: 0, marginBottom: 24 }}>Select a Packing List</h3>
+            {suitcases.length === 0 ? (
+              <p className="status empty">No packing lists created yet.</p>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                {suitcases.map(s => (
+                  <button key={s.id} className="secondary-button" style={{ justifyContent: 'flex-start', padding: 12 }} onClick={() => confirmPack(s.id)}>
+                    <Suitcase size={20} style={{ marginRight: 12, color: 'var(--accent)' }} />
+                    <span style={{ fontSize: 16 }}>{s.name}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+            <button className="secondary-button" style={{ marginTop: 24, width: '100%' }} onClick={() => setPackTarget(null)}>Cancel</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

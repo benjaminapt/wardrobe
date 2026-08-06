@@ -66,14 +66,45 @@ function DraggableItem({ item, positionProps, zIndex }) {
         transform: `translate(calc(-50% + ${pos.x}px), ${pos.y}px) scale(${scale})`,
         cursor: isDragging ? 'grabbing' : 'grab',
         zIndex: isDragging ? 100 : zIndex,
-        touchAction: 'none'
+        touchAction: 'none',
+        transition: isDragging ? 'none' : 'transform 0.1s ease-out'
       }}
       onMouseDown={(e) => handleDown(e.clientX, e.clientY, e)}
       onTouchStart={(e) => handleDown(e.touches[0].clientX, e.touches[0].clientY, e)}
       onWheel={onWheel}
     >
-       <img src={item.thumbnail || item.image} alt={item.name} draggable="false" style={{ width: '100%', objectFit: 'contain', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.4))', pointerEvents: 'none', userSelect: 'none' }} />
-       <div style={{position: 'absolute', bottom: '-20px', left: '50%', transform: 'translateX(-50%)', background: 'rgba(0,0,0,0.6)', color: 'white', padding: '2px 6px', borderRadius: '4px', fontSize: '10px', whiteSpace: 'nowrap', opacity: isDragging ? 1 : 0, transition: 'opacity 0.2s', pointerEvents: 'none'}}>Drag to move • Scroll to resize</div>
+       <img 
+         src={item.thumbnail || item.image} 
+         alt={item.name} 
+         draggable="false" 
+         style={{ 
+           width: '100%', 
+           objectFit: 'contain', 
+           filter: `drop-shadow(0 ${isDragging ? 24 : 8}px ${isDragging ? 32 : 16}px rgba(0,0,0,${isDragging ? 0.4 : 0.2}))`, 
+           pointerEvents: 'none', 
+           userSelect: 'none',
+           transition: 'filter 0.2s ease-out'
+         }} 
+       />
+       <div style={{
+         position: 'absolute', 
+         bottom: '-30px', 
+         left: '50%', 
+         transform: 'translateX(-50%)', 
+         background: 'rgba(255,255,255,0.1)', 
+         backdropFilter: 'blur(10px)',
+         border: '1px solid rgba(255,255,255,0.2)',
+         color: 'var(--text)', 
+         padding: '4px 10px', 
+         borderRadius: '20px', 
+         fontSize: '10px', 
+         whiteSpace: 'nowrap', 
+         opacity: isDragging ? 1 : 0, 
+         transition: 'opacity 0.2s', 
+         pointerEvents: 'none'
+       }}>
+         Drag to move • Scroll to resize
+       </div>
     </div>
   );
 }
@@ -128,11 +159,12 @@ export function Builder({ items, onSaveOutfit }) {
       });
       
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Failed to generate image');
+      if (!res.ok) throw new Error(data.error || data.message || 'Failed to generate image');
       
       setProPreviewUrl(data.image);
     } catch (err) {
-      alert("Error generating Pro Preview: " + err.message);
+      console.error(err);
+      setProPreviewUrl('error');
     } finally {
       setIsGeneratingPro(false);
     }
@@ -241,24 +273,44 @@ export function Builder({ items, onSaveOutfit }) {
           })}
         </div>
 
-        <div className="builder-preview-panel" style={{ flex: '1', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <h4>Interactive Fitting Room</h4>
-          <p style={{fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.5rem'}}>Drag pieces to move them. Scroll over them to resize.</p>
+        <div className="builder-preview-panel" style={{ flex: '1.2', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <div style={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+            <h4 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 600 }}>Interactive Fitting Room</h4>
+            <button 
+              className="secondary-button" 
+              style={{ fontSize: '0.8rem', padding: '4px 12px', borderRadius: 20, background: 'rgba(var(--accent-rgb), 0.1)', color: 'var(--accent)', border: '1px solid var(--accent)' }}
+              onClick={() => {
+                const autoCategories = ['wholebody_up', 'lowerbody', 'shoes'];
+                autoCategories.forEach(cat => {
+                  if (!selections[cat]) {
+                    const suggestions = getSuggestions(cat);
+                    if (suggestions.length > 0) handleSelect(cat, suggestions[0]);
+                  }
+                });
+              }}
+            >
+              ✨ AI Stylist
+            </button>
+          </div>
           <div 
             className="builder-preview" 
             style={{ 
               position: 'relative', 
-              width: '280px', 
-              height: '420px', 
-              backgroundImage: `url(${backgroundUrl})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              borderRadius: '12px',
+              width: '100%',
+              maxWidth: '360px', 
+              height: '500px', 
+              background: backgroundIsModeled ? `url(${backgroundUrl}) center/cover no-repeat` : 'linear-gradient(135deg, rgba(255,255,255,0.05), rgba(0,0,0,0.2))',
+              backdropFilter: backgroundIsModeled ? 'none' : 'blur(40px)',
+              border: backgroundIsModeled ? 'none' : '1px solid rgba(255,255,255,0.1)',
+              borderRadius: '24px',
               overflow: 'hidden',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              boxShadow: '0 24px 48px rgba(0,0,0,0.2)',
               touchAction: 'none'
             }}
           >
+            {!backgroundIsModeled && (
+               <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
+            )}
             {['shoes', 'lowerbody', 'upperbody', 'wholebody_up'].map(cat => {
                const item = selections[cat];
                if (item && (!backgroundIsModeled || item !== baseItem)) {
@@ -274,45 +326,47 @@ export function Builder({ items, onSaveOutfit }) {
                return null;
             })}
             {Object.keys(selections).length === 0 && (
-              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.5)', color: 'white', textAlign: 'center', padding: '1rem' }}>
-                <p>Select clothes to try them on</p>
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', textAlign: 'center', padding: '2rem', opacity: 0.6 }}>
+                <p style={{ margin: 0, fontSize: '1rem', fontWeight: 500 }}>Select items to begin</p>
+                <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.8rem' }}>Drag to position, scroll to resize</p>
               </div>
             )}
           </div>
           
-          {Object.values(selections).filter(Boolean).length > 1 && (
-            <button 
-              className="secondary-button" 
-              style={{marginTop: '1rem', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'linear-gradient(45deg, #FFD700, #FFA500)', color: 'black', border: 'none', fontWeight: 'bold'}}
-              onClick={handleGenerateProPreview}
-              disabled={isGeneratingPro}
-            >
-              {isGeneratingPro ? '✨ Generando con Nano Banana...' : '✨ Generar Preview Pro (IA)'}
-            </button>
-          )}
+          <div style={{ width: '100%', maxWidth: '360px', display: 'flex', gap: '12px', marginTop: '1.5rem' }}>
+            {Object.values(selections).filter(Boolean).length > 1 && (
+              <button 
+                className="secondary-button" 
+                style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'linear-gradient(45deg, #FFD700, #FFA500)', color: 'black', border: 'none', fontWeight: 'bold', padding: '12px', borderRadius: '12px' }}
+                onClick={handleGenerateProPreview}
+                disabled={isGeneratingPro}
+              >
+                {isGeneratingPro ? '✨ Generando...' : '✨ Pro Preview'}
+              </button>
+            )}
 
-          {Object.values(selections).filter(Boolean).length > 0 && (
-            <button 
-              className="primary-button" 
-              style={{marginTop: '0.5rem', width: '100%'}}
-              onClick={() => {
-                const outfitItems = Object.values(selections).filter(Boolean);
-                if (outfitItems.length > 0 && onSaveOutfit) {
-                  onSaveOutfit({
-                    id: 'custom-outfit-' + Date.now(),
-                    name: 'Custom Outfit',
-                    garmentIds: outfitItems.map(i => i.id),
-                    image: null,
-                    occasion: []
-                  });
-                  setSelections({});
-                  alert("Outfit saved!");
-                }
-              }}
-            >
-              Save Outfit ({Object.values(selections).filter(Boolean).length} items)
-            </button>
-          )}
+            {Object.values(selections).filter(Boolean).length > 0 && (
+              <button 
+                className="primary-button" 
+                style={{ flex: 1, padding: '12px', borderRadius: '12px', fontWeight: 'bold' }}
+                onClick={() => {
+                  const outfitItems = Object.values(selections).filter(Boolean);
+                  if (outfitItems.length > 0 && onSaveOutfit) {
+                    onSaveOutfit({
+                      id: 'custom-outfit-' + Date.now(),
+                      name: 'Custom Outfit',
+                      garmentIds: outfitItems.map(i => i.id),
+                      image: null,
+                      occasion: []
+                    });
+                    setSelections({});
+                  }
+                }}
+              >
+                Save Outfit
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="builder-suggestions-panel" style={{ flex: '1.5', paddingLeft: '1.5rem' }}>
@@ -346,18 +400,29 @@ export function Builder({ items, onSaveOutfit }) {
       </div>
 
       {proPreviewUrl && (
-        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)', zIndex: 9999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
-           <h2 style={{ color: 'white', marginBottom: '1rem' }}>✨ Pro Preview</h2>
-           <img src={proPreviewUrl} alt="Pro Preview" style={{ maxWidth: '100%', maxHeight: '70vh', borderRadius: '12px', boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }} />
-           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
-             <button className="primary-button" onClick={() => {
-                const link = document.createElement('a');
-                link.download = 'wardrobe-pro-preview.png';
-                link.href = proPreviewUrl;
-                link.click();
-             }}>Download</button>
-             <button className="secondary-button" onClick={() => setProPreviewUrl(null)}>Close</button>
-           </div>
+        <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(0,0,0,0.8)', backdropFilter: 'blur(10px)', zIndex: 9999, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem' }}>
+           {proPreviewUrl === 'error' ? (
+             <div style={{ background: 'var(--surface)', padding: '2rem', borderRadius: '24px', textAlign: 'center', maxWidth: '400px', border: '1px solid rgba(255,255,255,0.1)' }}>
+               <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🤖💤</div>
+               <h2 style={{ margin: '0 0 1rem 0', color: 'var(--text)' }}>AI is resting</h2>
+               <p style={{ color: 'var(--text-muted)', marginBottom: '2rem' }}>The AI generation quota has been reached. Please try again later when the quota resets or configure your API keys.</p>
+               <button className="primary-button" onClick={() => setProPreviewUrl(null)} style={{ width: '100%' }}>Got it</button>
+             </div>
+           ) : (
+             <>
+               <h2 style={{ color: 'white', marginBottom: '1rem', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>✨ Pro Preview</h2>
+               <img src={proPreviewUrl} alt="Pro Preview" style={{ maxWidth: '100%', maxHeight: '70vh', borderRadius: '12px', boxShadow: '0 8px 32px rgba(0,0,0,0.5)' }} />
+               <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+                 <button className="primary-button" onClick={() => {
+                    const link = document.createElement('a');
+                    link.download = 'wardrobe-pro-preview.png';
+                    link.href = proPreviewUrl;
+                    link.click();
+                 }}>Download</button>
+                 <button className="secondary-button" onClick={() => setProPreviewUrl(null)}>Close</button>
+               </div>
+             </>
+           )}
         </div>
       )}
     </div>
