@@ -131,7 +131,18 @@ vercel deploy --prebuilt --target preview
 ## Builder Enhancements & Custom Outfits (2026-08-02)
 
 - **Feature:** Advanced intelligent suggestion engine implemented in `Builder.jsx` (`calculateCompatibility`). It evaluates monochrome vs contrast coloring, matches or avoids clashing styles (athletic vs formal), boosts versatile items (denim), and checks weather tags.
-- **Feature:** Builder "Save Outfit" functionality is now fully operational via `localStorage`. User-curated outfits are persisted in the browser, appear in the "Outfits" tab, and can be inspected component-by-component in the `OutfitViewer` modal.
+- **Feature:** Builder "Save Outfit" functionality:
+    - **Packing Lists (Maletas)**: Created `PackingLists.jsx` to let users pack specific items and outfits into trips, persisting them to localStorage (`open-wardrobe-suitcases-v1`).
+    - **Outfit of the Day (OOTD)**: Added a dynamic daily suggestion banner in the 'All' wardrobe view that rotates based on the date.
+    - **Premium Builder**: Completely overhauled the Interactive Fitting Room with glassmorphism, dynamic gradients, smooth drag-and-drop shadows, and an "✨ AI Stylist" auto-complete button that matches colors and styles using our compatibility heuristics.
+    - Responsive CSS Grid and modular components (`GalleryItem`, `OutfitViewer`, `ItemViewer`).
 - **Visual Preview:** Builder UI now shows a stacked visual composite of selected garments before saving.
 - **API Pause:** Encountered quota exhaustion on `generate_image` tool. 7 items remain queued for cutout and modeled photo generation in `/tmp/wardrobe-pending-imports.txt` until rate limit resets.
 - **Decisions Log:** Updated `ANTIGRAVITY_DECISIONS.md` with implementation details.
+
+## Smart Insights & API Limits (2026-08-04)
+
+- **Feature:** Created `Insights.jsx` providing a premium analytics dashboard. Features real-time calculation of total items, curated outfits, a hex-mapped dominant color distribution, and a leaderboard of most-used items in outfits.
+- **API Investigation:** Confirmed Google AI Studio free tier limits `gemini-3.1-flash-image` and `imagen-4.0` quota to exactly 0. The internal `generate_image` tool remains quota-exhausted for ~70 hours.
+- **Automation Pipeline (Pending):** Built `/tmp/gemini_puppeteer.js` to automate the user's paid Gemini Advanced web session via Puppeteer (`--remote-debugging-port`) in order to bypass the developer API quota. Tested successfully locally but requires the user to fully quit Chrome (`CMD+Q`) before executing to inject the userDataDir safely.
+- **Backlog:** 29 new garment crops from 2024-2025 were identified by 5 parallel subagents and queued in `modeled-image-queue.md`. These will be processed via the Puppeteer script (or when quota resets).
