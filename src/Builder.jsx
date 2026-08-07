@@ -109,7 +109,7 @@ function DraggableItem({ item, positionProps, zIndex }) {
   );
 }
 
-export function Builder({ items, onSaveOutfit }) {
+export function Builder({ items, outfits = [], onSaveOutfit }) {
   const [selections, setSelections] = useState({});
   const [activeSlot, setActiveSlot] = useState(null);
   const [isGeneratingPro, setIsGeneratingPro] = useState(false);
@@ -127,12 +127,11 @@ export function Builder({ items, onSaveOutfit }) {
       const images = [];
       
       const base = selections.wholebody_up || selections.upperbody || selections.lowerbody;
-      const backgroundIsModeled = !!base?.modeledImage;
-      const baseImgUrl = backgroundIsModeled ? base.modeledImage : '/model-reference.png';
+      const baseImgUrl = base?.image || '/model-reference.png';
       images.push(baseImgUrl);
       
       outfitItems.forEach(item => {
-        if (item && (!backgroundIsModeled || item !== base)) {
+        if (item && item !== base) {
            images.push(item.image);
         }
       });
@@ -225,10 +224,22 @@ export function Builder({ items, onSaveOutfit }) {
       .map(scored => scored.item);
   };
 
-  // Determine the background image (prioritize modeled images of selected tops/jackets)
-  const baseItem = selections.wholebody_up || selections.upperbody || selections.lowerbody;
-  const backgroundIsModeled = !!baseItem?.modeledImage;
-  const backgroundUrl = backgroundIsModeled ? baseItem.modeledImage : '/model-reference.png';
+  // Magic Outfit Matching Engine!
+  const matchedOutfit = useMemo(() => {
+    const selectedIds = Object.values(selections).filter(Boolean).map(i => i.id).sort();
+    if (selectedIds.length === 0) return null;
+    
+    return outfits.find(o => {
+      if (!o.image || !o.garmentIds) return false;
+      const oIds = [...o.garmentIds].sort();
+      // Match exact subset or identical (for now let's enforce all selected are in outfit, and no extras)
+      // Actually, if selectedIds matches the outfit's garments exactly, it's a perfect match
+      return oIds.length === selectedIds.length && oIds.every((id, i) => id === selectedIds[i]);
+    });
+  }, [selections, outfits]);
+
+  const backgroundIsModeled = !!matchedOutfit;
+  const backgroundUrl = matchedOutfit ? matchedOutfit.image : '/model-reference.png';
 
   const positioning = {
     wholebody_up: { top: '15%', left: '50%', width: '240px', zIndex: 3 },
@@ -283,8 +294,22 @@ export function Builder({ items, onSaveOutfit }) {
                 const autoCategories = ['wholebody_up', 'lowerbody', 'shoes'];
                 autoCategories.forEach(cat => {
                   if (!selections[cat]) {
-                    const suggestions = getSuggestions(cat);
-                    if (suggestions.length > 0) handleSelect(cat, suggestions[0]);
+                     // Try to snap to an existing outfit if one item is already picked
+                     const currentTop = selections.upperbody;
+                     let matchedFromLibrary = null;
+                     if (currentTop) {
+                       const relatedOutfit = outfits.find(o => o.garmentIds.includes(currentTop.id) && o.image);
+                       if (relatedOutfit) {
+                         const matchId = relatedOutfit.garmentIds.find(id => items.find(i => i.id === id)?.part === cat);
+                         if (matchId) matchedFromLibrary = items.find(i => i.id === matchId);
+                       }
+                     }
+                     if (matchedFromLibrary) {
+                       handleSelect(cat, matchedFromLibrary);
+                     } else {
+                       const suggestions = getSuggestions(cat);
+                       if (suggestions.length > 0) handleSelect(cat, suggestions[0]);
+                     }
                   }
                 });
               }}
@@ -308,12 +333,20 @@ export function Builder({ items, onSaveOutfit }) {
               touchAction: 'none'
             }}
           >
+            {/* If we matched an outfit, we show the magical result! No floating clothes. */}
+            {backgroundIsModeled && (
+              <div style={{ position: 'absolute', bottom: '1rem', left: '50%', transform: 'translateX(-50%)', background: 'var(--accent)', color: 'white', padding: '6px 12px', borderRadius: '12px', fontSize: '0.85rem', fontWeight: 'bold', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', whiteSpace: 'nowrap' }}>
+                ✨ Instant Match Found!
+              </div>
+            )}
+            
+            {/* If we didn't match an outfit, we show the neutral gradient and let them stack items */}
             {!backgroundIsModeled && (
                <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 50% 0%, rgba(255,255,255,0.1) 0%, transparent 70%)', pointerEvents: 'none' }} />
             )}
-            {['shoes', 'lowerbody', 'upperbody', 'wholebody_up'].map(cat => {
+            {!backgroundIsModeled && ['shoes', 'lowerbody', 'upperbody', 'wholebody_up'].map(cat => {
                const item = selections[cat];
-               if (item && (!backgroundIsModeled || item !== baseItem)) {
+               if (item) {
                  return (
                    <DraggableItem 
                      key={item.id} 
@@ -334,14 +367,14 @@ export function Builder({ items, onSaveOutfit }) {
           </div>
           
           <div style={{ width: '100%', maxWidth: '360px', display: 'flex', gap: '12px', marginTop: '1.5rem' }}>
-            {Object.values(selections).filter(Boolean).length > 1 && (
+            {Object.values(selections).filter(Boolean).length > 1 && !backgroundIsModeled && (
               <button 
                 className="secondary-button" 
                 style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'linear-gradient(45deg, #FFD700, #FFA500)', color: 'black', border: 'none', fontWeight: 'bold', padding: '12px', borderRadius: '12px' }}
                 onClick={handleGenerateProPreview}
                 disabled={isGeneratingPro}
               >
-                {isGeneratingPro ? '✨ Generando...' : '✨ Pro Preview'}
+                {isGeneratingPro ? '✨ Generando...' : '✨ AI Studio'}
               </button>
             )}
 
@@ -356,7 +389,7 @@ export function Builder({ items, onSaveOutfit }) {
                       id: 'custom-outfit-' + Date.now(),
                       name: 'Custom Outfit',
                       garmentIds: outfitItems.map(i => i.id),
-                      image: null,
+                      image: matchedOutfit ? matchedOutfit.image : null,
                       occasion: []
                     });
                     setSelections({});

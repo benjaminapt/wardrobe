@@ -878,6 +878,9 @@ export function App() {
             </button>
           </div>
           <nav className="category-nav" aria-label="Browse wardrobe and outfits">
+            <button type="button" className={view === "import" ? "active" : ""} onClick={() => { setView("import"); setSelectedId(null); setSelectedOutfitId(null); }} aria-pressed={view === "import"}>
+              + Import
+            </button>
             <button type="button" className={view === "builder" ? "active" : ""} onClick={chooseBuilder} aria-pressed={view === "builder"}>
               Builder
             </button>
@@ -966,8 +969,40 @@ export function App() {
           </>
         )}
 
+        {view === "import" && (
+          <div className="import-view" style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+            <h2 style={{ marginBottom: '1rem', fontSize: '2rem' }}>Import New Garment</h2>
+            <p style={{ color: 'var(--text-muted)', marginBottom: '3rem', lineHeight: '1.6' }}>
+              Add a new piece to your wardrobe by pasting an image URL or uploading a photo. (Currently saves locally to your browser).
+            </p>
+            <div style={{ background: 'var(--surface-hover)', padding: '3rem', borderRadius: '24px', border: '1px dashed var(--accent)', display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
+              <div style={{ fontSize: '3rem', color: 'var(--accent)' }}>📸</div>
+              <input 
+                type="text" 
+                placeholder="Paste image URL here..." 
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', background: 'var(--surface)', color: 'white', fontSize: '1rem' }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' && e.target.value) {
+                    alert('URL Import is under construction! For now, your clothes are being imported automatically by the background agents.');
+                    e.target.value = '';
+                  }
+                }}
+              />
+              <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>— or —</span>
+              <label className="primary-button" style={{ cursor: 'pointer', padding: '12px 24px', borderRadius: '12px', fontWeight: 'bold' }}>
+                Upload Photo
+                <input type="file" accept="image/*" style={{ display: 'none' }} onChange={(e) => {
+                  if (e.target.files.length > 0) {
+                     alert('File Upload is under construction!');
+                  }
+                }} />
+              </label>
+            </div>
+          </div>
+        )}
+
         {view === "builder" && (
-          <Builder items={items} onSaveOutfit={handleSaveOutfit} />
+          <Builder items={items} outfits={outfits} onSaveOutfit={handleSaveOutfit} />
         )}
 
         {view === "packing" && (
