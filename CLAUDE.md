@@ -154,3 +154,11 @@ vercel deploy --prebuilt --target preview
 - **New looks:** `All Black Umbro Matchday`, combining the new jersey with existing athletic shorts.
 - **Catalog state:** 88 accepted items, 46 active outfits.
 - **Published snapshot:** Production `https://wardrobe-private-beta.vercel.app`
+
+## Builder Fix & Quota Exhaustion (2026-08-07)
+
+- **Fixes:** Reverted `GalleryItem` in `src/App.jsx` to render the clean garment cutout (`item.thumbnail || item.image`) instead of the AI modeled photo in the main grid and builder slots. Modeled photos continue to render correctly only when expanding the item inside `ItemViewer`.
+- **Image Generation:** The quota was briefly lifted. We re-tried using a single sequential subagent. It successfully processed 6 items before hitting the true daily token quota limit (resetting in 4.5 hours).
+- **New accepted pieces:** 6 items were successfully imported, expanding the local database.
+- **Published snapshot:** Deployed to Vercel production to keep `wardrobe-private-beta.vercel.app` aligned.
+- **Next Steps:** Fall back to the Puppeteer automation script (`/tmp/gemini_puppeteer.js`) running on the user's local Chrome to process the remaining 35 queued items, since API generation is blocked.

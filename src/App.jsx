@@ -178,7 +178,7 @@ function GalleryItem({ item, selected, onOpen, onToggleFavorite }) {
         data-testid={`wardrobe-item-${item.id}`}
       >
         <OptimizedImage
-          src={item.modeledImage || item.thumbnail || item.image}
+          src={item.thumbnail || item.image}
           alt=""
           sizes="(max-width: 520px) calc(50vw - 16px), (max-width: 860px) calc(33vw - 18px), 180px"
           breakpoints={[120, 180, 240, 320, 480]}
