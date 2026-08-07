@@ -1036,8 +1036,26 @@ export function App() {
               <label className="primary-button" style={{ cursor: 'pointer', padding: '12px 24px', borderRadius: '12px', fontWeight: 'bold', opacity: isImporting ? 0.5 : 1 }}>
                 {isImporting ? 'Importing...' : 'Upload Photo'}
                 <input type="file" accept="image/*" disabled={isImporting} style={{ display: 'none' }} onChange={(e) => {
-                  if (e.target.files.length > 0) {
-                     alert('File Upload is under construction! Use URL import for now.');
+                  const file = e.target.files[0];
+                  if (file) {
+                    setIsImporting(true);
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                      const base64Image = event.target.result;
+                      const newItem = {
+                        id: `import-${crypto.randomUUID()}`,
+                        name: `Uploaded Garment`,
+                        part: "upperbody",
+                        color: "#ffffff",
+                        image: base64Image,
+                        thumbnail: base64Image
+                      };
+                      if (addImportedItem) addImportedItem(newItem);
+                      setIsImporting(false);
+                      setImportUrl("");
+                      setView("wardrobe");
+                    };
+                    reader.readAsDataURL(file);
                   }
                 }} />
               </label>
