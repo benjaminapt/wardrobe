@@ -679,6 +679,7 @@ export function App() {
   }));
   const [suitcases, setSuitcases] = useState(readSuitcases);
   const [packTarget, setPackTarget] = useState(null); // { type: 'item' | 'outfit', id: string }
+  const [isImporting, setIsImporting] = useState(false);
 
   useEffect(() => {
     loadWardrobe({ staticMode: STATIC_MODE })
@@ -980,20 +981,63 @@ export function App() {
               <input 
                 type="text" 
                 placeholder="Paste image URL here..." 
-                style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', background: 'var(--surface)', color: 'white', fontSize: '1rem' }}
-                onKeyDown={(e) => {
+                disabled={isImporting}
+                style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', background: 'var(--surface)', color: 'white', fontSize: '1rem', opacity: isImporting ? 0.5 : 1 }}
+                onKeyDown={async (e) => {
                   if (e.key === 'Enter' && e.target.value) {
-                    alert('URL Import is under construction! For now, your clothes are being imported automatically by the background agents.');
+                    const url = e.target.value;
                     e.target.value = '';
+                    setIsImporting(true);
+                    try {
+                      const res = await fetch('/api/import-garment', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ url })
+                      });
+                      const data = await res.json();
+                      if (data.success) {
+                        const newItem = {
+                          id: `import-${Date.now()}`,
+                          image: data.image,
+                          thumbnail: data.image,
+                          part: data.part || 'upperbody',
+                          name: 'Imported Garment',
+                          tags: ['imported']
+                        };
+                        addImportedItem(newItem);
+                        
+                        // We also need to save it to local edits so it persists without backend db
+                        const edits = JSON.parse(localStorage.getItem("open-wardrobe-edits-v1") || "{}");
+                        edits[newItem.id] = {
+                          name: newItem.name,
+                          part: newItem.part,
+                          tags: newItem.tags,
+                          color: null,
+                          secondaryColor: null,
+                          favorite: false,
+                          image: newItem.image, // Ensure the base64 image string is saved
+                          thumbnail: newItem.thumbnail
+                        };
+                        localStorage.setItem("open-wardrobe-edits-v1", JSON.stringify(edits));
+                        
+                        alert('Garment imported successfully!');
+                      } else {
+                        alert(`Error: ${data.error}`);
+                      }
+                    } catch (error) {
+                      alert(`Error: ${error.message}`);
+                    } finally {
+                      setIsImporting(false);
+                    }
                   }
                 }}
               />
               <span style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>— or —</span>
-              <label className="primary-button" style={{ cursor: 'pointer', padding: '12px 24px', borderRadius: '12px', fontWeight: 'bold' }}>
-                Upload Photo
-                <input type="file" accept="image/*" style={{ display: 'none' }} onChange={(e) => {
+              <label className="primary-button" style={{ cursor: 'pointer', padding: '12px 24px', borderRadius: '12px', fontWeight: 'bold', opacity: isImporting ? 0.5 : 1 }}>
+                {isImporting ? 'Importing...' : 'Upload Photo'}
+                <input type="file" accept="image/*" disabled={isImporting} style={{ display: 'none' }} onChange={(e) => {
                   if (e.target.files.length > 0) {
-                     alert('File Upload is under construction!');
+                     alert('File Upload is under construction! Use URL import for now.');
                   }
                 }} />
               </label>
