@@ -79,10 +79,10 @@ Antes de publicar:
     node --test src/wardrobe-source.test.js src/outfit-source.test.js src/theme.test.js
     node scripts/static-wardrobe-export.mjs
 
-Publica **sólo preview privado**, nunca producción:
+Publica **a producción** para mantener el alias `wardrobe-private-beta.vercel.app` actualizado:
 
-    npx --yes vercel@58.4.4 build --yes
-    npx --yes vercel@58.4.4 deploy --prebuilt --target preview --yes
+    npx --yes vercel@58.4.4 build --prod --yes
+    npx --yes vercel@58.4.4 deploy --prebuilt --prod --yes
     npx --yes vercel@58.4.4 ls wardrobe-private --yes
 
 No desactives Vercel Authentication. Verifica el último URL con vercel curl: el JSON de biblioteca, el JSON de outfits y al menos un asset nuevo deben responder correctamente. Los assets exportados se sirven bajo /wardrobe/assets/.

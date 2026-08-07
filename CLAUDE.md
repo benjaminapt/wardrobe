@@ -153,4 +153,4 @@ vercel deploy --prebuilt --target preview
 - **New accepted pieces:** `Black Collared Work Jacket` (import-13ceccbe) and `Black Umbro Soccer Jersey` (import-270e0919). Both have transparent cutouts and modeled references.
 - **New looks:** `All Black Umbro Matchday`, combining the new jersey with existing athletic shorts.
 - **Catalog state:** 88 accepted items, 46 active outfits.
-- **Published snapshot:** Protected preview `https://wardrobe-private-5k1rbv0pp-benjaminaptc-4943s-projects.vercel.app`
+- **Published snapshot:** Production `https://wardrobe-private-beta.vercel.app`
