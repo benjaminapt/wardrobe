@@ -1050,7 +1050,7 @@ export function App() {
         )}
 
         {view === "packing" && (
-          <PackingLists items={items} outfits={outfits} />
+          <PackingLists items={items} outfits={outfits} suitcases={suitcases} setSuitcases={setSuitcases} writeSuitcases={writeSuitcases} />
         )}
 
         {view === "insights" && (
