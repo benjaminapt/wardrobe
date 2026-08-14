@@ -207,3 +207,13 @@ vercel deploy --prebuilt --target preview
 - **Quality Control:** Created contact sheets of the 31 recovered images and ran a strict visual QA. 28 images passed perfectly. 3 images hallucinated incorrect garments (`floral-dark-street`, `kappa-cargo-short`, `levis-black-cargo`) and were deleted and marked as `failed` in the JSON.
 - **Current State:** 28 new modeled outfit photos were successfully imported and are ready to use. 30 outfits (27 pending + 3 failed) remain to be generated.
 - **Next Session Priority:** Wait for the native Gemini image quota to reset (August 14th) to process the remaining 30 outfits safely and run QA on them.
+
+## Failed Outfits Recovery & Progress Check (2026-08-14)
+
+- **Execution:** Successfully regenerated the 3 failed outfits from the Codex CLI run (`kappa-cargo-short`, `levis-black-cargo`, `floral-dark-street`). The garments were dynamically stitched into a single composite layout using `composite_images.py` to respect the 3-image API limit, and then processed through the internal `generate_image` tool with full identity preservation.
+- **Result:** The 3 generated square photos passed visual QA. Their status in `data/outfits.json` was updated to `active` and the files saved in `data/outfit-images/`.
+- **Status Check:** 
+  - Lookbook: 58 total curated outfits. 55 have modeled photos, 3 were just recovered. Total 58 outfits are now fully documented.
+  - The `30 outfits (27 pending + 3 failed)` from the previous wave actually refers to the 27 outfits in the JSON that were NOT run through the Codex CLI. They remain in the queue to be re-rendered.
+  - The 28 pending raw photos from `/tmp/wardrobe_queue_final.json` are no longer available since `/tmp` was cleared by the OS.
+- **Next Session Priority:** Regenerate the remaining 27 outfits and re-audit the gallery to recover the 28 missing base garments.
