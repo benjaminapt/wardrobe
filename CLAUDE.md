@@ -242,3 +242,11 @@ vercel deploy --prebuilt --target preview
 - **New accepted pieces:** `Black Nike SB Sweatshirt` and `Grey Zip Up Jacket`. Both have transparent cutouts imported to the database.
 - **Quota limit hit:** The API quota for modeled photos was exhausted *again* (resetting in ~4h42m) after generating 10 images (5 modeled, 5 chroma). The 2 new items were imported as cutout-only for now.
 - **Next Session Priority:** Wait for the API quota to reset to generate modeled photos for these 2 items, and continue processing the remaining missing garments from the queue.
+
+## Parallel Subagent Processing (2026-08-27)
+
+- **Prior batch completion:** Successfully generated and mapped modeled editorial photos for the 2 garments from the previous wave (Black Nike SB Sweatshirt, Grey Zip Up Jacket) since the API quota was restored.
+- **Parallel Subagents:** Triggered a "maxima paralelización" batch using 4 concurrent subagents (Garment Extractors) to process the next 12 files from `tmp_qa/missing-base-garments`. 
+- **Results:** Subagents successfully generated 8 green chroma cutouts before hitting the `429 Too Many Requests` API quota limit on the image model across multiple instances. Subagents correctly paused execution.
+- **Recovery:** Ran the background chroma-removal script manually for all 8 files and appended the resulting transparent PNGs to the database (`data/library.json`) as cutout-only items (`import-batch-...`). 
+- **Status:** The 8 new garments are securely saved. Their modeled photos are pending another quota reset.
