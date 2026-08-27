@@ -250,3 +250,13 @@ vercel deploy --prebuilt --target preview
 - **Results:** Subagents successfully generated 8 green chroma cutouts before hitting the `429 Too Many Requests` API quota limit on the image model across multiple instances. Subagents correctly paused execution.
 - **Recovery:** Ran the background chroma-removal script manually for all 8 files and appended the resulting transparent PNGs to the database (`data/library.json`) as cutout-only items (`import-batch-...`). 
 - **Status:** The 8 new garments are securely saved. Their modeled photos are pending another quota reset.
+
+## Session Handoff (2026-08-27)
+
+- **Current State:** The catalog expansion continues. The 2 previous garments (Black Nike SB Sweatshirt, Grey Zip Up Jacket) now have full modeled editorial photos. 8 new base garments were successfully extracted (transparent cutouts) via parallel subagents and imported directly into `data/library.json`.
+- **API Quota Status:** The Gemini image generation API quota was exhausted after processing the 8 new cutouts in parallel. These 8 garments (`import-batch-...`) are currently cutout-only and need their modeled photos generated.
+- **Pending Work:** 
+  1. Once the API quota resets (after 15:30 local time), generate the modeled photos for the 8 new batch items.
+  2. Continue processing the very few remaining raw photos in `tmp_qa/missing-base-garments`.
+  3. Deploy a new static Vercel preview to verify the full dataset.
+- **Git State:** All documentation and catalog JSON updates are committed and pushed to `main`. `data/imported/` is correctly ignored but the local files are secure.
