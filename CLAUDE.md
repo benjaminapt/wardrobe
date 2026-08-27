@@ -217,3 +217,28 @@ vercel deploy --prebuilt --target preview
   - The `30 outfits (27 pending + 3 failed)` from the previous wave actually refers to the 27 outfits in the JSON that were NOT run through the Codex CLI. They remain in the queue to be re-rendered.
   - The 28 pending raw photos from `/tmp/wardrobe_queue_final.json` are no longer available since `/tmp` was cleared by the OS.
 - **Next Session Priority:** Regenerate the remaining 27 outfits and re-audit the gallery to recover the 28 missing base garments.
+
+## Missing Base Garments Recovery (2026-08-18)
+
+- **Audit scope:** Re-audited the local Apple Photos database () to recover the 28 missing base garments lost from .
+- **Progress:** Identified 30 recent photos from 2026 and copied them to a temporary folder .
+- **New accepted pieces:** 5 initial garments processed (Black Nike Crewneck, Black Zip Jacket, Dark Grey Cargo Pants, White Crewneck Tee, Burgundy Tee). All 5 have transparent cutouts imported to the database.
+- **Quota limit hit:** The API quota for modeled photos was exhausted again. Only the Black Nike Crewneck received a modeled photo; the other 4 were imported as cutout-only for now.
+- **Next Session Priority:** Wait for the API quota to reset (~4h42m) to resume generating modeled photos for these 4 items, and process the remaining 23 missing garments from the queue.
+
+## Missing Base Garments Recovery (2026-08-18)
+
+- **Audit scope:** Re-audited the local Apple Photos database (Photos.sqlite) to recover the 28 missing base garments lost from /tmp.
+- **Progress:** Identified 30 recent photos from 2026 and copied them to a temporary folder tmp_qa/missing-base-garments.
+- **New accepted pieces:** 5 initial garments processed (Black Nike Crewneck, Black Zip Jacket, Dark Grey Cargo Pants, White Crewneck Tee, Burgundy Tee). All 5 have transparent cutouts imported to the database.
+- **Quota limit hit:** The API quota for modeled photos was exhausted again. Only the Black Nike Crewneck received a modeled photo; the other 4 were imported as cutout-only for now.
+- **Next Session Priority:** Wait for the API quota to reset (~4h42m) to resume generating modeled photos for these 4 items, and process the remaining 23 missing garments from the queue.
+
+## Missing Base Garments Recovery - Wave 2 (2026-08-26)
+
+- **Prior batch completion:** Successfully generated and mapped modeled editorial photos for the 5 garments from the previous wave (Black Nike Crewneck, Black Zip Jacket, Dark Grey Cargo Pants, White Crewneck Tee, Burgundy Tee) using the fully restored API quota.
+- **Audit scope:** Continued processing the temporary folder `tmp_qa/missing-base-garments`. Selected 5 random source files and generated flat lay green screen cutouts using the native image model.
+- **Deduplication:** Discarded 3 duplicate cutouts of the black Nike sweatshirt already in the catalog.
+- **New accepted pieces:** `Black Nike SB Sweatshirt` and `Grey Zip Up Jacket`. Both have transparent cutouts imported to the database.
+- **Quota limit hit:** The API quota for modeled photos was exhausted *again* (resetting in ~4h42m) after generating 10 images (5 modeled, 5 chroma). The 2 new items were imported as cutout-only for now.
+- **Next Session Priority:** Wait for the API quota to reset to generate modeled photos for these 2 items, and continue processing the remaining missing garments from the queue.
