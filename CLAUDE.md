@@ -260,3 +260,13 @@ vercel deploy --prebuilt --target preview
   2. Continue processing the very few remaining raw photos in `tmp_qa/missing-base-garments`.
   3. Deploy a new static Vercel preview to verify the full dataset.
 - **Git State:** All documentation and catalog JSON updates are committed and pushed to `main`. `data/imported/` is correctly ignored but the local files are secure.
+
+## Modeled Photos Recovery (2026-08-28)
+
+- **Quota Status:** Verificamos que la cuota de la API de generación de imágenes se había restaurado.
+- **Progress:** Lanzamos la generación de las fotos modeladas para las 8 prendas pendientes en paralelo.
+- **Result:** Se generaron exitosamente 4 fotos modeladas (las otras 4 fallaron temporalmente por timeout o límite de concurrencia). Las 4 imágenes exitosas fueron copiadas a `data/imported/` y enlazadas en `data/library.json`.
+- **Pending Work:**
+  1. Reintentar generar las fotos modeladas para las 4 prendas restantes de este batch que fallaron.
+  2. Procesar las últimas fotos originales en `tmp_qa/missing-base-garments`.
+  3. Desplegar un nuevo preview estático en Vercel.
