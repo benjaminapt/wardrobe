@@ -1,5 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Check, Moon, Plus, Sun, Trash, X, Heart, Suitcase } from "@phosphor-icons/react";
+import { Check } from "@phosphor-icons/react/dist/csr/Check";
+import { Moon } from "@phosphor-icons/react/dist/csr/Moon";
+import { Plus } from "@phosphor-icons/react/dist/csr/Plus";
+import { Sun } from "@phosphor-icons/react/dist/csr/Sun";
+import { Trash } from "@phosphor-icons/react/dist/csr/Trash";
+import { X } from "@phosphor-icons/react/dist/csr/X";
+import { Heart } from "@phosphor-icons/react/dist/csr/Heart";
+import { Suitcase } from "@phosphor-icons/react/dist/csr/Suitcase";
 import { WardrobeImportFlow } from "./import-flow.jsx";
 import { OptimizedImage } from "./OptimizedImage.jsx";
 import { loadOutfits } from "./outfit-source.js";
@@ -680,6 +687,20 @@ export function App() {
   const [suitcases, setSuitcases] = useState(readSuitcases);
   const [packTarget, setPackTarget] = useState(null); // { type: 'item' | 'outfit', id: string }
   const [isImporting, setIsImporting] = useState(false);
+  const [outfitFilter, setOutfitFilter] = useState("all");
+  const [outfitSearch, setOutfitSearch] = useState("");
+
+  const filteredOutfits = useMemo(() => {
+    return outfits.filter((outfit) => {
+      const matchesFilter = outfitFilter === "all" || (Array.isArray(outfit.occasion) && outfit.occasion.includes(outfitFilter));
+      const query = outfitSearch.trim().toLowerCase();
+      const matchesQuery = !query
+        || (outfit.name && outfit.name.toLowerCase().includes(query))
+        || (outfit.reason && outfit.reason.toLowerCase().includes(query))
+        || (Array.isArray(outfit.occasion) && outfit.occasion.some((o) => o.toLowerCase().includes(query)));
+      return matchesFilter && matchesQuery;
+    });
+  }, [outfits, outfitFilter, outfitSearch]);
 
   useEffect(() => {
     loadWardrobe({ staticMode: STATIC_MODE })
@@ -963,9 +984,68 @@ export function App() {
             {!outfitsError && outfitsLoading && <p className="status">Loading outfits</p>}
             {!outfitsError && !outfitsLoading && !outfits.length && <p className="status empty">No active outfits yet.</p>}
             {!!outfits.length && (
-              <section className="outfit-grid" aria-label="Outfits">
-                {outfits.map((outfit) => <OutfitCard key={outfit.id} outfit={outfit} items={items} onClick={setSelectedOutfitId} />)}
-              </section>
+              <>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', justifyContent: 'space-between', alignItems: 'center', padding: '0 32px 20px', maxWidth: '1440px', margin: '0 auto' }}>
+                  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                    {[
+                      { id: "all", label: `All (${outfits.length})` },
+                      { id: "smart-casual", label: "Smart-Casual" },
+                      { id: "casual", label: "Casual" },
+                      { id: "streetwear", label: "Streetwear" },
+                      { id: "formal", label: "Formal" },
+                      { id: "warm-weather", label: "Warm Weather" },
+                    ].map((tab) => (
+                      <button
+                        key={tab.id}
+                        type="button"
+                        onClick={() => setOutfitFilter(tab.id)}
+                        style={{
+                          padding: '6px 14px',
+                          borderRadius: '999px',
+                          border: outfitFilter === tab.id ? '1px solid var(--accent, #707070)' : '1px solid rgba(128, 128, 128, 0.2)',
+                          background: outfitFilter === tab.id ? 'var(--accent, #333)' : 'transparent',
+                          color: 'inherit',
+                          cursor: 'pointer',
+                          fontSize: '0.85rem',
+                          fontWeight: outfitFilter === tab.id ? 600 : 400,
+                          transition: 'all 0.15s ease'
+                        }}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <input
+                      type="text"
+                      placeholder="Search looks..."
+                      value={outfitSearch}
+                      onChange={(e) => setOutfitSearch(e.target.value)}
+                      style={{
+                        padding: '6px 14px',
+                        borderRadius: '999px',
+                        border: '1px solid rgba(128, 128, 128, 0.2)',
+                        background: 'transparent',
+                        color: 'inherit',
+                        fontSize: '0.85rem',
+                        outline: 'none'
+                      }}
+                    />
+                    <span style={{ fontSize: '0.85rem', opacity: 0.7 }}>
+                      {filteredOutfits.length} {filteredOutfits.length === 1 ? "look" : "looks"}
+                    </span>
+                  </div>
+                </div>
+                {filteredOutfits.length === 0 ? (
+                  <p className="status empty">No outfits match the selected filter.</p>
+                ) : (
+                  <section className="outfit-grid" aria-label="Outfits">
+                    {filteredOutfits.map((outfit) => (
+                      <OutfitCard key={outfit.id} outfit={outfit} items={items} onClick={setSelectedOutfitId} />
+                    ))}
+                  </section>
+                )}
+              </>
             )}
           </>
         )}

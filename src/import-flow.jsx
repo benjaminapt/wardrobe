@@ -1,5 +1,12 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowCounterClockwise, Check, Plus, SpinnerGap, Trash, UploadSimple, WarningCircle, X } from "@phosphor-icons/react";
+import { ArrowCounterClockwise } from "@phosphor-icons/react/dist/csr/ArrowCounterClockwise";
+import { Check } from "@phosphor-icons/react/dist/csr/Check";
+import { Plus } from "@phosphor-icons/react/dist/csr/Plus";
+import { SpinnerGap } from "@phosphor-icons/react/dist/csr/SpinnerGap";
+import { Trash } from "@phosphor-icons/react/dist/csr/Trash";
+import { UploadSimple } from "@phosphor-icons/react/dist/csr/UploadSimple";
+import { WarningCircle } from "@phosphor-icons/react/dist/csr/WarningCircle";
+import { X } from "@phosphor-icons/react/dist/csr/X";
 import "./import-flow.css";
 
 const API = "/api/import/jobs";

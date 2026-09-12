@@ -1,4 +1,5 @@
 import { access, copyFile, mkdir, readFile, rename, rm, writeFile } from "node:fs/promises";
+import { constants } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -39,6 +40,14 @@ async function exists(file) {
   }
 }
 
+async function fastCopy(source, dest) {
+  try {
+    await copyFile(source, dest, constants.COPYFILE_FICLONE);
+  } catch {
+    await copyFile(source, dest);
+  }
+}
+
 export async function exportStaticWardrobe({ libraryPath, assetRoot, outputDir, outfitsPath, outfitImageRoot }) {
   const library = JSON.parse(await readFile(libraryPath, "utf8"));
   if (!Array.isArray(library)) throw new Error("Wardrobe library must be an array");
@@ -59,7 +68,7 @@ export async function exportStaticWardrobe({ libraryPath, assetRoot, outputDir, 
         const source = path.join(assetRoot, name);
         if (!await exists(source)) throw new Error(`Missing required wardrobe asset: ${name}`);
         if (!copied.has(name)) {
-          await copyFile(source, path.join(temporaryAssets, name));
+          await fastCopy(source, path.join(temporaryAssets, name));
           copied.add(name);
         }
         next[field] = `${STATIC_PREFIX}${name}`;
@@ -70,7 +79,7 @@ export async function exportStaticWardrobe({ libraryPath, assetRoot, outputDir, 
         const source = path.join(assetRoot, name);
         if (await exists(source)) {
           if (!copied.has(name)) {
-            await copyFile(source, path.join(temporaryAssets, name));
+            await fastCopy(source, path.join(temporaryAssets, name));
             copied.add(name);
           }
           next.modeledImage = `${STATIC_PREFIX}${name}`;
@@ -99,7 +108,7 @@ export async function exportStaticWardrobe({ libraryPath, assetRoot, outputDir, 
           if (await exists(source)) {
             await mkdir(temporaryOutfits, { recursive: true });
             if (!copiedOutfits.has(name)) {
-              await copyFile(source, path.join(temporaryOutfits, name));
+              await fastCopy(source, path.join(temporaryOutfits, name));
               copiedOutfits.add(name);
             }
             next.image = `${STATIC_OUTFIT_PREFIX}${name}`;
@@ -119,7 +128,7 @@ export async function exportStaticWardrobe({ libraryPath, assetRoot, outputDir, 
 
     const modelReferenceSrc = path.join(path.dirname(libraryPath), "model-reference.png");
     if (await exists(modelReferenceSrc)) {
-      await copyFile(modelReferenceSrc, path.join(temporaryDir, "model-reference.png"));
+      await fastCopy(modelReferenceSrc, path.join(temporaryDir, "model-reference.png"));
     }
 
     await rm(outputDir, { recursive: true, force: true });

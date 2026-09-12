@@ -1,5 +1,8 @@
 import { useState, useMemo } from "react";
-import { Plus, Suitcase, Trash, ArrowLeft } from "@phosphor-icons/react";
+import { Plus } from "@phosphor-icons/react/dist/csr/Plus";
+import { Suitcase } from "@phosphor-icons/react/dist/csr/Suitcase";
+import { Trash } from "@phosphor-icons/react/dist/csr/Trash";
+import { ArrowLeft } from "@phosphor-icons/react/dist/csr/ArrowLeft";
 import { OptimizedImage } from "./OptimizedImage.jsx";
 
 const STORAGE_KEY = "open-wardrobe-suitcases-v1";

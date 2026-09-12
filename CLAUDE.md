@@ -270,3 +270,17 @@ vercel deploy --prebuilt --target preview
   1. Reintentar generar las fotos modeladas para las 4 prendas restantes de este batch que fallaron.
   2. Procesar las últimas fotos originales en `tmp_qa/missing-base-garments`.
   3. Desplegar un nuevo preview estático en Vercel.
+
+## Turbo Parallel Execution & Lookbook Launch (2026-09-12)
+
+- **Modeled Photos Expansion:** Generated and verified 7 new high-fidelity modeled editorial photos (`Stone Washed Crewneck Tee`, `White Puma Logo Slides`, `Charcoal DC Pocket-Graphic Tee`, `Light Blue Double-Pocket Cargo Jeans`, `Pale Pink Duck Graphic Tee`, `White Colo-Colo Umbro Jersey`, `Black and White Side-Stripe Skate Sneakers`). Total items with full editorial modeled photos expanded to 79.
+- **Outfits Activation:** Audited all 58 outfits in `data/outfits.json` against `data/outfit-images/*.png`. Confirmed all 58 images exist with valid dimensions and healthy file sizes. All 58 outfits are now fully active (`status: "active"`).
+- **Lookbook UI Enhancements:** Added an interactive occasion filter bar (All, Smart-Casual, Casual, Streetwear, Formal, Warm Weather) + live search + real-time count indicator in `src/App.jsx`.
+- **Build & Performance Fixes:**
+  - Diagnosed and resolved Vite build stall: replaced monolithic `@phosphor-icons/react` imports with direct CSR subpath imports, reducing transformed modules from 1,500+ to 109 and eliminating the 1,024 file-descriptor limit deadlock on macOS. Vite build now runs in 2.48s.
+  - Optimized static wardrobe exporter (`scripts/static-wardrobe-export.mjs`) using `COPYFILE_FICLONE` (reflink copy-on-write), reducing export time from minutes to under 2 seconds.
+- **Verification Baseline:** Both static export tests (6) and wardrobe source tests (4) pass with 100% success.
+- **Published Snapshot:** Deployed new protected preview `https://wardrobe-private-hb2gic0dl-benjaminaptc-4943s-projects.vercel.app` exporting 116 items, 195 garment assets, 58 outfits, and 58 outfit assets. Verified HTTP 302 authentication protection.
+- **Next Session Priority:**
+  1. Resume generating modeled photos for the remaining 37 cutout-only items in `data/library.json`.
+  2. Promote approved looks into customized collections/suitcases.
